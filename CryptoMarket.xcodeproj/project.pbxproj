@@ -1,0 +1,427 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A5A5E781D95B843003465B2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E771D95B843003465B2 /* UserViewController.swift */; };
+		2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */; };
+		2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE31D908C7900064D51 /* AppDelegate.swift */; };
+		2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE51D908C7900064D51 /* RatesViewController.swift */; };
+		2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEA1D908C7900064D51 /* Assets.xcassets */; };
+		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
+		2AEE23801D95A3B40090A61B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE237F1D95A3B40090A61B /* Router.swift */; };
+		2AEE23831D95A6E10090A61B /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23821D95A6E10090A61B /* BrightFutures.framework */; };
+		2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23861D95A6F80090A61B /* Realm.framework */; };
+		2AEE238D1D95A6F80090A61B /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23871D95A6F80090A61B /* RealmSwift.framework */; };
+		2AEE238E1D95A6F80090A61B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23881D95A6F80090A61B /* Result.framework */; };
+		2AEE238F1D95A6F80090A61B /* Stevia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23891D95A6F80090A61B /* Stevia.framework */; };
+		2AEE23921D95A82C0090A61B /* RootRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE23911D95A82C0090A61B /* RootRouter.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A5A5E771D95B843003465B2 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRootViewController.swift; sourceTree = "<group>"; };
+		2A61FCE01D908C7900064D51 /* CryptoMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A61FCE31D908C7900064D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A61FCE51D908C7900064D51 /* RatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewController.swift; sourceTree = "<group>"; };
+		2A61FCEA1D908C7900064D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AEE237F1D95A3B40090A61B /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		2AEE23821D95A6E10090A61B /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
+		2AEE23861D95A6F80090A61B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		2AEE23871D95A6F80090A61B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		2AEE23881D95A6F80090A61B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		2AEE23891D95A6F80090A61B /* Stevia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stevia.framework; path = Carthage/Build/iOS/Stevia.framework; sourceTree = "<group>"; };
+		2AEE23911D95A82C0090A61B /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A61FCDD1D908C7900064D51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */,
+				2AEE238D1D95A6F80090A61B /* RealmSwift.framework in Frameworks */,
+				2AEE238E1D95A6F80090A61B /* Result.framework in Frameworks */,
+				2AEE23831D95A6E10090A61B /* BrightFutures.framework in Frameworks */,
+				2AEE238F1D95A6F80090A61B /* Stevia.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2A5A5E731D95B486003465B2 /* Rates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Rates;
+			sourceTree = "<group>";
+		};
+		2A5A5E741D95B48F003465B2 /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
+		2A61FCD71D908C7900064D51 = {
+			isa = PBXGroup;
+			children = (
+				2AEE23811D95A6C90090A61B /* Frameworks */,
+				2A61FCE21D908C7900064D51 /* CryptoMarket */,
+				2A61FCE11D908C7900064D51 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		2A61FCE11D908C7900064D51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A61FCE01D908C7900064D51 /* CryptoMarket.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A61FCE21D908C7900064D51 /* CryptoMarket */ = {
+			isa = PBXGroup;
+			children = (
+				2AEE237E1D95A32D0090A61B /* Router */,
+				2A61FCF81D908C9700064D51 /* Views */,
+				2A61FCF71D908C9100064D51 /* Models */,
+				2A61FCF51D908C8600064D51 /* ViewController */,
+				2A61FCE31D908C7900064D51 /* AppDelegate.swift */,
+				2A61FCEA1D908C7900064D51 /* Assets.xcassets */,
+				2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */,
+				2A61FCEF1D908C7900064D51 /* Info.plist */,
+			);
+			path = CryptoMarket;
+			sourceTree = "<group>";
+		};
+		2A61FCF51D908C8600064D51 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2A61FCE51D908C7900064D51 /* RatesViewController.swift */,
+				2A5A5E771D95B843003465B2 /* UserViewController.swift */,
+				2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		2A61FCF61D908C8C00064D51 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		2A61FCF71D908C9100064D51 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A61FCF61D908C8C00064D51 /* Network */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2A61FCF81D908C9700064D51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		2AEE237E1D95A32D0090A61B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				2A5A5E741D95B48F003465B2 /* User */,
+				2A5A5E731D95B486003465B2 /* Rates */,
+				2AEE237F1D95A3B40090A61B /* Router.swift */,
+				2AEE23911D95A82C0090A61B /* RootRouter.swift */,
+			);
+			name = Router;
+			sourceTree = "<group>";
+		};
+		2AEE23811D95A6C90090A61B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AEE23861D95A6F80090A61B /* Realm.framework */,
+				2AEE23871D95A6F80090A61B /* RealmSwift.framework */,
+				2AEE23881D95A6F80090A61B /* Result.framework */,
+				2AEE23891D95A6F80090A61B /* Stevia.framework */,
+				2AEE23821D95A6E10090A61B /* BrightFutures.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A61FCDF1D908C7900064D51 /* CryptoMarket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A61FCF21D908C7900064D51 /* Build configuration list for PBXNativeTarget "CryptoMarket" */;
+			buildPhases = (
+				2A61FCDC1D908C7900064D51 /* Sources */,
+				2A61FCDD1D908C7900064D51 /* Frameworks */,
+				2A61FCDE1D908C7900064D51 /* Resources */,
+				2AEE23901D95A7730090A61B /* Carthage */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CryptoMarket;
+			productName = CryptoMarket;
+			productReference = 2A61FCE01D908C7900064D51 /* CryptoMarket.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A61FCD81D908C7900064D51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "David Moeller";
+				TargetAttributes = {
+					2A61FCDF1D908C7900064D51 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2T87V487YG;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2A61FCDB1D908C7900064D51 /* Build configuration list for PBXProject "CryptoMarket" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2A61FCD71D908C7900064D51;
+			productRefGroup = 2A61FCE11D908C7900064D51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A61FCDF1D908C7900064D51 /* CryptoMarket */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A61FCDE1D908C7900064D51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */,
+				2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2AEE23901D95A7730090A61B /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Stevia.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A61FCDC1D908C7900064D51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2AEE23921D95A82C0090A61B /* RootRouter.swift in Sources */,
+				2A5A5E781D95B843003465B2 /* UserViewController.swift in Sources */,
+				2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */,
+				2AEE23801D95A3B40090A61B /* Router.swift in Sources */,
+				2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */,
+				2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A61FCED1D908C7900064D51 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2A61FCF01D908C7900064D51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2A61FCF11D908C7900064D51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A61FCF31D908C7900064D51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2T87V487YG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = CryptoMarket/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		2A61FCF41D908C7900064D51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2T87V487YG;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = CryptoMarket/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A61FCDB1D908C7900064D51 /* Build configuration list for PBXProject "CryptoMarket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A61FCF01D908C7900064D51 /* Debug */,
+				2A61FCF11D908C7900064D51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A61FCF21D908C7900064D51 /* Build configuration list for PBXNativeTarget "CryptoMarket" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A61FCF31D908C7900064D51 /* Debug */,
+				2A61FCF41D908C7900064D51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2A61FCD81D908C7900064D51 /* Project object */;
+}

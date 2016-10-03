@@ -36,7 +36,7 @@ class RootRouter: NSObject, TabbarRouting {
 	func configure(withRootController rootController: UITabBarController) {
 		
 		let ratesNavigationController = RatesNavigationController(tabBarItem: UITabBarItem(title: "Rates", image: UIImage(named: "Rates"), tag: 0))
-		let userNavigationController = UserNavigationController(tabBarItem: UITabBarItem(title: "User", image: UIImage(named: "User"), tag: 1))
+		let userNavigationController = SettingsNavigationController(tabBarItem: UITabBarItem(title: "Settings", image: UIImage(named: "Settings"), tag: 1))
 		
 		// Add ViewController
 		
@@ -58,11 +58,11 @@ class RootRouter: NSObject, TabbarRouting {
 		
 		if !subRouters.keys.contains(navigationController) {
 			if navigationController is RatesNavigationController {
-				let subRouter = SubRootRouter(root: navigationController, viewController: RatesViewController() as SubRootViewController)
+				let subRouter = RatesRouter(root: navigationController)
 				subRouter.start()
 				subRouters[navigationController] = subRouter
-			} else if navigationController is UserNavigationController {
-				let subRouter = SubRootRouter(root: navigationController, viewController: UserViewController() as SubRootViewController)
+			} else if navigationController is SettingsNavigationController {
+				let subRouter = SettingsRouter(root: navigationController)
 				subRouter.start()
 				subRouters[navigationController] = subRouter
 			}
@@ -82,18 +82,17 @@ extension RootRouter: UITabBarControllerDelegate {
 	
 }
 
-class SubRootRouter: NavigationRouting {
+class SubRootRouter: NSObject, NavigationRouting {
 	
 	let root: UINavigationController
 	var viewController: SubRootViewController?
 	
-	init(root: UINavigationController, viewController: SubRootViewController) {
+	init(root: UINavigationController) {
 		self.root = root
-		self.viewController = viewController
 	}
 	
 	func createViewController() -> SubRootViewController {
-		return viewController!
+		fatalError("Not implemented")
 	}
 	
 	func configure(_ viewController: SubRootViewController) {

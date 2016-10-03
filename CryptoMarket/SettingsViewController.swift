@@ -9,11 +9,13 @@
 import UIKit
 import Stevia
 
-class UserNavigationController: UINavigationController {
+class SettingsNavigationController: UINavigationController {
 	
 	init(tabBarItem: UITabBarItem) {
 		super.init(nibName: nil, bundle: nil)
 		self.tabBarItem = tabBarItem
+		self.navigationController?.hidesNavigationBarHairline = true
+		// self.navigationBar.backgroundColor = projectColors.navigationBarColor
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -22,17 +24,17 @@ class UserNavigationController: UINavigationController {
 
 }
 
-class UserViewController: SubRootViewController {
+class SettingsViewController: SubRootViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		self.title = "User"
+		self.title = "Settings"
 		
 		self.view.backgroundColor = UIColor.white
 		
 		let label = UILabel()
-		label.text = "User Test"
+		label.text = "Settings Test"
 		label.sizeToFit()
 		
 		self.view.sv([label])

@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Chameleon
+
+var projectColors: ProjectColor = ProjectColor(mainColor: UIColor.flatBlue(), mainColorDark: UIColor.flatBlueColorDark())
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	var rootRouter: RootRouter?
-
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		self.window?.makeKeyAndVisible()
 		
 		rootRouter?.start()
+		
+		// Set Color Themes
+		
+		Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColorDark(), with: .contrast)
 		
 		return true
 	}

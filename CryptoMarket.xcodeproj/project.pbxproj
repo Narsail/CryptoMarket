@@ -7,12 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A5A5E781D95B843003465B2 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E771D95B843003465B2 /* UserViewController.swift */; };
+		2A2797EE1DA28D980061F1C5 /* BetterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */; };
+		2A5A5E781D95B843003465B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E771D95B843003465B2 /* SettingsViewController.swift */; };
 		2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */; };
 		2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE31D908C7900064D51 /* AppDelegate.swift */; };
 		2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE51D908C7900064D51 /* RatesViewController.swift */; };
 		2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEA1D908C7900064D51 /* Assets.xcassets */; };
 		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
+		2AD75EEF1D9C110000D6CC39 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */; };
+		2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EED1D9C110000D6CC39 /* Former.framework */; };
+		2AD75EF11D9C110000D6CC39 /* HidingNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */; };
+		2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */; };
+		2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */; };
+		2AD75EF81D9C5CEE00D6CC39 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */; };
+		2AD75EFA1D9D1F3000D6CC39 /* RatesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF91D9D1F3000D6CC39 /* RatesRouter.swift */; };
+		2AD75EFC1D9D252600D6CC39 /* SettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EFB1D9D252600D6CC39 /* SettingsRouter.swift */; };
+		2AD75EFE1D9D27C200D6CC39 /* RatesDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EFD1D9D27C200D6CC39 /* RatesDetailRouter.swift */; };
+		2AD75F011D9D283A00D6CC39 /* RatesDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75F001D9D283A00D6CC39 /* RatesDetailViewController.swift */; };
+		2ADC4B071D9AE8CD00E28CFA /* Market.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B061D9AE8CD00E28CFA /* Market.swift */; };
+		2ADC4B091D9AE97200E28CFA /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B081D9AE97200E28CFA /* Ticker.swift */; };
+		2ADC4B0B1D9AEB9500E28CFA /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B0A1D9AEB9500E28CFA /* ChartData.swift */; };
+		2ADC4B211D9AEF6000E28CFA /* TickerRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B201D9AEF6000E28CFA /* TickerRequest.swift */; };
+		2ADC4B231D9AEF6800E28CFA /* TickerMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B221D9AEF6800E28CFA /* TickerMapper.swift */; };
+		2ADC4B271D9AF56200E28CFA /* BackendConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B241D9AF56200E28CFA /* BackendConfiguration.swift */; };
+		2ADC4B281D9AF56200E28CFA /* BackendOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B251D9AF56200E28CFA /* BackendOperations.swift */; };
+		2ADC4B291D9AF56200E28CFA /* BackendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B261D9AF56200E28CFA /* BackendService.swift */; };
+		2ADC4B2C1D9AF58B00E28CFA /* ListOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B2A1D9AF58B00E28CFA /* ListOperations.swift */; };
+		2ADC4B2D1D9AF58B00E28CFA /* SingleOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B2B1D9AF58B00E28CFA /* SingleOperations.swift */; };
+		2ADC4B2F1D9AF5A500E28CFA /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B2E1D9AF5A500E28CFA /* Mapper.swift */; };
+		2ADC4B331D9AF7A000E28CFA /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B321D9AF7A000E28CFA /* Store.swift */; };
+		2ADC4B351D9AFD9000E28CFA /* PoloniexAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B341D9AFD9000E28CFA /* PoloniexAPI.swift */; };
+		2ADC4B381D9B13A200E28CFA /* TickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADC4B371D9B13A200E28CFA /* TickerTableViewCell.swift */; };
 		2AEE23801D95A3B40090A61B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE237F1D95A3B40090A61B /* Router.swift */; };
 		2AEE23831D95A6E10090A61B /* BrightFutures.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23821D95A6E10090A61B /* BrightFutures.framework */; };
 		2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AEE23861D95A6F80090A61B /* Realm.framework */; };
@@ -23,7 +48,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A5A5E771D95B843003465B2 /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSegmentedControl.swift; sourceTree = "<group>"; };
+		2A5A5E771D95B843003465B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRootViewController.swift; sourceTree = "<group>"; };
 		2A61FCE01D908C7900064D51 /* CryptoMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A61FCE31D908C7900064D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +57,30 @@
 		2A61FCEA1D908C7900064D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
+		2AD75EED1D9C110000D6CC39 /* Former.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Former.framework; path = Carthage/Build/iOS/Former.framework; sourceTree = "<group>"; };
+		2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HidingNavigationBar.framework; path = Carthage/Build/iOS/HidingNavigationBar.framework; sourceTree = "<group>"; };
+		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
+		2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataMapper.swift; sourceTree = "<group>"; };
+		2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		2AD75EF91D9D1F3000D6CC39 /* RatesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesRouter.swift; sourceTree = "<group>"; };
+		2AD75EFB1D9D252600D6CC39 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
+		2AD75EFD1D9D27C200D6CC39 /* RatesDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesDetailRouter.swift; sourceTree = "<group>"; };
+		2AD75F001D9D283A00D6CC39 /* RatesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesDetailViewController.swift; sourceTree = "<group>"; };
+		2ADC4B061D9AE8CD00E28CFA /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Market.swift; path = Store/Types/Market.swift; sourceTree = "<group>"; };
+		2ADC4B081D9AE97200E28CFA /* Ticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ticker.swift; path = Store/Types/Ticker.swift; sourceTree = "<group>"; };
+		2ADC4B0A1D9AEB9500E28CFA /* ChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartData.swift; path = Store/Types/ChartData.swift; sourceTree = "<group>"; };
+		2ADC4B201D9AEF6000E28CFA /* TickerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerRequest.swift; sourceTree = "<group>"; };
+		2ADC4B221D9AEF6800E28CFA /* TickerMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerMapper.swift; sourceTree = "<group>"; };
+		2ADC4B241D9AF56200E28CFA /* BackendConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConfiguration.swift; sourceTree = "<group>"; };
+		2ADC4B251D9AF56200E28CFA /* BackendOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendOperations.swift; sourceTree = "<group>"; };
+		2ADC4B261D9AF56200E28CFA /* BackendService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendService.swift; sourceTree = "<group>"; };
+		2ADC4B2A1D9AF58B00E28CFA /* ListOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOperations.swift; sourceTree = "<group>"; };
+		2ADC4B2B1D9AF58B00E28CFA /* SingleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleOperations.swift; sourceTree = "<group>"; };
+		2ADC4B2E1D9AF5A500E28CFA /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		2ADC4B321D9AF7A000E28CFA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		2ADC4B341D9AFD9000E28CFA /* PoloniexAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoloniexAPI.swift; sourceTree = "<group>"; };
+		2ADC4B371D9B13A200E28CFA /* TickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerTableViewCell.swift; sourceTree = "<group>"; };
 		2AEE237F1D95A3B40090A61B /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2AEE23821D95A6E10090A61B /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		2AEE23861D95A6F80090A61B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
@@ -46,28 +96,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */,
+				2AD75EF11D9C110000D6CC39 /* HidingNavigationBar.framework in Frameworks */,
 				2AEE238D1D95A6F80090A61B /* RealmSwift.framework in Frameworks */,
+				2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */,
 				2AEE238E1D95A6F80090A61B /* Result.framework in Frameworks */,
 				2AEE23831D95A6E10090A61B /* BrightFutures.framework in Frameworks */,
 				2AEE238F1D95A6F80090A61B /* Stevia.framework in Frameworks */,
+				2AD75EEF1D9C110000D6CC39 /* Chameleon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A2797EC1DA28D4B0061F1C5 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */,
+			);
+			name = Controls;
+			sourceTree = "<group>";
+		};
 		2A5A5E731D95B486003465B2 /* Rates */ = {
 			isa = PBXGroup;
 			children = (
+				2AD75EF91D9D1F3000D6CC39 /* RatesRouter.swift */,
+				2AD75EFD1D9D27C200D6CC39 /* RatesDetailRouter.swift */,
 			);
 			name = Rates;
 			sourceTree = "<group>";
 		};
-		2A5A5E741D95B48F003465B2 /* User */ = {
+		2A5A5E741D95B48F003465B2 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				2AD75EFB1D9D252600D6CC39 /* SettingsRouter.swift */,
 			);
-			name = User;
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		2A61FCD71D908C7900064D51 = {
@@ -90,6 +154,7 @@
 		2A61FCE21D908C7900064D51 /* CryptoMarket */ = {
 			isa = PBXGroup;
 			children = (
+				2ADC4B041D9AE59200E28CFA /* Store */,
 				2AEE237E1D95A32D0090A61B /* Router */,
 				2A61FCF81D908C9700064D51 /* Views */,
 				2A61FCF71D908C9100064D51 /* Models */,
@@ -105,8 +170,9 @@
 		2A61FCF51D908C8600064D51 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2AD75EFF1D9D282E00D6CC39 /* Rates */,
 				2A61FCE51D908C7900064D51 /* RatesViewController.swift */,
-				2A5A5E771D95B843003465B2 /* UserViewController.swift */,
+				2A5A5E771D95B843003465B2 /* SettingsViewController.swift */,
 				2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */,
 			);
 			name = ViewController;
@@ -115,6 +181,11 @@
 		2A61FCF61D908C8C00064D51 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2ADC4B1F1D9AEF4C00E28CFA /* Requests */,
+				2ADC4B1E1D9AEF4000E28CFA /* Mapper */,
+				2ADC4B191D9AEF1A00E28CFA /* Operations */,
+				2ADC4B121D9AEED500E28CFA /* Foundation */,
+				2ADC4B341D9AFD9000E28CFA /* PoloniexAPI.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -122,6 +193,7 @@
 		2A61FCF71D908C9100064D51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2AD75EF61D9C5CE600D6CC39 /* Colors */,
 				2A61FCF61D908C8C00064D51 /* Network */,
 			);
 			name = Models;
@@ -130,14 +202,97 @@
 		2A61FCF81D908C9700064D51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A2797EC1DA28D4B0061F1C5 /* Controls */,
+				2ADC4B361D9B135900E28CFA /* TableViewCells */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2AD75EF61D9C5CE600D6CC39 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
+		2AD75EFF1D9D282E00D6CC39 /* Rates */ = {
+			isa = PBXGroup;
+			children = (
+				2AD75F001D9D283A00D6CC39 /* RatesDetailViewController.swift */,
+			);
+			name = Rates;
+			sourceTree = "<group>";
+		};
+		2ADC4B041D9AE59200E28CFA /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B051D9AE59900E28CFA /* Types */,
+				2ADC4B321D9AF7A000E28CFA /* Store.swift */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		2ADC4B051D9AE59900E28CFA /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B061D9AE8CD00E28CFA /* Market.swift */,
+				2ADC4B081D9AE97200E28CFA /* Ticker.swift */,
+				2ADC4B0A1D9AEB9500E28CFA /* ChartData.swift */,
+			);
+			name = Types;
+			sourceTree = "<group>";
+		};
+		2ADC4B121D9AEED500E28CFA /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B241D9AF56200E28CFA /* BackendConfiguration.swift */,
+				2ADC4B251D9AF56200E28CFA /* BackendOperations.swift */,
+				2ADC4B261D9AF56200E28CFA /* BackendService.swift */,
+			);
+			name = Foundation;
+			sourceTree = "<group>";
+		};
+		2ADC4B191D9AEF1A00E28CFA /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B2A1D9AF58B00E28CFA /* ListOperations.swift */,
+				2ADC4B2B1D9AF58B00E28CFA /* SingleOperations.swift */,
+			);
+			name = Operations;
+			sourceTree = "<group>";
+		};
+		2ADC4B1E1D9AEF4000E28CFA /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B2E1D9AF5A500E28CFA /* Mapper.swift */,
+				2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */,
+				2ADC4B221D9AEF6800E28CFA /* TickerMapper.swift */,
+			);
+			name = Mapper;
+			sourceTree = "<group>";
+		};
+		2ADC4B1F1D9AEF4C00E28CFA /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B201D9AEF6000E28CFA /* TickerRequest.swift */,
+				2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */,
+			);
+			name = Requests;
+			sourceTree = "<group>";
+		};
+		2ADC4B361D9B135900E28CFA /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				2ADC4B371D9B13A200E28CFA /* TickerTableViewCell.swift */,
+			);
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		2AEE237E1D95A32D0090A61B /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				2A5A5E741D95B48F003465B2 /* User */,
+				2A5A5E741D95B48F003465B2 /* Settings */,
 				2A5A5E731D95B486003465B2 /* Rates */,
 				2AEE237F1D95A3B40090A61B /* Router.swift */,
 				2AEE23911D95A82C0090A61B /* RootRouter.swift */,
@@ -148,6 +303,9 @@
 		2AEE23811D95A6C90090A61B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */,
+				2AD75EED1D9C110000D6CC39 /* Former.framework */,
+				2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */,
 				2AEE23861D95A6F80090A61B /* Realm.framework */,
 				2AEE23871D95A6F80090A61B /* RealmSwift.framework */,
 				2AEE23881D95A6F80090A61B /* Result.framework */,
@@ -237,6 +395,12 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Stevia.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Former.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/HidingNavigationBar.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/DateHelper.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/ChartsRealm.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -253,11 +417,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AEE23921D95A82C0090A61B /* RootRouter.swift in Sources */,
-				2A5A5E781D95B843003465B2 /* UserViewController.swift in Sources */,
+				2ADC4B091D9AE97200E28CFA /* Ticker.swift in Sources */,
+				2A5A5E781D95B843003465B2 /* SettingsViewController.swift in Sources */,
+				2ADC4B331D9AF7A000E28CFA /* Store.swift in Sources */,
+				2ADC4B071D9AE8CD00E28CFA /* Market.swift in Sources */,
+				2ADC4B381D9B13A200E28CFA /* TickerTableViewCell.swift in Sources */,
+				2A2797EE1DA28D980061F1C5 /* BetterSegmentedControl.swift in Sources */,
+				2ADC4B271D9AF56200E28CFA /* BackendConfiguration.swift in Sources */,
+				2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */,
+				2ADC4B0B1D9AEB9500E28CFA /* ChartData.swift in Sources */,
+				2ADC4B2D1D9AF58B00E28CFA /* SingleOperations.swift in Sources */,
 				2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */,
+				2ADC4B211D9AEF6000E28CFA /* TickerRequest.swift in Sources */,
+				2AD75EFA1D9D1F3000D6CC39 /* RatesRouter.swift in Sources */,
+				2ADC4B291D9AF56200E28CFA /* BackendService.swift in Sources */,
+				2AD75EF81D9C5CEE00D6CC39 /* Colors.swift in Sources */,
+				2ADC4B2F1D9AF5A500E28CFA /* Mapper.swift in Sources */,
 				2AEE23801D95A3B40090A61B /* Router.swift in Sources */,
 				2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */,
+				2ADC4B281D9AF56200E28CFA /* BackendOperations.swift in Sources */,
+				2AD75EFC1D9D252600D6CC39 /* SettingsRouter.swift in Sources */,
+				2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */,
+				2AD75F011D9D283A00D6CC39 /* RatesDetailViewController.swift in Sources */,
+				2ADC4B2C1D9AF58B00E28CFA /* ListOperations.swift in Sources */,
+				2ADC4B231D9AEF6800E28CFA /* TickerMapper.swift in Sources */,
+				2ADC4B351D9AFD9000E28CFA /* PoloniexAPI.swift in Sources */,
 				2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */,
+				2AD75EFE1D9D27C200D6CC39 /* RatesDetailRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

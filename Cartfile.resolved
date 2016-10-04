@@ -1,8 +1,5 @@
 github "melvitax/AFDateHelper" "3.5.3"
-github "gmarm/BetterSegmentedControl" "0.5"
 github "ViccAlexander/Chameleon" "c400c32eead1c6e74008983c3e7c845ae069b41d"
-github "ra1028/Former" "1.5.0"
-github "tristanhimmelman/HidingNavigationBar" "1.0.0"
 github "antitypical/Result" "3.0.0"
 github "s4cha/Stevia" "3.0.1"
 github "realm/realm-cocoa" "v1.1.0"

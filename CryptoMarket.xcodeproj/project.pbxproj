@@ -18,7 +18,6 @@
 		2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEA1D908C7900064D51 /* Assets.xcassets */; };
 		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
 		2AD75EEF1D9C110000D6CC39 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */; };
-		2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EED1D9C110000D6CC39 /* Former.framework */; };
 		2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */; };
 		2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */; };
 		2AD75EF81D9C5CEE00D6CC39 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */; };
@@ -63,7 +62,6 @@
 		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
-		2AD75EED1D9C110000D6CC39 /* Former.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Former.framework; path = Carthage/Build/iOS/Former.framework; sourceTree = "<group>"; };
 		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
 		2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataMapper.swift; sourceTree = "<group>"; };
 		2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -101,7 +99,6 @@
 			files = (
 				2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */,
 				2AEE238D1D95A6F80090A61B /* RealmSwift.framework in Frameworks */,
-				2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */,
 				2AEE238E1D95A6F80090A61B /* Result.framework in Frameworks */,
 				2AEE23831D95A6E10090A61B /* BrightFutures.framework in Frameworks */,
 				2AEE238F1D95A6F80090A61B /* Stevia.framework in Frameworks */,
@@ -318,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */,
-				2AD75EED1D9C110000D6CC39 /* Former.framework */,
 				2AEE23861D95A6F80090A61B /* Realm.framework */,
 				2AEE23871D95A6F80090A61B /* RealmSwift.framework */,
 				2AEE23881D95A6F80090A61B /* Result.framework */,
@@ -408,7 +404,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Stevia.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/Former.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DateHelper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",

@@ -2,8 +2,5 @@ github "realm/realm-cocoa" ~>  1.1.0
 github "Thomvis/BrightFutures" ~> 5.0.1
 github "danielgindi/Charts" "master"
 github "s4cha/Stevia" == 3.0.1
-# github "0x73/SwiftIconFont"
-github "ra1028/Former" ~> 1.5.0
-github "tristanhimmelman/HidingNavigationBar" ~> 1.0
 github "ViccAlexander/Chameleon" "swift3"
 github "melvitax/AFDateHelper" ~> 3.5.3

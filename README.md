@@ -17,3 +17,10 @@ First fetch the Dependencies with [Carthage](https://github.com/Carthage/Carthag
     carthage update
     
 Then build the Project with XCode.
+
+## Architectural  Notes
+
+The  architectural pattern of the App is based on the [MVC-RS](https://www.youtube.com/watch?v=SU6h0-THvbA) (Model, View, Controller, Router, Store) pattern. Instead of using nib/Storyboard initialized Viewcontrollers i tried to solely build the app programmatically and type safe. The Router Protocols are based on the Talk of [Nielas van Hoorn](https://www.youtube.com/watch?v=KDl7Czw63mM) from the SwiftConf 2016.
+
+Every  ViewController/Segue will be controlled by a Router Object which will handle the interaction between Models/Stores/ViewController and therefore the Viewcontroller can stay lean and simple.
+

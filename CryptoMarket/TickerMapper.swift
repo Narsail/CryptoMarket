@@ -114,7 +114,7 @@ final class TickerMapper: Mapping {
 			ticker.high24hr = high24hr
 			ticker.low24hr = low24hr
 			
-			ticker.setSortingLabel()
+			ticker.setFavorite(withFavorite: false)
 			
 			return ticker
 		})

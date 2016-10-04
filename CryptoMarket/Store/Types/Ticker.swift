@@ -16,7 +16,6 @@ class Ticker: Object {
 	
 	dynamic var market: Market?
 	dynamic var id: Int = 0
-	dynamic var priorLast: Double = 0
 	dynamic var last: Double = 0
 	dynamic var lowestAsk: Double = 0
 	dynamic var highestBid: Double = 0
@@ -29,22 +28,23 @@ class Ticker: Object {
 	
 	dynamic var favorite: Bool = false
 	
-	func toggleFavorite() {
+	func setFavorite(withFavorite favorite: Bool) {
 		
-		self.favorite = !self.favorite
+		self.favorite = favorite
 		
-		setSortingLabel()
+		setSortingLabel(withFavorite: favorite)
 		
 	}
 	
-	func setSortingLabel() {
+	func setSortingLabel(withFavorite favorite: Bool) {
 		var favoriteInt = 1
 		
-		if self.favorite {
+		if favorite {
 			favoriteInt = 0
 		}
 		
-		self.sortingLabel = "\(favoriteInt)-\(self.market?.label)"
+		self.sortingLabel = "\(favoriteInt)-\(self.market?.label ?? "Unknown")"
+
 	}
 	
 	override static func primaryKey() -> String? {

@@ -12,24 +12,52 @@ import Stevia
 
 class TickerTableViewCell: UITableViewCell {
 	
-	// Top Hierarchy Views
-	var leftView: UIView = {
-		let view = UIView()
-		view.backgroundColor = UIColor.flatGray()
-		return view
-	}()
-	var rightView: UIView = {
+	// MARK: - Top View
+	var topView: UIView = {
 		let view = UIView()
 		view.backgroundColor = UIColor.clear
 		return view
 	}()
 	
-	var rightTopView: UIView = {
+	// MARK: Left View
+	var topLeftView: UIView = {
 		let view = UIView()
-		view.backgroundColor = projectColors.mainComplementColor
+		view.backgroundColor = UIColor.flatGray()
 		return view
 	}()
-	var rightMiddleView: UIView = {
+	
+	var differenceLabel: UILabel = {
+		let label = UILabel()
+		label.textColor = UIColor.black
+		return label
+	}()
+	
+	// MARK: Right View
+	var topRightView: UIView = {
+		let view = UIView()
+		view.backgroundColor = UIColor.white
+		return view
+	}()
+	
+	var marketUILabel: UILabel = {
+		let label = UILabel()
+		label.textColor = UIColor.black
+		label.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize + 2)
+		return label
+	}()
+	
+	var favoriteItem: UIButton = {
+		let button = UIButton(type: .custom)
+		button.backgroundColor = UIColor.white
+		button.setImage(UIImage(named: "UnselectedBookmark"), for: .normal)
+		button.setImage(UIImage(named: "SelectedBookmark"), for: .selected)
+		return button
+	}()
+	
+	
+	// MARK: - Bottom View
+	
+	var bottomView: UIView = {
 		let view = UIView()
 		view.backgroundColor = UIColor.white
 		return view
@@ -38,22 +66,29 @@ class TickerTableViewCell: UITableViewCell {
 	
 	// Information Views
 	
-	var marketUILabel: UILabel = {
+	var high24hr: UILabel = {
 		let label = UILabel()
-		label.textColor = UIColor.white
+		label.text = "High:"
 		return label
 	}()
-	var lastValueUILabel: UILabel = {
+	var high24hrNumberLabel: UILabel = {
 		let label = UILabel()
 		return label
 	}()
-	var favoriteItem: UIButton = {
-		let button = UIButton(type: .custom)
-		button.backgroundColor = UIColor.white
-		button.setImage(UIImage(named: "UnselectedBookmark"), for: .normal)
-		button.setImage(UIImage(named: "SelectedBookmark"), for: .selected)
-		return button
+	var low24hr: UILabel = {
+		let label = UILabel()
+		label.text = "Low:"
+		return label
 	}()
+	var low24hrNumberLabel: UILabel = {
+		let label = UILabel()
+		return label
+	}()
+	var volume: UILabel = {
+		let label = UILabel()
+		return label
+	}()
+	
 	
 	var id: Int = 0
 	
@@ -72,45 +107,61 @@ class TickerTableViewCell: UITableViewCell {
 		self.backgroundColor = UIColor.clear
 		self.selectionStyle = .none
 		
-		let topViewHeight: CGFloat = 35
-		let middleViewHeight: CGFloat = 60
+		let topViewHeight: CGFloat = 50
+		let bottomViewHeight: CGFloat = 60
 		
 		// Add Top Hierarchy Views
 		
-		sv(leftView, rightView)
+		sv(topView, bottomView)
 		layout(
 			5,
-			|-10-leftView.width(15).height(topViewHeight + middleViewHeight),
-			5
-		)
-		layout(
-			5,
-			leftView-0-rightView-10-|,
+			|-10-topView.height(topViewHeight)-10-|,
+			|-10-bottomView.height(bottomViewHeight)-10-|,
 			5
 		)
 		
-		// Add to Right View
-		rightView.sv(rightTopView, rightMiddleView)
-		rightView.layout(
+		// Top View Sub Views
+		topView.sv(topLeftView, topRightView)
+		topView.layout(
 			0,
-			|rightTopView.height(topViewHeight)|,
-			|rightMiddleView.height(middleViewHeight)|,
+			|topLeftView.width(100)-0-topRightView|,
 			0
+		)
+		equalHeights(topLeftView, topRightView)
+		
+		topLeftView.sv(differenceLabel)
+		topLeftView.layout(
+			differenceLabel.centerVertically().centerHorizontally()
+		)
+		
+		topRightView.sv(marketUILabel, favoriteItem)
+		topRightView.layout(
+			|-marketUILabel.centerVertically()-5-favoriteItem.centerVertically().height(30).width(30)-|
 		)
 		
 		// Add Information Views
 		
-		rightTopView.sv(marketUILabel)
-		rightTopView.layout(
-			marketUILabel.centerVertically().centerHorizontally()
+		bottomView.sv(high24hr, high24hrNumberLabel, low24hr, low24hrNumberLabel, volume)
+		bottomView.layout(
+			5,
+			|-10-high24hr,
+			|-10-low24hr,
+			5
 		)
-		
-		rightMiddleView.sv(lastValueUILabel, favoriteItem)
-		rightMiddleView.layout(
-			favoriteItem.centerVertically().height(30).width(30)-|
+		bottomView.layout(
+			5,
+			high24hr-5-high24hrNumberLabel
 		)
-		rightMiddleView.layout(
-			|-lastValueUILabel.centerVertically()
+		bottomView.layout(
+			high24hr-5-low24hrNumberLabel
+		)
+		bottomView.layout(
+			high24hr,
+			low24hrNumberLabel,
+			5
+		)
+		bottomView.layout(
+			volume.centerVertically()-|
 		)
 		
 		// Add Actions
@@ -119,18 +170,31 @@ class TickerTableViewCell: UITableViewCell {
 	}
 	
 	func initialize(withTicker ticker: Ticker) {
-		self.marketUILabel.text = "Market: \(ticker.market?.label ?? "Unknown")"
-		self.lastValueUILabel.text = ticker.last.format(f: "9")
+		
+		if let marketLabel = ticker.market?.label {
+			let (firstAbbr, secondAbbr) = MarketAbbreviation.convertMarketName(marketName: marketLabel)
+			self.marketUILabel.text = "\(firstAbbr) <-> \(secondAbbr)"
+		} else {
+			self.marketUILabel.text = "Market: Unknown"
+		}
+		
+		self.high24hrNumberLabel.text = ticker.high24hr.string(fractionDigits: 9)
+		self.low24hrNumberLabel.text = ticker.low24hr.string(fractionDigits: 9)
+		self.volume.text = "Volume: " + ticker.baseVolume.string(fractionDigits: 2)
+		
 		self.id = ticker.id
 		
 		favoriteItem.isSelected = ticker.favorite
 		
-		if ticker.last == ticker.priorLast {
-			self.leftView.backgroundColor = UIColor.flatGray()
-		} else if ticker.last < ticker.priorLast {
-			self.leftView.backgroundColor = UIColor.flatRed()
+		if ticker.percentChange == 0.0 {
+			self.topLeftView.backgroundColor = UIColor.flatGray()
+			self.differenceLabel.text = "\(ticker.percentChange.string(fractionDigits: 2))%"
+		} else if ticker.percentChange < 0.0 {
+			self.topLeftView.backgroundColor = UIColor.flatRed()
+			self.differenceLabel.text = "\(ticker.percentChange.string(fractionDigits: 2))%"
 		} else {
-			self.leftView.backgroundColor = UIColor.flatGreen()
+			self.topLeftView.backgroundColor = UIColor.flatGreen()
+			self.differenceLabel.text = "+\(ticker.percentChange.string(fractionDigits: 2))%"
 		}
 		
 	}
@@ -138,9 +202,8 @@ class TickerTableViewCell: UITableViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
-		rightTopView.round(corners: [UIRectCorner.topRight], radius: 10)
-		rightMiddleView.round(corners: [.bottomRight], radius: 10)
-		leftView.round(corners: [.topLeft, .bottomLeft], radius: 10)
+		topView.round(corners: [UIRectCorner.topLeft ,UIRectCorner.topRight], radius: 10)
+		bottomView.round(corners: [UIRectCorner.bottomLeft, UIRectCorner.bottomRight], radius: 10)
 	}
 	
 	func setFavorite() {
@@ -214,7 +277,13 @@ private extension UIView {
 }
 
 extension Double {
-	func format(f: String) -> String {
-		return String(format: "%\(f)f", self)
+	func string(fractionDigits:Int) -> String {
+		let formatter = NumberFormatter()
+		formatter.minimumIntegerDigits = 1
+		formatter.maximumFractionDigits = fractionDigits
+		if self > 1 {
+			formatter.maximumFractionDigits = 2
+		}
+		return formatter.string(for: self)!
 	}
 }

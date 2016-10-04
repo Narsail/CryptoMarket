@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2A2797EE1DA28D980061F1C5 /* BetterSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */; };
+		2A2797F11DA2B3250061F1C5 /* CubicFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2797F01DA2B3250061F1C5 /* CubicFormatter.swift */; };
+		2A2797F31DA2B5ED0061F1C5 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2797F21DA2B5ED0061F1C5 /* DateValueFormatter.swift */; };
+		2A2797F51DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2797F41DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift */; };
 		2A5A5E781D95B843003465B2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E771D95B843003465B2 /* SettingsViewController.swift */; };
 		2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */; };
 		2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE31D908C7900064D51 /* AppDelegate.swift */; };
@@ -16,7 +19,6 @@
 		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
 		2AD75EEF1D9C110000D6CC39 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */; };
 		2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EED1D9C110000D6CC39 /* Former.framework */; };
-		2AD75EF11D9C110000D6CC39 /* HidingNavigationBar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */; };
 		2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */; };
 		2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */; };
 		2AD75EF81D9C5CEE00D6CC39 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */; };
@@ -49,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSegmentedControl.swift; sourceTree = "<group>"; };
+		2A2797F01DA2B3250061F1C5 /* CubicFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicFormatter.swift; sourceTree = "<group>"; };
+		2A2797F21DA2B5ED0061F1C5 /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		2A2797F41DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketAbbreviationMapper.swift; sourceTree = "<group>"; };
 		2A5A5E771D95B843003465B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRootViewController.swift; sourceTree = "<group>"; };
 		2A61FCE01D908C7900064D51 /* CryptoMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +64,6 @@
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		2AD75EED1D9C110000D6CC39 /* Former.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Former.framework; path = Carthage/Build/iOS/Former.framework; sourceTree = "<group>"; };
-		2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HidingNavigationBar.framework; path = Carthage/Build/iOS/HidingNavigationBar.framework; sourceTree = "<group>"; };
 		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
 		2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataMapper.swift; sourceTree = "<group>"; };
 		2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -96,7 +100,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AEE238C1D95A6F80090A61B /* Realm.framework in Frameworks */,
-				2AD75EF11D9C110000D6CC39 /* HidingNavigationBar.framework in Frameworks */,
 				2AEE238D1D95A6F80090A61B /* RealmSwift.framework in Frameworks */,
 				2AD75EF01D9C110000D6CC39 /* Former.framework in Frameworks */,
 				2AEE238E1D95A6F80090A61B /* Result.framework in Frameworks */,
@@ -115,6 +118,16 @@
 				2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */,
 			);
 			name = Controls;
+			sourceTree = "<group>";
+		};
+		2A2797EF1DA2B3130061F1C5 /* Formatter */ = {
+			isa = PBXGroup;
+			children = (
+				2A2797F01DA2B3250061F1C5 /* CubicFormatter.swift */,
+				2A2797F21DA2B5ED0061F1C5 /* DateValueFormatter.swift */,
+				2A2797F41DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift */,
+			);
+			name = Formatter;
 			sourceTree = "<group>";
 		};
 		2A5A5E731D95B486003465B2 /* Rates */ = {
@@ -202,6 +215,7 @@
 		2A61FCF81D908C9700064D51 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2A2797EF1DA2B3130061F1C5 /* Formatter */,
 				2A2797EC1DA28D4B0061F1C5 /* Controls */,
 				2ADC4B361D9B135900E28CFA /* TableViewCells */,
 			);
@@ -305,7 +319,6 @@
 			children = (
 				2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */,
 				2AD75EED1D9C110000D6CC39 /* Former.framework */,
-				2AD75EEE1D9C110000D6CC39 /* HidingNavigationBar.framework */,
 				2AEE23861D95A6F80090A61B /* Realm.framework */,
 				2AEE23871D95A6F80090A61B /* RealmSwift.framework */,
 				2AEE23881D95A6F80090A61B /* Result.framework */,
@@ -397,7 +410,6 @@
 				"$(SRCROOT)/Carthage/Build/iOS/BrightFutures.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Former.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Chameleon.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/HidingNavigationBar.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/DateHelper.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Charts.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/ChartsRealm.framework",
@@ -436,13 +448,16 @@
 				2AEE23801D95A3B40090A61B /* Router.swift in Sources */,
 				2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */,
 				2ADC4B281D9AF56200E28CFA /* BackendOperations.swift in Sources */,
+				2A2797F51DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift in Sources */,
 				2AD75EFC1D9D252600D6CC39 /* SettingsRouter.swift in Sources */,
 				2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */,
 				2AD75F011D9D283A00D6CC39 /* RatesDetailViewController.swift in Sources */,
 				2ADC4B2C1D9AF58B00E28CFA /* ListOperations.swift in Sources */,
 				2ADC4B231D9AEF6800E28CFA /* TickerMapper.swift in Sources */,
 				2ADC4B351D9AFD9000E28CFA /* PoloniexAPI.swift in Sources */,
+				2A2797F31DA2B5ED0061F1C5 /* DateValueFormatter.swift in Sources */,
 				2A5A5E7A1D95BF00003465B2 /* SubRootViewController.swift in Sources */,
+				2A2797F11DA2B3250061F1C5 /* CubicFormatter.swift in Sources */,
 				2AD75EFE1D9D27C200D6CC39 /* RatesDetailRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

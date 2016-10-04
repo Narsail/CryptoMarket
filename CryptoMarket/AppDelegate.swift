@@ -9,31 +9,27 @@
 import UIKit
 import Chameleon
 
-var projectColors: ProjectColor = ProjectColor(mainColor: UIColor.flatBlue(), mainColorDark: UIColor.flatBlueColorDark())
+var projectColors: ProjectColor = ProjectColor(mainColor: UIColor.flatWhite(), mainColorDark: UIColor.flatWhiteColorDark())
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
-	var rootRouter: RootRouter?
+	var rootRouter: RatesRouter?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		
-		let initialiViewController = UITabBarController()
+		let initialiViewController = UINavigationController()
 		
-		rootRouter = RootRouter(root: initialiViewController)
+		rootRouter = RatesRouter(root: initialiViewController)
 		
 		self.window?.rootViewController = initialiViewController
 		self.window?.makeKeyAndVisible()
 		
 		rootRouter?.start()
-		
-		// Set Color Themes
-		
-		Chameleon.setGlobalThemeUsingPrimaryColor(UIColor.flatBlueColorDark(), with: .contrast)
 		
 		return true
 	}

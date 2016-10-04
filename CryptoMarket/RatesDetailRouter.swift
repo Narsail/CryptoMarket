@@ -23,6 +23,8 @@ class RatesDetailRouter: NavigationRouting {
 	let chartData: Results<ChartData>
 	var notificationToken: NotificationToken? = nil
 	
+	var timer: Timer?
+	
 	init(root: UINavigationController, ticker: Ticker) {
 		self.root = root
 		self.ticker = ticker
@@ -30,30 +32,44 @@ class RatesDetailRouter: NavigationRouting {
 		chartData = Store.realm.objects(ChartData.self).filter(NSPredicate(format: "market == %@", ticker.market!)).sorted(byProperty: "date")
 		notificationToken = chartData.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
 			
-			if let control = self?.viewController?.segmentedControl {
-				if let selectedItem = SegmentedControlItem(rawValue: Int(control.index)) {
-					self?.displayChartData(item: selectedItem)
-				}
-			}
+			guard let timeRangeControl = self?.viewController?.timeRangeSegmentedControl, let timeRangeItem = TimeRangeSegmentedControlItem(rawValue: Int(timeRangeControl.index)) else { return }
+			
+			guard let lineControl = self?.viewController?.lineSegmentedControl, let lineItem = LineSegmentedControlItem(rawValue: Int(lineControl.index)) else { return }
+			
+			self?.displayChartData(timeRange: timeRangeItem, lineItem: lineItem)
 			
 		}
 		
 		// Fetch Standard Data
-		fetchChartData(withMarket: self.ticker.market!)
+		// Set Fetch Timer
+		self.timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true, block: { _ in
+			// Fetch Data
+			self.fetchChartData(withMarket: self.ticker.market!)
+		})
+		self.timer?.fire()
 		
 	}
 	
 	func createViewController() -> RatesDetailViewController {
-		return RatesDetailViewController()
+		var title: String!
+		if let marketLabel = ticker.market?.label {
+			let (firstAbbr, secondAbbr) = MarketAbbreviation.convertMarketName(marketName: marketLabel)
+			title = "\(firstAbbr) <-> \(secondAbbr)"
+		} else {
+			title = "Market: Unknown"
+		}
+		return RatesDetailViewController(title: title, ticker: ticker)
 	}
 	
 	func configure(_ viewController: RatesDetailViewController) {
-		viewController.segmentedControl.addTarget(self, action: #selector(RatesDetailRouter.segmentedControllValueChanged(_:)), for: .valueChanged)
+		viewController.timeRangeSegmentedControl.addTarget(self, action: #selector(RatesDetailRouter.segmentedControllValueChanged(_:)), for: .valueChanged)
+		viewController.lineSegmentedControl.addTarget(self, action: #selector(RatesDetailRouter.segmentedControllValueChanged(_:)), for: .valueChanged)
 		return
 	}
 	
 	func stop() {
 		notificationToken?.stop()
+		self.timer?.invalidate()
 		dismiss()
 		viewController = nil
 	}
@@ -85,37 +101,50 @@ extension RatesDetailRouter {
 
 extension RatesDetailRouter {
 	
-	func configureLineChartDataSet(dataSet: LineChartDataSet, withColor color: UIColor) -> LineChartDataSet {
+	func configureLineChartDataSet(dataSet: LineChartDataSet) -> LineChartDataSet {
+		dataSet.setColor(projectColors.lineColor)
 		dataSet.mode = .cubicBezier
 		dataSet.cubicIntensity = 0.2
 		dataSet.drawCirclesEnabled = false
 		dataSet.lineWidth = 1.8
 		dataSet.circleRadius = 4.0
+		dataSet.drawFilledEnabled = true
+		
+		dataSet.fillAlpha = 1.0
+		dataSet.fillColor = projectColors.lineColor
+		dataSet.fillFormatter = CubicFillFormatter()
 		
 		return dataSet
 	}
 	
 	@objc func segmentedControllValueChanged(_ sender: Any) {
-		if let control = sender as? BetterSegmentedControl {
-			if let selectedItem = SegmentedControlItem(rawValue: Int(control.index)) {
-				self.displayChartData(item: selectedItem)
-			}
-		}
+		
+		guard let timeRangeControl = self.viewController?.timeRangeSegmentedControl, let timeRangeItem = TimeRangeSegmentedControlItem(rawValue: Int(timeRangeControl.index)) else { return }
+		
+		guard let lineControl = self.viewController?.lineSegmentedControl, let lineItem = LineSegmentedControlItem(rawValue: Int(lineControl.index)) else { return }
+		
+		self.displayChartData(timeRange: timeRangeItem, lineItem: lineItem)
+		
 	}
 	
-	func displayChartData(item: SegmentedControlItem) {
+	func displayChartData(timeRange: TimeRangeSegmentedControlItem, lineItem: LineSegmentedControlItem) {
 		
 		if let viewController = self.viewController {
 			
 			guard chartData.count > 0 else { return }
 			
-			let (openData, closeData) = self.generateChartDataEntries(chartData: chartData, item: item)
+			let chartDataEntries = self.generateChartDataEntries(chartData: chartData, timeRangeItem: timeRange, lineItem: lineItem)
 			
-			let openDataSet = LineChartDataSet(values: openData, label: "Open")
-			let closeDataSet = LineChartDataSet(values: closeData, label: "Close")
+			let dataSet = LineChartDataSet(values: chartDataEntries, label: nil)
 			
-			let lineChartData = LineChartData(dataSets: [configureLineChartDataSet(dataSet: openDataSet, withColor: UIColor.white),
-			                                             configureLineChartDataSet(dataSet: closeDataSet, withColor: UIColor.white)])
+			let lineChartData = LineChartData(dataSet: configureLineChartDataSet(dataSet: dataSet))
+			lineChartData.setDrawValues(false)
+			
+			if timeRange == .day {
+				viewController.chartView.xAxis.valueFormatter = DayValueFormatter()
+			} else {
+				viewController.chartView.xAxis.valueFormatter = DateValueFormatter()
+			}
 			
 			viewController.chartView.data = lineChartData
 			
@@ -123,40 +152,53 @@ extension RatesDetailRouter {
 		
 	}
 	
-	func generateChartDataEntries(chartData: Results<ChartData>, item: SegmentedControlItem) -> ([ChartDataEntry], [ChartDataEntry]) {
+	func generateChartDataEntries(chartData: Results<ChartData>, timeRangeItem: TimeRangeSegmentedControlItem, lineItem: LineSegmentedControlItem) -> [ChartDataEntry] {
 		
-		var openData = [ChartDataEntry]()
-		var closeData = [ChartDataEntry]()
+		var convertData: ((_ data: ChartData) -> (ChartDataEntry))!
 		
-		switch item {
-		case .day:
-			for data in chartData.filter("date > %@", Date().setTimeOfDate(0, minute: 0, second: 0)) {
-				openData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open))
-				closeData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close))
+		switch lineItem {
+		case .open:
+			convertData = { data in
+				ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open)
 			}
-		case .week:
-			for data in chartData.filter("date > %@", Date().dateBySubtractingWeeks(1)) {
-				openData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open))
-				closeData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close))
+		case .close:
+			convertData = { data in
+				ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close)
 			}
-		case .month:
-			for data in chartData.filter("date > %@", Date().dateBySubtractingMonths(1)) {
-				openData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open))
-				closeData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close))
+		case .low:
+			convertData = { data in
+				ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.low)
 			}
-		case .year:
-			for data in chartData.filter("date > %@", Date().dateBySubtractingMonths(12)) {
-				openData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open))
-				closeData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close))
-			}
-		case .all:
-			for data in chartData {
-				openData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.open))
-				closeData.append(ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.close))
+		case .high:
+			convertData = { data in
+				ChartDataEntry(x: data.date.timeIntervalSince1970, y: data.high)
 			}
 		}
 		
-		return (openData, closeData)
+		var predicate: NSPredicate!
+		
+		switch timeRangeItem {
+		case .day:
+			
+			predicate = NSPredicate(format: "date > %@", Date().setTimeOfDate(0, minute: 0, second: 0) as NSDate)
+		
+		case .week:
+			
+			predicate = NSPredicate(format: "date > %@", Date().dateBySubtractingWeeks(1) as NSDate)
+			
+		case .month:
+			
+			predicate = NSPredicate(format: "date > %@", Date().dateBySubtractingMonths(1) as NSDate)
+			
+		case .year:
+			
+			predicate = NSPredicate(format: "date > %@", Date().dateBySubtractingMonths(12) as NSDate)
+
+		case .all:
+			return chartData.map(convertData)
+		}
+		
+		return chartData.filter(predicate).map(convertData)
 
 	}
 	

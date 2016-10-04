@@ -29,7 +29,12 @@ class RatesRouter: SubRootRouter {
 		
 		notificationToken = tickerData.addNotificationBlock { [weak self] (changes: RealmCollectionChange) in
 			
-			guard let tableView = (self?.viewController as? RatesViewController)?.tableView else { return }
+			guard let viewController = self?.viewController as? RatesViewController, let isEmpty = self?.tickerData.isEmpty else { return }
+			
+			let tableView = viewController.tableView
+			
+			viewController.showNoContentLabel(show: isEmpty)
+			
 			switch changes {
 			case .initial:
 				// Results are now populated and can be accessed without blocking the UI
@@ -48,12 +53,11 @@ class RatesRouter: SubRootRouter {
 				fatalError("\(error)")
 				break
 			}
+			
 		}
 		
-		
-		
 		// Set Fetch Timer
-		self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { _ in
+		self.timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
 			// Fetch Data
 			self.fetchTickers()
 		})
@@ -121,15 +125,6 @@ extension RatesRouter: UITableViewDelegate, UITableViewDataSource {
 		cell.initialize(withTicker: ticker)
 		
 		return cell
-	}
-	
-	func scrollViewShouldScrollToTop(_ scrollView: UIScrollView) -> Bool {
-		
-		if let viewController = self.viewController as? RatesViewController {
-			viewController.hidingBarManager?.shouldScrollToTop()
-		}
-		
-		return true
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

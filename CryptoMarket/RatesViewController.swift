@@ -8,7 +8,6 @@
 
 import UIKit
 import Stevia
-import HidingNavigationBar
 
 class RatesNavigationController: UINavigationController {
 	
@@ -16,7 +15,6 @@ class RatesNavigationController: UINavigationController {
 		super.init(nibName: nil, bundle: nil)
 		self.tabBarItem = tabBarItem
 		self.navigationController?.hidesNavigationBarHairline = true
-		// self.navigationBar.backgroundColor = projectColors.navigationBarColor
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -29,14 +27,24 @@ class RatesViewController: SubRootViewController {
 	
 	let tableView: UITableView = {
 		let tableView = UITableView()
-		tableView.backgroundColor = projectColors.mainColor
+		tableView.backgroundColor = projectColors.mainComplementColor
 		tableView.estimatedRowHeight = 100
 		tableView.register(TickerTableViewCell.self, forCellReuseIdentifier: "tickerCell")
 		tableView.separatorStyle = .none
 		return tableView
 	}()
-	
-	var hidingBarManager: HidingNavigationBarManager?
+	let noContentLabel: UILabel = {
+		let label = UILabel()
+		label.text = "No Content available."
+		label.isHidden = true
+		return label
+	}()
+	let noContentLabelExtension: UILabel = {
+		let label = UILabel()
+		label.text = "(Please check your Internet Connection)"
+		label.isHidden = true
+		return label
+	}()
 	
 	override func viewDidLoad() {
 		
@@ -58,30 +66,22 @@ class RatesViewController: SubRootViewController {
 		
 		// Set Constraints
 		
-		view.sv(tableView)
+		view.sv(tableView, noContentLabel, noContentLabelExtension)
 		view.layout(
 			0,
 			|tableView|,
 			0
 		)
-		
-		// Set Hiding Bar Manager
-		hidingBarManager = HidingNavigationBarManager(viewController: self, scrollView: tableView)
-		hidingBarManager?.expansionResistance = 150
-		// hidingBarManager?.refreshControl = refreshControl
+		view.layout(
+			noContentLabel.centerVertically().centerHorizontally(),
+			noContentLabelExtension.centerHorizontally()
+		)
 		
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		
-		hidingBarManager?.viewWillAppear(animated)
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		
-		hidingBarManager?.viewWillDisappear(animated)
+	func showNoContentLabel(show: Bool) {
+		noContentLabel.isHidden = !show
+		noContentLabelExtension.isHidden = !show
 	}
 	
 }

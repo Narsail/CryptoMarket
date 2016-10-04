@@ -42,8 +42,7 @@ class Store {
 			for ticker in tickers {
 				
 				if let oldTicker = realm.object(ofType: Ticker.self, forPrimaryKey: ticker.id) {
-					ticker.favorite = oldTicker.favorite
-					ticker.priorLast = oldTicker.last
+					ticker.setFavorite(withFavorite: oldTicker.favorite)
 				}
 				
 			}
@@ -107,7 +106,7 @@ class Store {
 		}
 		
 		try? realm.write {
-			ticker.toggleFavorite()
+			ticker.setFavorite(withFavorite: !ticker.favorite)
 		}
 		
 	}

@@ -40,19 +40,25 @@ struct ProjectColor {
 	// MARK: Segmented Control Color
 	
 	var segmentedControlBackgroundColor: UIColor {
-		return self.mainColorDark
+		return UIColor.white
 	}
 	
 	var segmentedControlIndicatorColor: UIColor {
-		return self.mainContrastColorDark
+		return self.mainColor
 	}
 	
 	var segmentedTitleColor: UIColor {
-		return UIColor.white
+		return UIColor.black
 	}
 	
 	var segmentedSelectedTitleColor: UIColor {
 		return UIColor.black
+	}
+	
+	// MARK: Line Chart Colors
+	
+	var lineColor: UIColor {
+		return self.mainContrastColor
 	}
 	
 }

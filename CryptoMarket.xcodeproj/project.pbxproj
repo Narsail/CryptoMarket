@@ -19,6 +19,7 @@
 		2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE51D908C7900064D51 /* RatesViewController.swift */; };
 		2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEA1D908C7900064D51 /* Assets.xcassets */; };
 		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
+		2AB176941DA50BFD0059A2D3 /* ShortCutHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */; };
 		2AD75EEF1D9C110000D6CC39 /* Chameleon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */; };
 		2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */; };
 		2AD75EF51D9C594200D6CC39 /* ChartDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */; };
@@ -77,6 +78,7 @@
 		2A61FCEA1D908C7900064D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortCutHandler.swift; sourceTree = "<group>"; };
 		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
 		2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataMapper.swift; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 		2A61FCF71D908C9100064D51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2AB176921DA50BEC0059A2D3 /* ShortCut */,
 				2AD75EF61D9C5CE600D6CC39 /* Colors */,
 				2A61FCF61D908C8C00064D51 /* Network */,
 			);
@@ -252,6 +255,14 @@
 				2ADC4B361D9B135900E28CFA /* TableViewCells */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		2AB176921DA50BEC0059A2D3 /* ShortCut */ = {
+			isa = PBXGroup;
+			children = (
+				2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */,
+			);
+			name = ShortCut;
 			sourceTree = "<group>";
 		};
 		2AD75EF61D9C5CE600D6CC39 /* Colors */ = {
@@ -509,6 +520,7 @@
 				2ADC4B271D9AF56200E28CFA /* BackendConfiguration.swift in Sources */,
 				2AD75EF31D9C346900D6CC39 /* ChartDataRequest.swift in Sources */,
 				2ADC4B0B1D9AEB9500E28CFA /* ChartData.swift in Sources */,
+				2AB176941DA50BFD0059A2D3 /* ShortCutHandler.swift in Sources */,
 				2ADC4B2D1D9AF58B00E28CFA /* SingleOperations.swift in Sources */,
 				2A61FCE61D908C7900064D51 /* RatesViewController.swift in Sources */,
 				2ADC4B211D9AEF6000E28CFA /* TickerRequest.swift in Sources */,

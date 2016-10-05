@@ -92,8 +92,6 @@ extension RatesRouter {
 	
 	func fetchTickers() {
 		
-		guard let vc = viewController as? RatesViewController else { return }
-		
 		PoloniexAPI.shared.fetchTickers().map(ImmediateExecutionContext) { list in
 			return Store.save(withTickers: list)
 		}.onFailure { error in
@@ -134,6 +132,25 @@ extension RatesRouter: UITableViewDelegate, UITableViewDataSource {
 		let ticker = tickerData[indexPath.row]
 		marketDetailData = RatesDetailRouter(root: self.root, ticker: ticker)
 		marketDetailData?.start()
+		
+	}
+	
+}
+
+extension RatesRouter {
+	
+	func handleShortCut(favouriteNumber: Int) -> Bool {
+		
+		let favouriteData = tickerData.filter("favorite == True")
+		
+		if favouriteData.count > favouriteNumber {
+			let ticker = favouriteData[favouriteNumber]
+			marketDetailData = RatesDetailRouter(root: self.root, ticker: ticker)
+			marketDetailData?.start()
+			return true
+		}
+		
+		return false
 		
 	}
 	

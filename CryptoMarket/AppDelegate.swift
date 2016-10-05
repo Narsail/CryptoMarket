@@ -16,9 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	var rootRouter: RatesRouter?
+	
+	var launchedShortcutItem: UIApplicationShortcutItem?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-		// Override point for customization after application launch.
+		
+		// Store shortcut Item
+		if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] as? UIApplicationShortcutItem {
+			
+			launchedShortcutItem = shortcutItem
+			
+		}
 		
 		self.window = UIWindow(frame: UIScreen.main.bounds)
 		
@@ -32,6 +40,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		rootRouter?.start()
 		
 		return true
+	}
+	
+	func applicationDidBecomeActive(_ application: UIApplication) {
+		
+		guard let shortcut = launchedShortcutItem else { return }
+		
+		let _ = handleShortCutItem(shortcutItem: shortcut)
+		
+		launchedShortcutItem = nil
+	}
+	
+	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+		let handledShortCutItem = handleShortCutItem(shortcutItem: shortcutItem)
+		
+		completionHandler(handledShortCutItem)
 	}
 
 	func presentAlertView(alertType: AlertType) {
@@ -56,8 +79,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate {
+	
+	func handleShortCutItem(shortcutItem: UIApplicationShortcutItem) -> Bool {
+		var handled = false
+		
+		// Verify that the provided `shortcutItem`'s `type` is one handled by the application.
+		
+		guard let type = ShortCutType(rawValue: shortcutItem.type) else { return false }
+		
+		switch type {
+		case .firstFavourite:
+			handled = self.rootRouter?.handleShortCut(favouriteNumber: 0) ?? false
+		case .secondFavourite:
+			handled = self.rootRouter?.handleShortCut(favouriteNumber: 1) ?? false
+		case .thirdFavourite:
+			handled = self.rootRouter?.handleShortCut(favouriteNumber: 2) ?? false
+		}
+		
+		return handled
+	}
+}
+
 enum AlertType {
 	case slowInternet
 	case noInternet
 }
+
+
 

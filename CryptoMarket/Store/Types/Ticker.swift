@@ -34,6 +34,8 @@ class Ticker: Object {
 		
 		setSortingLabel(withFavorite: favorite)
 		
+		createShortCuts()
+		
 	}
 	
 	func setSortingLabel(withFavorite favorite: Bool) {

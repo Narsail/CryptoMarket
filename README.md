@@ -5,6 +5,17 @@
 <br/>
 <p>
 
+## How to use
+
+The App has two visible Viewcontrollers:
+
+1. The primary TableViewController will show a list of Exchange Rates of CryptoCurrencies
+2. With a click on a list element a new ViewController will show specific details and a Chart of the chosen Exchange Rate
+
+### Detail View Controller
+
+With the Line (Open, Close, Low, High) and the Timerange (Today, this Week, this Month, this year and all time) Options you can change the appearance of the Chart.
+
 ## What to expect
 
 ![Image of the main TableView](/ReadmeRessources/IMG_0036.PNG)

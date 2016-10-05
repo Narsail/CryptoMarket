@@ -62,7 +62,7 @@ class RatesViewController: SubRootViewController {
 		
 		// Set Titles
 		
-		self.title = "CryptoMarket"
+		title = "CryptoMarket"
 		
 		// Set Constraints
 		
@@ -76,6 +76,7 @@ class RatesViewController: SubRootViewController {
 			noContentLabel.centerVertically().centerHorizontally(),
 			noContentLabelExtension.centerHorizontally()
 		)
+		
 		
 	}
 	

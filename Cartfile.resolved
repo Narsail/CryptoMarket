@@ -1,5 +1,6 @@
 github "melvitax/AFDateHelper" "3.5.3"
 github "ViccAlexander/Chameleon" "c400c32eead1c6e74008983c3e7c845ae069b41d"
+github "ashleymills/Reachability.swift" "v3"
 github "antitypical/Result" "3.0.0"
 github "s4cha/Stevia" "3.0.1"
 github "realm/realm-cocoa" "v1.1.0"

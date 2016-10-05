@@ -57,7 +57,7 @@ class RatesRouter: SubRootRouter {
 		}
 		
 		// Set Fetch Timer
-		self.timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+		self.timer = Timer.scheduledTimer(withTimeInterval: 20, repeats: true, block: { _ in
 			// Fetch Data
 			self.fetchTickers()
 		})
@@ -92,10 +92,12 @@ extension RatesRouter {
 	
 	func fetchTickers() {
 		
+		guard let vc = viewController as? RatesViewController else { return }
+		
 		PoloniexAPI.shared.fetchTickers().map(ImmediateExecutionContext) { list in
-			Store.save(withTickers: list)
-			}.onFailure { error in
-				NSLog("Error occurred: \(error)")
+			return Store.save(withTickers: list)
+		}.onFailure { error in
+			NSLog("Error occurred: \(error)")
 		}
 		
 	}

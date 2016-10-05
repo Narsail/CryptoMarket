@@ -33,10 +33,10 @@ class Store {
 		}
 	}
 	
-	static func save(withTickers tickers: [Ticker]) -> Future<NoValue, BrightFutureErrorWrapper> {
+	static func save(withTickers tickers: [Ticker]) -> Future<Bool, BrightFutureErrorWrapper> {
 		
 		// Will be updated upon their PrimaryKey or added if no earlier item is existing
-		let promise = Promise<NoValue, BrightFutureErrorWrapper>()
+		let promise = Promise<Bool, BrightFutureErrorWrapper>()
 		
 		do {
 			for ticker in tickers {
@@ -50,6 +50,7 @@ class Store {
 			try realm.write {
 				realm.add(tickers, update: true)
 			}
+			promise.success(true)
 		} catch {
 			promise.failure(BrightFutureErrorWrapper.error(error: error))
 		}
@@ -58,10 +59,10 @@ class Store {
 		
 	}
 	
-	static func save(withChartData chartData: [ChartData], withMarket market: Market) -> Future<NoValue, BrightFutureErrorWrapper> {
+	static func save(withChartData chartData: [ChartData], withMarket market: Market) -> Future<Bool, BrightFutureErrorWrapper> {
 		
 		// Will be updated upon their PrimaryKey or added if no earlier item is existing
-		let promise = Promise<NoValue, BrightFutureErrorWrapper>()
+		let promise = Promise<Bool, BrightFutureErrorWrapper>()
 		
 		do {
 			
@@ -90,6 +91,8 @@ class Store {
 			try realm.write {
 				realm.add(chartData)
 			}
+			
+			promise.success(true)
 			
 		} catch {
 			promise.failure(BrightFutureErrorWrapper.error(error: error))

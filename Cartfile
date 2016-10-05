@@ -4,4 +4,3 @@ github "danielgindi/Charts" "master"
 github "s4cha/Stevia" == 3.0.1
 github "ViccAlexander/Chameleon" "swift3"
 github "melvitax/AFDateHelper" ~> 3.5.3
-github "ashleymills/Reachability.swift" ~> 3.0.0

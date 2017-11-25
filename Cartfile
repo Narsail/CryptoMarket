@@ -1,6 +1,0 @@
-github "realm/realm-cocoa" ~>  1.1.0
-github "Thomvis/BrightFutures" ~> 5.0.1
-github "danielgindi/Charts" "master"
-github "s4cha/Stevia" == 3.0.1
-github "ViccAlexander/Chameleon" "swift3"
-github "melvitax/AFDateHelper" ~> 3.5.3

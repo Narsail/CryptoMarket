@@ -1004,7 +1004,7 @@
 			baseConfigurationReference = ACDD64015CF3253A1ACC0756 /* Pods-CryptoMarketUITests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2T87V487YG;
-				INFOPLIST_FILE = CryptoMarketUITests/Info.plist;
+				INFOPLIST_FILE = iOS/Tests/UISnapShot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarketUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1018,7 +1018,7 @@
 			baseConfigurationReference = D63429E236438B923361E5CF /* Pods-CryptoMarketUITests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = 2T87V487YG;
-				INFOPLIST_FILE = CryptoMarketUITests/Info.plist;
+				INFOPLIST_FILE = iOS/Tests/UISnapShot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarketUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1074,6 +1074,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
 		};
@@ -1117,6 +1118,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
 		};

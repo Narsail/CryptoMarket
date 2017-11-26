@@ -23,7 +23,7 @@ class MarketViewCell: UICollectionViewCell {
 	// MARK: Left View
 	var topLeftView: UIView = {
 		let view = UIView()
-        view.backgroundColor = UIColor.flatGray
+        view.backgroundColor = UIColor.flatWhite
 		return view
 	}()
 	
@@ -36,15 +36,15 @@ class MarketViewCell: UICollectionViewCell {
 	// MARK: Right View
 	var topRightView: UIView = {
 		let view = UIView()
-		view.backgroundColor = UIColor.flatWhite
+		view.backgroundColor = UIColor.flatGray
 		return view
 	}()
 	
 	var marketUILabel: UILabel = {
 		let label = UILabel()
+        label.style(Labels.bodyMedium)
 		label.textColor = UIColor.black
-		label.font = UIFont.boldSystemFont(ofSize: UIFont.systemFontSize + 2)
-        label.textAlignment = .center
+        label.textAlignment = .left
 		return label
 	}()
 	
@@ -69,14 +69,16 @@ class MarketViewCell: UICollectionViewCell {
 	
 	var priceUSD: UILabel = {
 		let label = UILabel()
+        label.style(Labels.body)
 		label.text = "USD"
-        label.textAlignment = .center
+        label.textAlignment = .left
 		return label
 	}()
-	var priceBTC: UILabel = {
+	var marketCapUSD: UILabel = {
 		let label = UILabel()
-        label.text = "BTC"
-        label.textAlignment = .center
+        label.style(Labels.body)
+        label.text = "USD"
+        label.textAlignment = .left
 		return label
 	}()
     
@@ -112,33 +114,30 @@ class MarketViewCell: UICollectionViewCell {
 		topView.sv(topLeftView, topRightView)
 		topView.layout(
 			0,
-			|topLeftView.width(100)-0-topRightView|,
+			|topLeftView-0-topRightView.width(100)|,
 			0
 		)
 		equalHeights(topLeftView, topRightView)
 		
-		topLeftView.sv(differenceLabel)
+		topLeftView.sv(marketUILabel)
 		topLeftView.layout(
-			differenceLabel.centerVertically().centerHorizontally()
+			|-20-marketUILabel.centerVertically()-|
 		)
 		
-		topRightView.sv(marketUILabel, favoriteItem)
+		topRightView.sv(differenceLabel)
 		topRightView.layout(
-			|-marketUILabel.centerVertically().centerHorizontally()-|
+            differenceLabel.centerVertically().centerHorizontally()
 		)
 		
 		// Add Information Views
 		
-		bottomView.sv(priceUSD, priceBTC)
+		bottomView.sv(priceUSD, marketCapUSD)
 		bottomView.layout(
             0,
-			|-priceUSD.centerVertically()-priceBTC.centerVertically()-|,
+			|-20-priceUSD.centerVertically()-10-marketCapUSD.centerVertically()-|,
             0
 		)
-        priceUSD.Width == priceBTC.Width
-		
-		// Add Actions
-		// favoriteItem.addTarget(self, action: #selector(TickerTableViewCell.setFavorite), for: .touchUpInside)
+        priceUSD.Width == marketCapUSD.Width * 0.9
 		
 	}
 	
@@ -149,26 +148,18 @@ class MarketViewCell: UICollectionViewCell {
         self.marketUILabel.text = market.name
         
         self.priceUSD.text = market.priceUSD + " USD"
-        self.priceBTC.text = market.priceBTC + " BTC"
-        
-//        self.high24hrNumberLabel.text = ticker.high24hr.string(fractionDigits: 9)
-//        self.low24hrNumberLabel.text = ticker.low24hr.string(fractionDigits: 9)
-//        self.volume.text = "Volume: " + ticker.baseVolume.string(fractionDigits: 2)
-//
-//        self.id = ticker.id
-        
-//        favoriteItem.isSelected = ticker.favorite
+        self.marketCapUSD.text = "Cap: " + market.formattedMarketCap
         
         guard let percentChange24 = market.percentChange24hAmount else { return }
         
         if percentChange24 == 0.0 {
-            self.topLeftView.backgroundColor = UIColor.flatGray
+            self.topRightView.backgroundColor = UIColor.flatGray
             self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
         } else if percentChange24 < 0.0 {
-            self.topLeftView.backgroundColor = UIColor.flatRed
+            self.topRightView.backgroundColor = UIColor.flatRed
             self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
         } else {
-            self.topLeftView.backgroundColor = UIColor.flatGreen
+            self.topRightView.backgroundColor = UIColor.flatGreen
             self.differenceLabel.text = "+\(percentChange24.string(fractionDigits: 2))%"
         }
         
@@ -177,7 +168,7 @@ class MarketViewCell: UICollectionViewCell {
 	override func layoutSubviews() {
 		super.layoutSubviews()
 		
-		topView.round(corners: [UIRectCorner.topLeft ,UIRectCorner.topRight], radius: 10)
+		topView.round(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radius: 10)
 		bottomView.round(corners: [UIRectCorner.bottomLeft, UIRectCorner.bottomRight], radius: 10)
 	}
 	
@@ -223,7 +214,7 @@ extension UIView {
 		layer.masksToBounds = true
 		layer.cornerRadius = diameter / 2
 		layer.borderWidth = borderWidth
-		layer.borderColor = borderColor.cgColor;
+		layer.borderColor = borderColor.cgColor
 	}
 	
 }
@@ -231,7 +222,8 @@ extension UIView {
 private extension UIView {
 	
 	@discardableResult func _round(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
-		let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+		let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
 		let mask = CAShapeLayer()
 		mask.frame = self.bounds
 		mask.path = path.cgPath
@@ -252,7 +244,7 @@ private extension UIView {
 }
 
 extension Double {
-	func string(fractionDigits:Int) -> String {
+	func string(fractionDigits: Int) -> String {
 		let formatter = NumberFormatter()
 		formatter.minimumIntegerDigits = 1
 		formatter.maximumFractionDigits = fractionDigits
@@ -264,7 +256,7 @@ extension Double {
 }
 
 extension Float {
-    func string(fractionDigits:Int) -> String {
+    func string(fractionDigits: Int) -> String {
         let formatter = NumberFormatter()
         formatter.minimumIntegerDigits = 1
         formatter.maximumFractionDigits = fractionDigits

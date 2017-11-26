@@ -9,11 +9,12 @@
 import XCTest
 
 class CryptoMarketUITests: XCTestCase {
+    
+    let app = XCUIApplication()
         
     override func setUp() {
         super.setUp()
 		
-		let app = XCUIApplication()
         setupSnapshot(app)
 		app.launch()
 
@@ -27,6 +28,10 @@ class CryptoMarketUITests: XCTestCase {
 	func testTakeScreenshots() {
         
         snapshot("List View", timeWaitingForIdle: 5)
+        
+        app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["Bitcoin"]/*[[".cells.staticTexts[\"Bitcoin\"]",".staticTexts[\"Bitcoin\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        snapshot("Detail View", timeWaitingForIdle: 5)
 		
 	}
 		

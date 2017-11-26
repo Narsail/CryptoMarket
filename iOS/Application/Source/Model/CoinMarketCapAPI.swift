@@ -9,7 +9,6 @@
 import Foundation
 import Siesta
 
-
 class CoinMarketCapAPI {
     
     private let service = Service(baseURL: "https://api.coinmarketcap.com/v1")
@@ -35,20 +34,28 @@ class CoinMarketCapAPI {
         let jsonDecoder = JSONDecoder()
         
         // –––––– Resource-specific configuration ––––––
-        service.configure("/ticker/") {
+        service.configure("/ticker") {
             $0.pipeline.removeAllTransformers()
         }
-        service.configureTransformer("/ticker/") {
+        service.configureTransformer("/ticker") {
             try jsonDecoder.decode([Market].self, from: $0.content)
         }
-        
+        service.configure("/ticker/*") {
+            $0.pipeline.removeAllTransformers()
+        }
+        service.configureTransformer("/ticker/*") {
+            try jsonDecoder.decode([MarketExtended].self, from: $0.content)
+        }
     }
     
     static let shared = CoinMarketCapAPI()
     
     var markets: Resource {
         return service
-            .resource("/ticker/")
+            .resource("/ticker")
+    }
+    func market(_ ident: String) -> Resource {
+        return self.markets.child(ident)
     }
     
 }

@@ -17,6 +17,8 @@ target 'CryptoMarket' do
     pod 'Siesta', '~> 1.0'
     pod 'Siesta/UI', '~> 1.0'
     pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
+    pod 'Fabric'
+    pod 'Crashlytics'
 
   target 'CryptoMarketUITests' do
     inherit! :search_paths

@@ -23,7 +23,19 @@ class MarketListCoordinator: BaseCoordinator<Void> {
         let viewModel = MarketListViewModel()
         let viewController = MarketListViewController(viewModel: viewModel)
         
-        self.rootViewController.present(viewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        
+        navigationController.navigationBar.barTintColor = .white
+        navigationController.navigationBar.isTranslucent = true
+        navigationController.navigationBar.shadowImage = UIImage()
+        
+        self.rootViewController.present(navigationController, animated: true, completion: nil)
+        
+        viewModel.selectedMarket.flatMap({ (ident, name) in
+            self.coordinate(to:
+                MarketDetailCoordinator(rootViewController: navigationController, marketIdent: ident, marketName: name)
+            )
+        }).subscribe().disposed(by: self.disposeBag)
         
         return Observable.never()
         

@@ -12,9 +12,8 @@ import RxSwift
 import IGListKit
 import Stevia
 
-class MarketListViewController: UIViewController {
+class MarketListViewController: RxSwiftViewController {
 
-    let disposeBag = DisposeBag()
     let viewModel: MarketListViewModel
     
     let collectionView: UICollectionView = {
@@ -46,6 +45,8 @@ class MarketListViewController: UIViewController {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel.displayDelegate = self
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -63,6 +64,8 @@ class MarketListViewController: UIViewController {
         
         setupLayout()
         setupCollectionView()
+        
+        hideKeyboardWhenTappedAround()
         
     }
     
@@ -95,13 +98,46 @@ class MarketListViewController: UIViewController {
         collectionView.refreshControl = self.refreshControl
         
         adapter.collectionView = collectionView
-        adapter.dataSource = viewModel.adapterDataSource
+        adapter.dataSource = viewModel
         
         self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
             self.refreshControl.endRefreshing()
             self.adapter.reloadData(completion: nil)
+            self.adapter.performUpdates(animated: true, completion: nil)
         }).disposed(by: self.disposeBag)
         
+        self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+            self.adapter.performUpdates(animated: true, completion: nil)
+        }).disposed(by: self.disposeBag)
+        
+    }
+    
+}
+
+extension MarketListViewController: ListDisplayDelegate {
+    
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController,
+                     cell: UICollectionViewCell, at index: Int) {
+        return
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController,
+                     cell: UICollectionViewCell, at index: Int) {
+        return
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
+        if sectionController is TitleSectionController {
+            self.title = nil
+        }
+        return
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
+        if let sectionController = sectionController as? TitleSectionController {
+            self.title = sectionController.title
+        }
+        return
     }
     
 }

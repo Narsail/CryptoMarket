@@ -9,13 +9,19 @@
 import Foundation
 import IGListKit
 
+protocol MarketSelectionControllerDelegate: class {
+    func didSelectItem(_ marketIdent: String, and marketName: String)
+}
+
 class MarketSectionController: ListSectionController {
     
     var market: Market?
+    weak var delegate: MarketSelectionControllerDelegate?
     
-    override init() {
+    init(delegate: MarketSelectionControllerDelegate) {
         super.init()
         inset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
+        self.delegate = delegate
     }
     
     override func numberOfItems() -> Int {
@@ -41,6 +47,10 @@ class MarketSectionController: ListSectionController {
         self.market = object as? Market
     }
     
-    override func didSelectItem(at index: Int) {}
+    override func didSelectItem(at index: Int) {
+        if let market = self.market {
+            self.delegate?.didSelectItem(market.ident, and: market.name)
+        }
+    }
     
 }

@@ -1,15 +1,16 @@
 //
-//  Market.swift
+//  MarketExtended.swift
 //  CryptoMarket
 //
-//  Created by David Moeller on 25.11.17.
+//  Created by David Moeller on 26.11.17.
 //  Copyright © 2017 David Moeller. All rights reserved.
 //
 
 import Foundation
-import IGListKit
 
-class Market: Codable {
+class MarketExtended: Codable {
+    
+    // Base
     
     let ident: String
     let name: String
@@ -18,8 +19,25 @@ class Market: Codable {
     let priceUSD: String
     let marketCapUSD: String
     
+    // Extended
+    
+    let symbol: String // i.e. BTC
+    let rank: String
+    let volume24hUSD: String
+    let availableSupply: String
+    let totalSupply: String
+    let maxSupply: String?
+    let percentChange1h: String
+    let percentChange7d: String
+    
     var percentChange24hAmount: Double? {
         return Double(self.percentChange24h)
+    }
+    var percentChange1hAmount: Double? {
+        return Double(self.percentChange1h)
+    }
+    var percentChange7dAmount: Double? {
+        return Double(self.percentChange7d)
     }
     var formattedMarketCap: String {
         
@@ -43,7 +61,7 @@ class Market: Codable {
         }
         
         return formattedCap + suffix
-
+        
     }
     
     enum CodingKeys: String, CodingKey {
@@ -53,21 +71,14 @@ class Market: Codable {
         case priceBTC = "price_btc"
         case priceUSD = "price_usd"
         case marketCapUSD = "market_cap_usd"
-    }
-    
-}
-
-extension Market: ListDiffable {
-    
-    func diffIdentifier() -> NSObjectProtocol {
-        return ident as NSString
-    }
-    
-    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        if let object = object as? Market {
-            return self.ident == object.ident
-        }
-        return false
+        case symbol
+        case rank
+        case volume24hUSD = "24h_volume_usd"
+        case availableSupply = "available_supply"
+        case totalSupply = "total_supply"
+        case maxSupply = "max_supply"
+        case percentChange1h = "percent_change_1h"
+        case percentChange7d = "percent_change_7d"
     }
     
 }

@@ -67,12 +67,8 @@ class MarketListViewController: RxSwiftViewController {
         
         hideKeyboardWhenTappedAround()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.viewModel.reloadData()
-
+        
     }
     
     func setupLayout() {
@@ -103,7 +99,6 @@ class MarketListViewController: RxSwiftViewController {
         self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
             self.refreshControl.endRefreshing()
             self.adapter.reloadData(completion: nil)
-            self.adapter.performUpdates(animated: true, completion: nil)
         }).disposed(by: self.disposeBag)
         
         self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in

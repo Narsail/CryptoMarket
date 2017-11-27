@@ -19,7 +19,7 @@ final class SearchSectionController: ListSectionController, UISearchBarDelegate,
     override init() {
         super.init()
         scrollDelegate = self
-        inset = UIEdgeInsets(top: 0, left: 0, bottom: 5, right: 0)
+        inset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
     }
     
     override func sizeForItem(at index: Int) -> CGSize {

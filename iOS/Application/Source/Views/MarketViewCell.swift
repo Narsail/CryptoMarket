@@ -11,7 +11,7 @@ import UIKit
 import Stevia
 import ChameleonFramework
 
-class MarketViewCell: UICollectionViewCell {
+class MarketViewCell: CellWithRoundBorders {
 	
 	// MARK: - Top View
 	var topView: UIView = {
@@ -29,7 +29,9 @@ class MarketViewCell: UICollectionViewCell {
 	
 	var differenceLabel: UILabel = {
 		let label = UILabel()
+        label.style(Labels.body)
 		label.textColor = UIColor.black
+        label.textAlignment = .center
 		return label
 	}()
 	
@@ -103,10 +105,10 @@ class MarketViewCell: UICollectionViewCell {
 		
 		sv(topView, bottomView)
 		layout(
-			5,
-			|-10-topView-10-|,
-			|-10-bottomView-10-|,
-			5
+			0,
+			|topView|,
+			|bottomView|,
+			0
 		)
         topView.Height == bottomView.Height
 		
@@ -121,12 +123,12 @@ class MarketViewCell: UICollectionViewCell {
 		
 		topLeftView.sv(marketUILabel)
 		topLeftView.layout(
-			|-20-marketUILabel.centerVertically()-|
+			|-20-marketUILabel.centerVertically(2.5)-|
 		)
 		
 		topRightView.sv(differenceLabel)
 		topRightView.layout(
-            differenceLabel.centerVertically().centerHorizontally()
+            |-differenceLabel.centerVertically()-|
 		)
 		
 		// Add Information Views
@@ -165,83 +167,9 @@ class MarketViewCell: UICollectionViewCell {
         
     }
 	
-	override func layoutSubviews() {
-		super.layoutSubviews()
-		
-		topView.round(corners: [UIRectCorner.topLeft, UIRectCorner.topRight], radius: 10)
-		bottomView.round(corners: [UIRectCorner.bottomLeft, UIRectCorner.bottomRight], radius: 10)
-	}
-	
-	func setFavorite() {
-//        Store.toggleTickerFavorite(withTickerID: self.id)
-	}
-	
 }
 
-extension UIView {
-	
-	/**
-	Rounds the given set of corners to the specified radius
-	
-	- parameter corners: Corners to round
-	- parameter radius:  Radius to round to
-	*/
-	func round(corners: UIRectCorner, radius: CGFloat) {
-		_round(corners: corners, radius: radius)
-	}
-	
-	/**
-	Rounds the given set of corners to the specified radius with a border
-	
-	- parameter corners:     Corners to round
-	- parameter radius:      Radius to round to
-	- parameter borderColor: The border color
-	- parameter borderWidth: The border width
-	*/
-	func round(corners: UIRectCorner, radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat) {
-		let mask = _round(corners: corners, radius: radius)
-		addBorder(mask: mask, borderColor: borderColor, borderWidth: borderWidth)
-	}
-	
-	/**
-	Fully rounds an autolayout view (e.g. one with no known frame) with the given diameter and border
-	
-	- parameter diameter:    The view's diameter
-	- parameter borderColor: The border color
-	- parameter borderWidth: The border width
-	*/
-	func fullyRound(diameter: CGFloat, borderColor: UIColor, borderWidth: CGFloat) {
-		layer.masksToBounds = true
-		layer.cornerRadius = diameter / 2
-		layer.borderWidth = borderWidth
-		layer.borderColor = borderColor.cgColor
-	}
-	
-}
 
-private extension UIView {
-	
-	@discardableResult func _round(corners: UIRectCorner, radius: CGFloat) -> CAShapeLayer {
-		let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners,
-                                cornerRadii: CGSize(width: radius, height: radius))
-		let mask = CAShapeLayer()
-		mask.frame = self.bounds
-		mask.path = path.cgPath
-		self.layer.mask = mask
-		return mask
-	}
-	
-	func addBorder(mask: CAShapeLayer, borderColor: UIColor, borderWidth: CGFloat) {
-		let borderLayer = CAShapeLayer()
-		borderLayer.path = mask.path
-		borderLayer.fillColor = UIColor.clear.cgColor
-		borderLayer.strokeColor = borderColor.cgColor
-		borderLayer.lineWidth = borderWidth
-		borderLayer.frame = bounds
-		layer.addSublayer(borderLayer)
-	}
-	
-}
 
 extension Double {
 	func string(fractionDigits: Int) -> String {

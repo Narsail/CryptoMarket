@@ -17,6 +17,8 @@ class TitleCell: UICollectionViewCell {
         
         label.text = "Title"
         label.font = UIFont.boldSystemFont(ofSize: 35.0)
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
         
         return label
     }()

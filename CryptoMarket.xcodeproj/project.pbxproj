@@ -36,6 +36,11 @@
 		2AACA1951FCAE0FA00E1F670 /* MarketDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACA1941FCAE0FA00E1F670 /* MarketDetailViewController.swift */; };
 		2AACA1981FCAE11200E1F670 /* RxSwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACA1971FCAE11200E1F670 /* RxSwiftViewController.swift */; };
 		2AACA19A1FCAE33900E1F670 /* MarketDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACA1991FCAE33900E1F670 /* MarketDetailCoordinator.swift */; };
+		2ABBCB311FCCA29200FA4013 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB301FCCA29200FA4013 /* Global.swift */; };
+		2ABBCB331FCCA3C300FA4013 /* UIView+RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */; };
+		2ABBCB351FCCA46700FA4013 /* GlobalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */; };
+		2ABBCB371FCCA6F500FA4013 /* GlobalSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB361FCCA6F500FA4013 /* GlobalSectionController.swift */; };
+		2ABBCB391FCCC34E00FA4013 /* CellWithRoundBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB381FCCC34E00FA4013 /* CellWithRoundBorders.swift */; };
 		2AC54BC21FCB0FAC000426EA /* MarketExtended.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC54BC11FCB0FAC000426EA /* MarketExtended.swift */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +135,11 @@
 		2AACA1971FCAE11200E1F670 /* RxSwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftViewController.swift; sourceTree = "<group>"; };
 		2AACA1991FCAE33900E1F670 /* MarketDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailCoordinator.swift; sourceTree = "<group>"; };
 		2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortCutHandler.swift; sourceTree = "<group>"; };
+		2ABBCB301FCCA29200FA4013 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
+		2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCell.swift; sourceTree = "<group>"; };
+		2ABBCB361FCCA6F500FA4013 /* GlobalSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalSectionController.swift; sourceTree = "<group>"; };
+		2ABBCB381FCCC34E00FA4013 /* CellWithRoundBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithRoundBorders.swift; sourceTree = "<group>"; };
 		2AC54BC11FCB0FAC000426EA /* MarketExtended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketExtended.swift; sourceTree = "<group>"; };
 		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
 		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
@@ -235,6 +245,7 @@
 		2A5C47111FC9C84800A4CC85 /* metadata */ = {
 			isa = PBXGroup;
 			children = (
+				2A5C472D1FC9C84800A4CC85 /* en-US */,
 				2A5C47121FC9C84800A4CC85 /* copyright.txt */,
 				2A5C47141FC9C84800A4CC85 /* trade_representative_contact_information */,
 				2A5C47201FC9C84800A4CC85 /* secondary_first_sub_category.txt */,
@@ -243,7 +254,6 @@
 				2A5C47231FC9C84800A4CC85 /* primary_second_sub_category.txt */,
 				2A5C47241FC9C84800A4CC85 /* review_information */,
 				2A5C472C1FC9C84800A4CC85 /* primary_first_sub_category.txt */,
-				2A5C472D1FC9C84800A4CC85 /* en-US */,
 				2A5C47371FC9C84800A4CC85 /* primary_category.txt */,
 			);
 			path = metadata;
@@ -405,6 +415,7 @@
 			children = (
 				2A606DF91FC999300053B81B /* String+Contains.swift */,
 				2AACA18B1FCA42C600E1F670 /* UIViewController.swift */,
+				2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -424,6 +435,7 @@
 				2A5C47071FC9C0B200A4CC85 /* TitleSectionController.swift */,
 				2A606E091FC99D980053B81B /* MarketSectionController.swift */,
 				2AACA1871FCA369000E1F670 /* SearchSectionController.swift */,
+				2ABBCB361FCCA6F500FA4013 /* GlobalSectionController.swift */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -434,6 +446,8 @@
 				2A5C47051FC9C0AA00A4CC85 /* TitleCell.swift */,
 				2ADC4B371D9B13A200E28CFA /* MarketViewCell.swift */,
 				2AACA1891FCA36B300E1F670 /* SearchCell.swift */,
+				2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */,
+				2ABBCB381FCCC34E00FA4013 /* CellWithRoundBorders.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -444,6 +458,7 @@
 				2A606E101FC9B4CF0053B81B /* Market.swift */,
 				2A606E121FC9BAF60053B81B /* CoinMarketCapAPI.swift */,
 				2AC54BC11FCB0FAC000426EA /* MarketExtended.swift */,
+				2ABBCB301FCCA29200FA4013 /* Global.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -955,7 +970,9 @@
 			files = (
 				2AACA1931FCAE01900E1F670 /* RxSwiftViewModel.swift in Sources */,
 				2A606E031FC9996C0053B81B /* MarketListViewModel.swift in Sources */,
+				2ABBCB371FCCA6F500FA4013 /* GlobalSectionController.swift in Sources */,
 				2A606E111FC9B4CF0053B81B /* Market.swift in Sources */,
+				2ABBCB351FCCA46700FA4013 /* GlobalCell.swift in Sources */,
 				2AACA1951FCAE0FA00E1F670 /* MarketDetailViewController.swift in Sources */,
 				2AC54BC21FCB0FAC000426EA /* MarketExtended.swift in Sources */,
 				2AACA18C1FCA42C600E1F670 /* UIViewController.swift in Sources */,
@@ -971,9 +988,12 @@
 				2A606DFA1FC999310053B81B /* BaseCoordinator.swift in Sources */,
 				2AACA1901FCADFDF00E1F670 /* MarketDetailViewModel.swift in Sources */,
 				2AACA1861FCA2FCF00E1F670 /* Labels.swift in Sources */,
+				2ABBCB311FCCA29200FA4013 /* Global.swift in Sources */,
 				2A606DFB1FC999310053B81B /* Environment.swift in Sources */,
 				2AACA19A1FCAE33900E1F670 /* MarketDetailCoordinator.swift in Sources */,
+				2ABBCB391FCCC34E00FA4013 /* CellWithRoundBorders.swift in Sources */,
 				2A606E051FC9996C0053B81B /* MarketListCoordinator.swift in Sources */,
+				2ABBCB331FCCA3C300FA4013 /* UIView+RoundCorners.swift in Sources */,
 				2AACA18A1FCA36B300E1F670 /* SearchCell.swift in Sources */,
 				2AACA1981FCAE11200E1F670 /* RxSwiftViewController.swift in Sources */,
 				2A606DFE1FC9994E0053B81B /* AppCoordinator.swift in Sources */,

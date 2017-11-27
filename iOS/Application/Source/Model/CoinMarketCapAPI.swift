@@ -27,7 +27,7 @@ class CoinMarketCapAPI {
             
             // To dump all requests and responses:
             // (Warning: may cause Xcode console overheating)
-            LogCategory.enabled = LogCategory.all
+            LogCategory.enabled = LogCategory.detailed
         #endif
         
         // –––––– Global configuration ––––––
@@ -46,13 +46,23 @@ class CoinMarketCapAPI {
         service.configureTransformer("/ticker/*") {
             try jsonDecoder.decode([MarketExtended].self, from: $0.content)
         }
+        service.configure("/global") {
+            $0.pipeline.removeAllTransformers()
+        }
+        service.configureTransformer("/global") {
+            try jsonDecoder.decode(Global.self, from: $0.content)
+        }
     }
     
     static let shared = CoinMarketCapAPI()
     
+    var global: Resource {
+        return service
+            .resource("/global")
+    }
     var markets: Resource {
         return service
-            .resource("/ticker")
+            .resource("/ticker").withParam("limit", "0")
     }
     func market(_ ident: String) -> Resource {
         return self.markets.child(ident)

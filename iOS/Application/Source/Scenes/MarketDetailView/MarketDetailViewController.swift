@@ -53,7 +53,9 @@ class MarketDetailViewController: RxSwiftViewController {
     }()
     let percentageChangeLabel: UILabel = {
         let label = UILabel()
+        label.style(Labels.body)
         label.textColor = UIColor.black
+        label.textAlignment = .center
         return label
     }()
     
@@ -78,7 +80,6 @@ class MarketDetailViewController: RxSwiftViewController {
     }()
     let change1h = UILabel()
     let change7d = UILabel()
-    
     
     // MARK: - Information View Part
     
@@ -114,6 +115,10 @@ class MarketDetailViewController: RxSwiftViewController {
         viewModel.marketResource.addObserver(overlay)
         
         viewModel.reload.onNext(())
+        
+        // Create Reload Bar Button Item
+        let barButtonitem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
+        self.navigationItem.rightBarButtonItem = barButtonitem
 
     }
     
@@ -146,7 +151,7 @@ class MarketDetailViewController: RxSwiftViewController {
         // Left Primary View
         self.leftPrimaryView.sv(self.percentageChangeLabel)
         self.leftPrimaryView.layout(
-            self.percentageChangeLabel.centerVertically().centerHorizontally()
+            |-self.percentageChangeLabel.centerVertically()-|
         )
         
         // Right Primary View
@@ -163,13 +168,15 @@ class MarketDetailViewController: RxSwiftViewController {
         self.change1hView.sv(change1h)
         self.change7dView.sv(change7d)
         self.change1hView.layout(
-            self.change1h.centerVertically().centerHorizontally()
+            |-self.change1h.centerVertically()-|
         )
         self.change7dView.layout(
-            self.change7d.centerVertically().centerHorizontally()
+            |-self.change7d.centerVertically()-|
         )
         change1h.style(Labels.body)
+        change1h.textAlignment = .center
         change7d.style(Labels.body)
+        change7d.textAlignment = .center
         
         // Information View
         setupInformationView()
@@ -289,8 +296,18 @@ class MarketDetailViewController: RxSwiftViewController {
         self.priceBTC.text = "Price: " + market.priceBTC + " BTC"
         
         // Volume
-        self.volume.text = "Volume (24): " + market.volume24hUSD + " USD"
+        if let volume = market.volume24hUSD {
+            self.volume.text = "Volume (24): " + volume + " USD"
+        } else {
+            self.volume.text = "Volume (24): Unknown"
+        }
         
+        
+        
+    }
+    
+    @objc func refresh() {
+        self.viewModel.reload.onNext(())
     }
     
 }

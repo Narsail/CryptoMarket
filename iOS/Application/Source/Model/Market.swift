@@ -13,21 +13,26 @@ class Market: Codable {
     
     let ident: String
     let name: String
-    let percentChange24h: String
+    let symbol: String
+    let percentChange24h: String?
     let priceBTC: String
     let priceUSD: String
-    let marketCapUSD: String
+    let marketCapUSD: String?
     
     var percentChange24hAmount: Double? {
-        return Double(self.percentChange24h)
+        if let change = percentChange24h {
+            return Double(change)
+        }
+        return nil
     }
     var formattedMarketCap: String {
         
         let suffix = " USD"
         
-        guard let cap = Double(self.marketCapUSD) else { return marketCapUSD + " USD" }
+        guard let capAsString = self.marketCapUSD else { return "Unknown" }
+        guard let cap = Double(capAsString) else { return capAsString + " USD" }
         
-        var formattedCap = marketCapUSD
+        var formattedCap = capAsString
         
         switch cap {
         case let cap where cap >= 1000000000000:
@@ -49,6 +54,7 @@ class Market: Codable {
     enum CodingKeys: String, CodingKey {
         case ident = "id"
         case name
+        case symbol
         case percentChange24h = "percent_change_24h"
         case priceBTC = "price_btc"
         case priceUSD = "price_usd"

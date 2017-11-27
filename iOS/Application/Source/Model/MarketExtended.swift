@@ -14,38 +14,48 @@ class MarketExtended: Codable {
     
     let ident: String
     let name: String
-    let percentChange24h: String
+    let percentChange24h: String?
     let priceBTC: String
     let priceUSD: String
-    let marketCapUSD: String
+    let marketCapUSD: String?
     
     // Extended
     
     let symbol: String // i.e. BTC
     let rank: String
-    let volume24hUSD: String
-    let availableSupply: String
-    let totalSupply: String
+    let volume24hUSD: String?
+    let availableSupply: String?
+    let totalSupply: String?
     let maxSupply: String?
-    let percentChange1h: String
-    let percentChange7d: String
+    let percentChange1h: String?
+    let percentChange7d: String?
     
     var percentChange24hAmount: Double? {
-        return Double(self.percentChange24h)
+        if let change = percentChange24h {
+            return Double(change)
+        }
+        return nil
     }
     var percentChange1hAmount: Double? {
-        return Double(self.percentChange1h)
+        if let change = percentChange1h {
+            return Double(change)
+        }
+        return nil
     }
     var percentChange7dAmount: Double? {
-        return Double(self.percentChange7d)
+        if let change = percentChange7d {
+            return Double(change)
+        }
+        return nil
     }
     var formattedMarketCap: String {
         
         let suffix = " USD"
         
-        guard let cap = Double(self.marketCapUSD) else { return marketCapUSD + " USD" }
+        guard let capAsString = self.marketCapUSD else { return "Unknown" }
+        guard let cap = Double(capAsString) else { return capAsString + " USD" }
         
-        var formattedCap = marketCapUSD
+        var formattedCap = capAsString
         
         switch cap {
         case let cap where cap >= 1000000000000:

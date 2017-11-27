@@ -145,7 +145,7 @@ class MarketDetailViewController: RxSwiftViewController {
             >=10
         )
         
-        let topOffest = 10
+        let topOffest: CGFloat = 10
         self.leftPrimaryView.Top == topLayoutGuide.Bottom + topOffest
         self.rightPrimaryView.Top == topLayoutGuide.Bottom + topOffest
         

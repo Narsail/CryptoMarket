@@ -137,7 +137,6 @@ class MarketDetailViewController: RxSwiftViewController {
                      self.change7dView)
         
         self.view.layout(
-            (self.navigationController?.navigationBar.frame.height ?? 45) + 30,
             |-self.leftPrimaryView.width(100).height(50)-10-self.rightPrimaryView.height(50)-|,
             10,
             |-self.change1hView.height(50)-10-self.change7dView.height(50)-|,
@@ -145,6 +144,10 @@ class MarketDetailViewController: RxSwiftViewController {
             |-self.informationView-|,
             >=10
         )
+        
+        let topOffest = 10
+        self.leftPrimaryView.Top == topLayoutGuide.Bottom + topOffest
+        self.rightPrimaryView.Top == topLayoutGuide.Bottom + topOffest
         
         self.change1hView.Width == self.change7dView.Width
         

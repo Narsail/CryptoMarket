@@ -55,15 +55,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSegmentedControl.swift; sourceTree = "<group>"; };
-		2A2797F01DA2B3250061F1C5 /* CubicFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CubicFormatter.swift; sourceTree = "<group>"; };
-		2A2797F21DA2B5ED0061F1C5 /* DateValueFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
-		2A2797F41DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketAbbreviationMapper.swift; sourceTree = "<group>"; };
 		2A2797FA1DA3E7CC0061F1C5 /* CryptoMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2797FC1DA3E7CC0061F1C5 /* CryptoMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMarketUITests.swift; sourceTree = "<group>"; };
 		2A2797FE1DA3E7CC0061F1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2A5A5E771D95B843003465B2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubRootViewController.swift; sourceTree = "<group>"; };
 		2A5C47051FC9C0AA00A4CC85 /* TitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleCell.swift; sourceTree = "<group>"; };
 		2A5C47071FC9C0B200A4CC85 /* TitleSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleSectionController.swift; sourceTree = "<group>"; };
 		2A5C47091FC9C72000A4CC85 /* Matchfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Matchfile; sourceTree = "<group>"; };
@@ -121,7 +115,6 @@
 		2A606E121FC9BAF60053B81B /* CoinMarketCapAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinMarketCapAPI.swift; sourceTree = "<group>"; };
 		2A61FCE01D908C7900064D51 /* CryptoMarket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoMarket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A61FCE31D908C7900064D51 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A61FCE51D908C7900064D51 /* RatesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesViewController.swift; sourceTree = "<group>"; };
 		2A61FCEA1D908C7900064D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -134,7 +127,6 @@
 		2AACA1941FCAE0FA00E1F670 /* MarketDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailViewController.swift; sourceTree = "<group>"; };
 		2AACA1971FCAE11200E1F670 /* RxSwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftViewController.swift; sourceTree = "<group>"; };
 		2AACA1991FCAE33900E1F670 /* MarketDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailCoordinator.swift; sourceTree = "<group>"; };
-		2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortCutHandler.swift; sourceTree = "<group>"; };
 		2ABBCB301FCCA29200FA4013 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
 		2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCell.swift; sourceTree = "<group>"; };
@@ -142,34 +134,12 @@
 		2ABBCB381FCCC34E00FA4013 /* CellWithRoundBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellWithRoundBorders.swift; sourceTree = "<group>"; };
 		2AC54BC11FCB0FAC000426EA /* MarketExtended.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketExtended.swift; sourceTree = "<group>"; };
 		2AD75EEC1D9C110000D6CC39 /* Chameleon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chameleon.framework; path = Carthage/Build/iOS/Chameleon.framework; sourceTree = "<group>"; };
-		2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataRequest.swift; sourceTree = "<group>"; };
-		2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDataMapper.swift; sourceTree = "<group>"; };
-		2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		2AD75EF91D9D1F3000D6CC39 /* RatesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesRouter.swift; sourceTree = "<group>"; };
-		2AD75EFB1D9D252600D6CC39 /* SettingsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsRouter.swift; sourceTree = "<group>"; };
-		2AD75EFD1D9D27C200D6CC39 /* RatesDetailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesDetailRouter.swift; sourceTree = "<group>"; };
-		2AD75F001D9D283A00D6CC39 /* RatesDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatesDetailViewController.swift; sourceTree = "<group>"; };
-		2ADC4B061D9AE8CD00E28CFA /* Market.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Market.swift; path = Store/Types/Market.swift; sourceTree = "<group>"; };
-		2ADC4B081D9AE97200E28CFA /* Ticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Ticker.swift; path = Store/Types/Ticker.swift; sourceTree = "<group>"; };
-		2ADC4B0A1D9AEB9500E28CFA /* ChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartData.swift; path = Store/Types/ChartData.swift; sourceTree = "<group>"; };
-		2ADC4B201D9AEF6000E28CFA /* TickerRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerRequest.swift; sourceTree = "<group>"; };
-		2ADC4B221D9AEF6800E28CFA /* TickerMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerMapper.swift; sourceTree = "<group>"; };
-		2ADC4B241D9AF56200E28CFA /* BackendConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendConfiguration.swift; sourceTree = "<group>"; };
-		2ADC4B251D9AF56200E28CFA /* BackendOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendOperations.swift; sourceTree = "<group>"; };
-		2ADC4B261D9AF56200E28CFA /* BackendService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackendService.swift; sourceTree = "<group>"; };
-		2ADC4B2A1D9AF58B00E28CFA /* ListOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOperations.swift; sourceTree = "<group>"; };
-		2ADC4B2B1D9AF58B00E28CFA /* SingleOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleOperations.swift; sourceTree = "<group>"; };
-		2ADC4B2E1D9AF5A500E28CFA /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
-		2ADC4B321D9AF7A000E28CFA /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		2ADC4B341D9AFD9000E28CFA /* PoloniexAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PoloniexAPI.swift; sourceTree = "<group>"; };
 		2ADC4B371D9B13A200E28CFA /* MarketViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarketViewCell.swift; sourceTree = "<group>"; };
-		2AEE237F1D95A3B40090A61B /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		2AEE23821D95A6E10090A61B /* BrightFutures.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BrightFutures.framework; path = Carthage/Build/iOS/BrightFutures.framework; sourceTree = "<group>"; };
 		2AEE23861D95A6F80090A61B /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		2AEE23871D95A6F80090A61B /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		2AEE23881D95A6F80090A61B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		2AEE23891D95A6F80090A61B /* Stevia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Stevia.framework; path = Carthage/Build/iOS/Stevia.framework; sourceTree = "<group>"; };
-		2AEE23911D95A82C0090A61B /* RootRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootRouter.swift; sourceTree = "<group>"; };
 		9F9DBA2215405A211D0B1894 /* Pods-CryptoMarket.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoMarket.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoMarket/Pods-CryptoMarket.release.xcconfig"; sourceTree = "<group>"; };
 		A97E70EDE9FD9E9BC8327C73 /* Pods_CryptoMarketUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoMarketUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACDD64015CF3253A1ACC0756 /* Pods-CryptoMarketUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoMarketUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoMarketUITests/Pods-CryptoMarketUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -198,24 +168,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2A2797EC1DA28D4B0061F1C5 /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-				2A2797ED1DA28D980061F1C5 /* BetterSegmentedControl.swift */,
-			);
-			name = Controls;
-			sourceTree = "<group>";
-		};
-		2A2797EF1DA2B3130061F1C5 /* Formatter */ = {
-			isa = PBXGroup;
-			children = (
-				2A2797F01DA2B3250061F1C5 /* CubicFormatter.swift */,
-				2A2797F21DA2B5ED0061F1C5 /* DateValueFormatter.swift */,
-				2A2797F41DA2DCD00061F1C5 /* MarketAbbreviationMapper.swift */,
-			);
-			name = Formatter;
-			sourceTree = "<group>";
-		};
 		2A2797FB1DA3E7CC0061F1C5 /* UISnapShot */ = {
 			isa = PBXGroup;
 			children = (
@@ -223,23 +175,6 @@
 				2A2797FE1DA3E7CC0061F1C5 /* Info.plist */,
 			);
 			path = UISnapShot;
-			sourceTree = "<group>";
-		};
-		2A5A5E731D95B486003465B2 /* Rates */ = {
-			isa = PBXGroup;
-			children = (
-				2AD75EF91D9D1F3000D6CC39 /* RatesRouter.swift */,
-				2AD75EFD1D9D27C200D6CC39 /* RatesDetailRouter.swift */,
-			);
-			name = Rates;
-			sourceTree = "<group>";
-		};
-		2A5A5E741D95B48F003465B2 /* Settings */ = {
-			isa = PBXGroup;
-			children = (
-				2AD75EFB1D9D252600D6CC39 /* SettingsRouter.swift */,
-			);
-			name = Settings;
 			sourceTree = "<group>";
 		};
 		2A5C47111FC9C84800A4CC85 /* metadata */ = {
@@ -470,7 +405,6 @@
 				2A606DE91FC996B50053B81B /* iOS */,
 				2A606DD71FC9965C0053B81B /* fastlane */,
 				2AEE23811D95A6C90090A61B /* Frameworks */,
-				2A61FCE21D908C7900064D51 /* CryptoMarket */,
 				2A61FCE11D908C7900064D51 /* Products */,
 				51E46C6C7EEBF0E93BB4D4EA /* Pods */,
 			);
@@ -483,61 +417,6 @@
 				2A2797FA1DA3E7CC0061F1C5 /* CryptoMarketUITests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2A61FCE21D908C7900064D51 /* CryptoMarket */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B041D9AE59200E28CFA /* Store */,
-				2AEE237E1D95A32D0090A61B /* Router */,
-				2A61FCF81D908C9700064D51 /* Views */,
-				2A61FCF71D908C9100064D51 /* Models */,
-				2A61FCF51D908C8600064D51 /* ViewController */,
-			);
-			path = CryptoMarket;
-			sourceTree = "<group>";
-		};
-		2A61FCF51D908C8600064D51 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				2AD75EFF1D9D282E00D6CC39 /* Rates */,
-				2A61FCE51D908C7900064D51 /* RatesViewController.swift */,
-				2A5A5E771D95B843003465B2 /* SettingsViewController.swift */,
-				2A5A5E791D95BF00003465B2 /* SubRootViewController.swift */,
-			);
-			name = ViewController;
-			sourceTree = "<group>";
-		};
-		2A61FCF61D908C8C00064D51 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B1F1D9AEF4C00E28CFA /* Requests */,
-				2ADC4B1E1D9AEF4000E28CFA /* Mapper */,
-				2ADC4B191D9AEF1A00E28CFA /* Operations */,
-				2ADC4B121D9AEED500E28CFA /* Foundation */,
-				2ADC4B341D9AFD9000E28CFA /* PoloniexAPI.swift */,
-			);
-			name = Network;
-			sourceTree = "<group>";
-		};
-		2A61FCF71D908C9100064D51 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				2AB176921DA50BEC0059A2D3 /* ShortCut */,
-				2AD75EF61D9C5CE600D6CC39 /* Colors */,
-				2A61FCF61D908C8C00064D51 /* Network */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		2A61FCF81D908C9700064D51 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				2A2797EF1DA2B3130061F1C5 /* Formatter */,
-				2A2797EC1DA28D4B0061F1C5 /* Controls */,
-				2ADC4B361D9B135900E28CFA /* TableViewCells */,
-			);
-			name = Views;
 			sourceTree = "<group>";
 		};
 		2AACA18D1FCADFBE00E1F670 /* MarketListView */ = {
@@ -574,105 +453,6 @@
 				2AACA1971FCAE11200E1F670 /* RxSwiftViewController.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		2AB176921DA50BEC0059A2D3 /* ShortCut */ = {
-			isa = PBXGroup;
-			children = (
-				2AB176931DA50BFD0059A2D3 /* ShortCutHandler.swift */,
-			);
-			name = ShortCut;
-			sourceTree = "<group>";
-		};
-		2AD75EF61D9C5CE600D6CC39 /* Colors */ = {
-			isa = PBXGroup;
-			children = (
-				2AD75EF71D9C5CEE00D6CC39 /* Colors.swift */,
-			);
-			name = Colors;
-			sourceTree = "<group>";
-		};
-		2AD75EFF1D9D282E00D6CC39 /* Rates */ = {
-			isa = PBXGroup;
-			children = (
-				2AD75F001D9D283A00D6CC39 /* RatesDetailViewController.swift */,
-			);
-			name = Rates;
-			sourceTree = "<group>";
-		};
-		2ADC4B041D9AE59200E28CFA /* Store */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B051D9AE59900E28CFA /* Types */,
-				2ADC4B321D9AF7A000E28CFA /* Store.swift */,
-			);
-			name = Store;
-			sourceTree = "<group>";
-		};
-		2ADC4B051D9AE59900E28CFA /* Types */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B061D9AE8CD00E28CFA /* Market.swift */,
-				2ADC4B081D9AE97200E28CFA /* Ticker.swift */,
-				2ADC4B0A1D9AEB9500E28CFA /* ChartData.swift */,
-			);
-			name = Types;
-			sourceTree = "<group>";
-		};
-		2ADC4B121D9AEED500E28CFA /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B241D9AF56200E28CFA /* BackendConfiguration.swift */,
-				2ADC4B251D9AF56200E28CFA /* BackendOperations.swift */,
-				2ADC4B261D9AF56200E28CFA /* BackendService.swift */,
-			);
-			name = Foundation;
-			sourceTree = "<group>";
-		};
-		2ADC4B191D9AEF1A00E28CFA /* Operations */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B2A1D9AF58B00E28CFA /* ListOperations.swift */,
-				2ADC4B2B1D9AF58B00E28CFA /* SingleOperations.swift */,
-			);
-			name = Operations;
-			sourceTree = "<group>";
-		};
-		2ADC4B1E1D9AEF4000E28CFA /* Mapper */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B2E1D9AF5A500E28CFA /* Mapper.swift */,
-				2AD75EF41D9C594200D6CC39 /* ChartDataMapper.swift */,
-				2ADC4B221D9AEF6800E28CFA /* TickerMapper.swift */,
-			);
-			name = Mapper;
-			sourceTree = "<group>";
-		};
-		2ADC4B1F1D9AEF4C00E28CFA /* Requests */ = {
-			isa = PBXGroup;
-			children = (
-				2ADC4B201D9AEF6000E28CFA /* TickerRequest.swift */,
-				2AD75EF21D9C346900D6CC39 /* ChartDataRequest.swift */,
-			);
-			name = Requests;
-			sourceTree = "<group>";
-		};
-		2ADC4B361D9B135900E28CFA /* TableViewCells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = TableViewCells;
-			sourceTree = "<group>";
-		};
-		2AEE237E1D95A32D0090A61B /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				2A5A5E741D95B48F003465B2 /* Settings */,
-				2A5A5E731D95B486003465B2 /* Rates */,
-				2AEE237F1D95A3B40090A61B /* Router.swift */,
-				2AEE23911D95A82C0090A61B /* RootRouter.swift */,
-			);
-			name = Router;
 			sourceTree = "<group>";
 		};
 		2AEE23811D95A6C90090A61B /* Frameworks */ = {

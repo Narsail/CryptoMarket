@@ -92,16 +92,6 @@ extension MarketListViewModel: ListAdapterDataSource {
             // Add the Title
             list.append("Cryptocurrencies" as NSString)
             
-            // Add Portfolio
-            if let amount = try self.portfolioAmount.value() {
-                list.append(amount)
-            }
-            
-            // Add Global Data
-            if let global = try self.global.value() {
-                list.append(global)
-            }
-            
             // Search Token
             list.append(searchToken)
             
@@ -113,7 +103,19 @@ extension MarketListViewModel: ListAdapterDataSource {
                         $0.symbol.lowercased().contains(find: filter.lowercased())
                     } as [ListDiffable])
             } else {
+                
+                // Add Portfolio
+                if let amount = try self.portfolioAmount.value() {
+                    list.append(amount)
+                }
+                
+                // Add Global Data
+                if let global = try self.global.value() {
+                    list.append(global)
+                }
+                
                 list += (try cryptos.value() as [ListDiffable])
+                
             }
             
             return list

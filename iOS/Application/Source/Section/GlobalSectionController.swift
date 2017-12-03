@@ -8,6 +8,7 @@
 
 import Foundation
 import IGListKit
+import Crashlytics
 
 class GlobalSectionController: ListSectionController {
     
@@ -39,6 +40,10 @@ class GlobalSectionController: ListSectionController {
     
     override func didUpdate(to object: Any) {
         self.global = object as? Global
+    }
+    
+    override func didSelectItem(at index: Int) {
+        Answers.logCustomEvent(withName: "Clicked on Global", customAttributes: nil)
     }
     
 }

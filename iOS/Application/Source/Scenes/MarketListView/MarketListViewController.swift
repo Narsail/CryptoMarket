@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import IGListKit
 import Stevia
+import Crashlytics
 
 class MarketListViewController: RxSwiftViewController {
 
@@ -71,6 +72,12 @@ class MarketListViewController: RxSwiftViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "Show Market List View", customAttributes: nil)
+    }
+    
     func setupLayout() {
         
         self.view.layout(
@@ -83,6 +90,7 @@ class MarketListViewController: RxSwiftViewController {
     
     @objc func refresh() {
         self.viewModel.reloadData()
+        Answers.logCustomEvent(withName: "Reloaded Coins.", customAttributes: nil)
     }
     
     lazy var adapter: ListAdapter = {

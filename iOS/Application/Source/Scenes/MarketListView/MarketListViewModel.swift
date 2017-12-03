@@ -11,6 +11,7 @@ import IGListKit
 import RxSwift
 import RxCocoa
 import Siesta
+import Crashlytics
 
 class MarketListViewModel: RxSwiftViewModel {
     
@@ -62,6 +63,7 @@ class MarketListViewModel: RxSwiftViewModel {
         // Search Text
         self.filter.debounce(0.1, scheduler: MainScheduler.instance)
         .subscribe(onNext: { [unowned self] _ in
+            Answers.logCustomEvent(withName: "Used the Filter.", customAttributes: nil)
             self.filtern.onNext(())
         }).disposed(by: self.disposeBag)
         

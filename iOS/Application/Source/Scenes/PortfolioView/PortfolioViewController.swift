@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import IGListKit
 import Stevia
+import Crashlytics
 
 class PortfolioViewController: RxSwiftViewController {
     
@@ -81,6 +82,12 @@ class PortfolioViewController: RxSwiftViewController {
         
         self.viewModel.reloadData()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "Show Portfolio View", customAttributes: nil)
     }
     
     func setupLayout() {

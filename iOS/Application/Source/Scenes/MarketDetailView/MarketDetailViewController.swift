@@ -12,6 +12,7 @@ import ChameleonFramework
 import Stevia
 import RxSwift
 import Siesta
+import Crashlytics
 
 class MarketDetailViewController: RxSwiftViewController {
     
@@ -120,6 +121,12 @@ class MarketDetailViewController: RxSwiftViewController {
         let barButtonitem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
         self.navigationItem.rightBarButtonItem = barButtonitem
 
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "Show Market Detail View", customAttributes: ["coin": self.viewModel.name])
     }
     
     override func viewDidLayoutSubviews() {

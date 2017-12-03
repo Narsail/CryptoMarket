@@ -78,9 +78,10 @@ class Portfolio {
         
         self.updatePortfolio()
         
-        // Test
-        //self.removeAll()
-        //self.add(OwningCryptoCurrency(symbol: "ETH", amount: 20))
+        // Simuator
+        if Environment.isSimulator {
+            self.removeAll()
+        }
         
     }
     

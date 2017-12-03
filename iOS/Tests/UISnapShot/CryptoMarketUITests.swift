@@ -29,13 +29,16 @@ class CryptoMarketUITests: XCTestCase {
         
         snapshot("List View", timeWaitingForIdle: 5)
         
-        app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["Bitcoin"]/*[[".cells.staticTexts[\"Bitcoin\"]",".staticTexts[\"Bitcoin\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        let collectionViewsQuery = app.collectionViews
+        collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Bitcoin"]/*[[".cells.staticTexts[\"Bitcoin\"]",".staticTexts[\"Bitcoin\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         snapshot("Detail View", timeWaitingForIdle: 5)
         
+        app.navigationBars["Bitcoin"].buttons["Back"].tap()
+        
         let tabBarsQuery = app.tabBars
         tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
-        app.collectionViews.children(matching: .cell).element(boundBy: 1).otherElements.children(matching: .button).element.tap()
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 1).otherElements.children(matching: .button).element.tap()
         
         snapshot("Add Item", timeWaitingForIdle: 2)
         
@@ -46,7 +49,7 @@ class CryptoMarketUITests: XCTestCase {
         
         let amountTextField = elementsQuery.textFields["Amount"]
         amountTextField.tap()
-        amountTextField.typeText("1")
+        amountTextField.typeText("1.0")
         elementsQuery.buttons["Add"].tap()
         
         snapshot("Portfolio", timeWaitingForIdle: 2)

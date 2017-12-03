@@ -46,13 +46,28 @@ struct Labels {
 
 struct Buttons {
     
-    static func normal(button: UIButton) {
+    static func normalBlack(button: UIButton) {
+        
+        let color = UIColor.flatGray
         
         button.tintColor = .flatWhite
+        button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 6
-        button.layer.borderColor = UIColor.flatGray.cgColor
-        button.backgroundColor = .flatGray
+        button.layer.borderColor = color.cgColor
+        button.backgroundColor = color
         
     }
     
+    static func normalWhite(button: UIButton) {
+        
+        let color = UIColor.white
+        
+        button.tintColor = .black
+        button.setTitleColor(.black, for: .normal)
+        button.layer.cornerRadius = 6
+        button.layer.borderColor = color.cgColor
+        button.backgroundColor = color
+        
+    }
+
 }

@@ -48,6 +48,32 @@ class MarketListViewController: RxSwiftViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.displayDelegate = self
+        
+        // Sort Icon
+        let sortItem = UIBarButtonItem(
+            image: #imageLiteral(resourceName: "sort"), style: UIBarButtonItemStyle.plain, target: nil, action: nil
+        )
+        sortItem.tintColor = .black
+        
+        self.navigationItem.leftBarButtonItem = sortItem
+        
+        sortItem.rx.tap
+            .map { _ in
+                try !self.viewModel.showSort.value()
+            }
+            .do(onNext: { show in
+                if show {
+                    Answers.logCustomEvent(withName: "Show Sort Options", customAttributes: nil)
+                }
+            }).bind(to: self.viewModel.showSort).disposed(by: disposeBag)
+        
+        self.viewModel.showSort.subscribe(onNext: { show in
+            if show && self.collectionView.numberOfSections > 0 {
+                self.collectionView.scrollToItem(
+                    at: IndexPath(item: 0, section: 1), at: .centeredVertically, animated: true
+                )
+            }
+        }).disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {

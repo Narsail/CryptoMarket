@@ -23,9 +23,13 @@ class MarketListViewModel: RxSwiftViewModel {
     var portfolioAmount = BehaviorSubject<PortfolioAmount?>(value: nil)
     let overlay = ResourceStatusOverlay()
     let searchToken: NSNumber = 42
+    let sortToken: NSNumber = 41
+    
+    var sortOrder = SortOptions.capDescending
     
     // MARK: - Inputs
     let filter = BehaviorSubject<String>(value: "")
+    let showSort = BehaviorSubject<Bool>(value: false)
     
     // MARK: - Outputs
     let contentUpdated = PublishSubject<Void>()
@@ -56,7 +60,11 @@ class MarketListViewModel: RxSwiftViewModel {
         Observable.combineLatest(cryptos, global, portfolioAmount)
             .debounce(0.5, scheduler: MainScheduler.instance)
             .map({ _ in Void() })
-            .do(onNext: { _ in self.coinMarketCapAPI.markets.removeObservers(ownedBy: self.overlay) })
+            .bind(to: contentUpdated)
+            .disposed(by: disposeBag)
+        
+        showSort
+            .map({ _ in Void() })
             .bind(to: contentUpdated)
             .disposed(by: disposeBag)
         
@@ -73,6 +81,68 @@ class MarketListViewModel: RxSwiftViewModel {
     
     func reloadData() {
         CoinMarketCapAPI.shared.loadAll.onNext(())
+    }
+    
+    func getSortedCryptos(order: SortOptions) throws -> [Cryptocurrency] {
+        let cryptos = try self.cryptos.value()
+        
+        switch order {
+        case .capAscending:
+            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+                switch (cryptoOne.marketCapUSD, cryptoTwo.marketCapUSD) {
+                case (.none, .none):
+                    return false
+                case (.none, _):
+                    return true
+                case (.some(let capOneString), .some(let capTwoString)):
+                    switch (Double(capOneString), Double(capTwoString)) {
+                    case (.none, .none):
+                        return false
+                    case (.none, _):
+                        return true
+                    case (.some(let capOne), .some(let capTwo)):
+                        return capOne < capTwo
+                    default:
+                        return false
+                    }
+                default:
+                    return false
+                }
+                
+            })
+        case .capDescending:
+            return cryptos
+        case .nameAscending:
+            return cryptos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+        case .nameDescending:
+            return cryptos.sorted(by: { $0.name.lowercased() > $1.name.lowercased() })
+        case .changeAscending:
+            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+                switch (cryptoOne.percentChange24hAmount, cryptoTwo.percentChange24hAmount) {
+                case (.none, .none):
+                    return false
+                case (.none, .some(let change)):
+                    return change > 0
+                case (.some(let change), .none):
+                    return change < 0
+                case (.some(let changeOne), .some(let changeTwo)):
+                    return changeOne < changeTwo
+                }
+            })
+        case .changeDescending:
+            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+                switch (cryptoOne.percentChange24hAmount, cryptoTwo.percentChange24hAmount) {
+                case (.none, .none):
+                    return false
+                case (.none, .some(let change)):
+                    return change < 0
+                case (.some(let change), .none):
+                    return change > 0
+                case (.some(let changeOne), .some(let changeTwo)):
+                    return changeOne > changeTwo
+                }
+            })
+        }
     }
     
 }
@@ -92,16 +162,23 @@ extension MarketListViewModel: ListAdapterDataSource {
             // Add the Title
             list.append("Cryptocurrencies" as NSString)
             
+            // Sort View
+            if try self.showSort.value() {
+                list.append(sortToken)
+            }
+            
             // Search Token
             list.append(searchToken)
             
             let filter = (try? self.filter.value()) ?? ""
             
             if filter != "" {
-                list += (try cryptos.value().filter {
+                list += (try getSortedCryptos(order: self.sortOrder).filter {
                     $0.name.lowercased().contains(find: filter.lowercased()) ||
                         $0.symbol.lowercased().contains(find: filter.lowercased())
                     } as [ListDiffable])
+            } else if try self.showSort.value() {
+                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
             } else {
                 
                 // Add Portfolio
@@ -114,7 +191,7 @@ extension MarketListViewModel: ListAdapterDataSource {
                     list.append(global)
                 }
                 
-                list += (try cryptos.value() as [ListDiffable])
+                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
                 
             }
             
@@ -137,6 +214,10 @@ extension MarketListViewModel: ListAdapterDataSource {
         case let searchToken as NSNumber where searchToken == self.searchToken:
             let sectionController = SearchSectionController()
             sectionController.delegate = self
+            return sectionController
+        case let sortToken as NSNumber where sortToken == self.sortToken:
+            let sectionController = SortSectionController(order: self.sortOrder, delegate: self)
+            // sectionController.delegate = self
             return sectionController
         case is NSString:
             let sectionController = TitleSectionController()
@@ -168,4 +249,22 @@ extension MarketListViewModel: MarketSelectionControllerDelegate {
         self.selectedMarket.onNext((marketIdent, marketName))
     }
     
+}
+
+extension MarketListViewModel: SortCellDelegate {
+    
+    func didChange(_ sortOrder: SortOptions) {
+        self.sortOrder = sortOrder
+        self.contentUpdated.onNext(())
+    }
+    
+}
+
+enum SortOptions {
+    case capAscending // Smallest to the Highest
+    case capDescending // Highest to the Smallest
+    case nameAscending // Beginning with A
+    case nameDescending // Beginning with Z
+    case changeAscending
+    case changeDescending
 }

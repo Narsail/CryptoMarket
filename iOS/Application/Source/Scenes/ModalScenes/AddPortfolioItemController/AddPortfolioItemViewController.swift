@@ -98,7 +98,7 @@ class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoC
         self.amountTextField.textAlignment = .center
         self.amountTextField.keyboardType = .decimalPad
         
-        self.submitButton.style(Buttons.normal)
+        self.submitButton.style(Buttons.normalBlack)
         self.submitButton.setTitle(Strings.AddPortfolioItem.addButton, for: .normal)
         
         self.view.sv([self.symbolTextfield, symbolMark, amountTextField, self.border, self.submitButton])

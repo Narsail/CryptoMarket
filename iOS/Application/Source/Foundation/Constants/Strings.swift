@@ -21,4 +21,11 @@ enum Strings {
         static let amount = NSLocalizedString("AddPortfolioItem.amount", value: "Amount", comment: "")
         static let addButton = NSLocalizedString("AddPortfolioItem.addButton", value: "Add", comment: "")
     }
+    
+    enum SortCell {
+        static let title = NSLocalizedString("SortCell.title", value: "Sort by", comment: "")
+        static let cap = NSLocalizedString("SortCell.cap", value: "Market Cap", comment: "")
+        static let name = NSLocalizedString("SortCell.name", value: "Coin Name", comment: "")
+        static let change = NSLocalizedString("SortCell.change", value: "24 Change", comment: "")
+    }
 }

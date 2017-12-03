@@ -23,7 +23,7 @@ final class SearchSectionController: ListSectionController, UISearchBarDelegate,
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
-        return CGSize(width: collectionContext!.containerSize.width, height: 44)
+        return CGSize(width: collectionContext!.containerSize.width - 4, height: 44)
     }
     
     override func cellForItem(at index: Int) -> UICollectionViewCell {

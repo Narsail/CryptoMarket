@@ -66,6 +66,8 @@
 		2AACA19A1FCAE33900E1F670 /* MarketDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACA1991FCAE33900E1F670 /* MarketDetailCoordinator.swift */; };
 		2AB3387E1FCD8B8C00190E5D /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3387D1FCD8B8C00190E5D /* Portfolio.swift */; };
 		2AB338801FCD8C3B00190E5D /* OwningCryptoCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB3387F1FCD8C3B00190E5D /* OwningCryptoCurrency.swift */; };
+		2AB9ED981FD434160097BFB2 /* SortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9ED971FD434160097BFB2 /* SortCell.swift */; };
+		2AB9ED9A1FD4362E0097BFB2 /* SortSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9ED991FD4362E0097BFB2 /* SortSectionController.swift */; };
 		2ABA180D1FD2E44000E78234 /* ModalViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA180C1FD2E44000E78234 /* ModalViewCoordinator.swift */; };
 		2ABA180F1FD2E99A00E78234 /* ModelPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA180E1FD2E99A00E78234 /* ModelPresentedViewController.swift */; };
 		2ABBCB311FCCA29200FA4013 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB301FCCA29200FA4013 /* Global.swift */; };
@@ -189,6 +191,8 @@
 		2AACA1991FCAE33900E1F670 /* MarketDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDetailCoordinator.swift; sourceTree = "<group>"; };
 		2AB3387D1FCD8B8C00190E5D /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
 		2AB3387F1FCD8C3B00190E5D /* OwningCryptoCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwningCryptoCurrency.swift; sourceTree = "<group>"; };
+		2AB9ED971FD434160097BFB2 /* SortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCell.swift; sourceTree = "<group>"; };
+		2AB9ED991FD4362E0097BFB2 /* SortSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSectionController.swift; sourceTree = "<group>"; };
 		2ABA180C1FD2E44000E78234 /* ModalViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewCoordinator.swift; sourceTree = "<group>"; };
 		2ABA180E1FD2E99A00E78234 /* ModelPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPresentedViewController.swift; sourceTree = "<group>"; };
 		2ABBCB301FCCA29200FA4013 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -452,6 +456,7 @@
 				2A9F92D31FCDF07F007FBC8C /* PortfolioAmountSectionController.swift */,
 				2A5C48461FCF7ABD0062FF48 /* AddToPortfolioSectionController.swift */,
 				2A5C484A1FCF7CD30062FF48 /* PortfolioItemSectionController.swift */,
+				2AB9ED991FD4362E0097BFB2 /* SortSectionController.swift */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -467,6 +472,7 @@
 				2A9F92D11FCDEE6E007FBC8C /* PortfolioCell.swift */,
 				2A5C48441FCF7A280062FF48 /* AddCell.swift */,
 				2A5C48481FCF7C3F0062FF48 /* PortfolioItemCell.swift */,
+				2AB9ED971FD434160097BFB2 /* SortCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -914,6 +920,7 @@
 				2A9F92D41FCDF07F007FBC8C /* PortfolioAmountSectionController.swift in Sources */,
 				2AB338801FCD8C3B00190E5D /* OwningCryptoCurrency.swift in Sources */,
 				2A606E031FC9996C0053B81B /* MarketListViewModel.swift in Sources */,
+				2AB9ED9A1FD4362E0097BFB2 /* SortSectionController.swift in Sources */,
 				2ABBCB371FCCA6F500FA4013 /* GlobalSectionController.swift in Sources */,
 				2A606E111FC9B4CF0053B81B /* Cryptocurrency.swift in Sources */,
 				2ABBCB351FCCA46700FA4013 /* GlobalCell.swift in Sources */,
@@ -931,6 +938,7 @@
 				2A606E0A1FC99D980053B81B /* MarketSectionController.swift in Sources */,
 				2A5C47061FC9C0AA00A4CC85 /* TitleCell.swift in Sources */,
 				2A93BC5A1FD078E900E3017C /* UIFont.swift in Sources */,
+				2AB9ED981FD434160097BFB2 /* SortCell.swift in Sources */,
 				2A93BC661FD079C900E3017C /* Strings.swift in Sources */,
 				2A9F92D21FCDEE6E007FBC8C /* PortfolioCell.swift in Sources */,
 				2A606E041FC9996C0053B81B /* MarketListViewController.swift in Sources */,

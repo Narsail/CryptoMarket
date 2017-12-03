@@ -152,24 +152,25 @@ class MarketViewCell: CellWithRoundBorders {
         self.priceUSD.text = market.priceUSD + " USD"
         self.marketCapUSD.text = "Cap: " + market.formattedMarketCap
         
-        guard let percentChange24 = market.percentChange24hAmount else { return }
-        
-        if percentChange24 == 0.0 {
-            self.topRightView.backgroundColor = UIColor.flatGray
-            self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
-        } else if percentChange24 < 0.0 {
-            self.topRightView.backgroundColor = UIColor.flatRed
-            self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
+        if let percentChange24 = market.percentChange24hAmount {
+            if percentChange24 == 0.0 {
+                self.topRightView.backgroundColor = UIColor.flatGray
+                self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
+            } else if percentChange24 < 0.0 {
+                self.topRightView.backgroundColor = UIColor.flatRed
+                self.differenceLabel.text = "\(percentChange24.string(fractionDigits: 2))%"
+            } else {
+                self.topRightView.backgroundColor = UIColor.flatGreen
+                self.differenceLabel.text = "+\(percentChange24.string(fractionDigits: 2))%"
+            }
         } else {
-            self.topRightView.backgroundColor = UIColor.flatGreen
-            self.differenceLabel.text = "+\(percentChange24.string(fractionDigits: 2))%"
+            self.topRightView.backgroundColor = UIColor.flatGray
+            self.differenceLabel.text = "\(0.00)%"
         }
         
     }
 	
 }
-
-
 
 extension Double {
 	func string(fractionDigits: Int) -> String {

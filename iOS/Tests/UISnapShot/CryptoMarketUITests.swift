@@ -32,6 +32,29 @@ class CryptoMarketUITests: XCTestCase {
         app.collectionViews/*@START_MENU_TOKEN@*/.staticTexts["Bitcoin"]/*[[".cells.staticTexts[\"Bitcoin\"]",".staticTexts[\"Bitcoin\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
         snapshot("Detail View", timeWaitingForIdle: 5)
+        
+        let tabBarsQuery = app.tabBars
+        tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
+        app.collectionViews.children(matching: .cell).element(boundBy: 1).otherElements.children(matching: .button).element.tap()
+        
+        snapshot("Add Item", timeWaitingForIdle: 2)
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let symbolTextField = elementsQuery.textFields["Symbol"]
+        symbolTextField.tap()
+        symbolTextField.typeText("BTC")
+        
+        let amountTextField = elementsQuery.textFields["Amount"]
+        amountTextField.tap()
+        amountTextField.typeText("1")
+        elementsQuery.buttons["Add"].tap()
+        
+        snapshot("Portfolio", timeWaitingForIdle: 2)
+        
+        tabBarsQuery.children(matching: .button).element(boundBy: 0).tap()
+        app.navigationBars["CryptoMarket.MarketListView"].buttons["sort"].tap()
+        
+        snapshot("Sort Options", timeWaitingForIdle: 2)
 		
 	}
 		

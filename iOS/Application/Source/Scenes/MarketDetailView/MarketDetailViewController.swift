@@ -70,12 +70,12 @@ class MarketDetailViewController: RxSwiftViewController {
     
     let change1hView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.flatWhite
+        view.backgroundColor = UIColor.flatGray
         return view
     }()
     let change7dView: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor.flatWhite
+        view.backgroundColor = UIColor.flatGray
         return view
     }()
     let change1h = UILabel()
@@ -234,7 +234,7 @@ class MarketDetailViewController: RxSwiftViewController {
         
     }
     
-    func populateData(market: MarketExtended) {
+    func populateData(market: CryptoCurrencyExtended) {
         
         self.overlay.isHidden = true
         

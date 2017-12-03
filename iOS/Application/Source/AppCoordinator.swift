@@ -31,7 +31,7 @@ class AppCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         
-        return coordinate(to: MarketListCoordinator(rootViewController: rootViewController))
+        return coordinate(to: MainTabBarCoordinator(rootViewController: rootViewController))
         
     }
     

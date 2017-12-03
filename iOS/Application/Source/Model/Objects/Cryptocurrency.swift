@@ -9,7 +9,7 @@
 import Foundation
 import IGListKit
 
-class Market: Codable {
+class Cryptocurrency: Codable {
     
     let ident: String
     let name: String
@@ -25,6 +25,14 @@ class Market: Codable {
         }
         return nil
     }
+    var priceUSDAsDouble: Double {
+        return Double(priceUSD) ?? 0
+    }
+    var priceBTCAsDouble: Double {
+        return Double(priceBTC) ?? 0
+    }
+
+    
     var formattedMarketCap: String {
         
         let suffix = " USD"
@@ -63,14 +71,14 @@ class Market: Codable {
     
 }
 
-extension Market: ListDiffable {
+extension Cryptocurrency: ListDiffable {
     
     func diffIdentifier() -> NSObjectProtocol {
         return ident as NSString
     }
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
-        if let object = object as? Market {
+        if let object = object as? Cryptocurrency {
             return self.ident == object.ident
         }
         return false

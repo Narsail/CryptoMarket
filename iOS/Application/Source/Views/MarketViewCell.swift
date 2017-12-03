@@ -143,7 +143,7 @@ class MarketViewCell: CellWithRoundBorders {
 		
 	}
 	
-    func initializeWith(_ market: Market?) {
+    func initializeWith(_ market: Cryptocurrency?) {
         
         guard let market = market else { return }
         

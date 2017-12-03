@@ -14,4 +14,11 @@ struct Environment {
             return false
         #endif
     }()
+    static let isScreenshots: Bool = {
+        #if Screenshots
+            return true
+        #else
+            return false
+        #endif
+    }()
 }

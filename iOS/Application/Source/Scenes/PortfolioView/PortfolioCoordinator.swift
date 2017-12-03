@@ -1,8 +1,8 @@
 //
-//  AppointmentListCoordinator.swift
-//  SmartNetworkung
+//  PortfolioCoordinator.swift
+//  CryptoMarket
 //
-//  Created by David Moeller on 13.11.17.
+//  Created by David Moeller on 29.11.17.
 //  Copyright © 2017 David Moeller. All rights reserved.
 //
 
@@ -10,9 +10,10 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MarketListCoordinator: BaseCoordinator<Void> {
+class PortfolioCoordinator: BaseCoordinator<Void> {
     
     private let rootViewController: UIViewController
+    private let modalTransitionDelegate = ModalTransitionDelegate(type: .regular)
     
     init(rootViewController: UIViewController) {
         self.rootViewController = rootViewController
@@ -20,8 +21,8 @@ class MarketListCoordinator: BaseCoordinator<Void> {
     
     override func start() -> Observable<Void> {
         
-        let viewModel = MarketListViewModel()
-        let viewController = MarketListViewController(viewModel: viewModel)
+        let viewModel = PortfolioViewModel()
+        let viewController = PortfolioViewController(viewModel: viewModel)
         
         var navigationViewController = UINavigationController(rootViewController: viewController)
         
@@ -45,6 +46,22 @@ class MarketListCoordinator: BaseCoordinator<Void> {
                                         marketIdent: ident, marketName: name)
             )
         }).subscribe().disposed(by: self.disposeBag)
+        
+        viewModel.addPortfolioItem.flatMap {
+            self.coordinate(to: ModalViewCoordinator(
+                rootViewController: viewController,
+                modelPresentableViewController: AddPortfolioItemViewController()
+            ))
+        }.do(onNext: { result in
+            
+            switch result {
+            case .dismissedWithoutResult:
+                break
+            case .dismissedWithResult(result: let crypto):
+                viewModel.addToPortfolio(crypto: crypto)
+            }
+                
+        }).subscribe().disposed(by: disposeBag)
         
         return Observable.never()
         

@@ -19,7 +19,7 @@ class MarketDetailViewModel: RxSwiftViewModel {
     let reload = PublishSubject<Void>()
     
     // MARK: - Outputs
-    let marketUpdated = PublishSubject<MarketExtended>()
+    let marketUpdated = PublishSubject<CryptoCurrencyExtended>()
     
     init(marketID: String, name: String) {
         
@@ -30,9 +30,9 @@ class MarketDetailViewModel: RxSwiftViewModel {
             
         marketResource.addObserver(owner: self, closure: { [weak self] resource, _ in
             
-            let markets: [MarketExtended]? = resource.typedContent()
+            let markets: [CryptoCurrencyExtended]? = resource.typedContent()
             
-            if let market: MarketExtended = markets?.first {
+            if let market: CryptoCurrencyExtended = markets?.first {
                 self?.marketUpdated.onNext(market)
             }
             

@@ -31,5 +31,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appCoordinator?.start().subscribe().disposed(by: disposeBag)
         return true
     }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        // Load all Data when the App goes active
+        CoinMarketCapAPI.shared.loadAll.onNext(())
+    }
 
 }

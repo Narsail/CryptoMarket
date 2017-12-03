@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MarketExtended: Codable {
+class CryptoCurrencyExtended: Codable {
     
     // Base
     

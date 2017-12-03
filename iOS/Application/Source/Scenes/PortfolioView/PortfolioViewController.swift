@@ -1,8 +1,8 @@
 //
-//  AppointmentListViewController.swift
-//  SmartNetworkung
+//  PortfolioViewController.swift
+//  CryptoMarket
 //
-//  Created by David Moeller on 13.11.17.
+//  Created by David Moeller on 29.11.17.
 //  Copyright © 2017 David Moeller. All rights reserved.
 //
 
@@ -12,9 +12,9 @@ import RxSwift
 import IGListKit
 import Stevia
 
-class MarketListViewController: RxSwiftViewController {
-
-    let viewModel: MarketListViewModel
+class PortfolioViewController: RxSwiftViewController {
+    
+    let viewModel: PortfolioViewModel
     
     let collectionView: UICollectionView = {
         
@@ -41,12 +41,22 @@ class MarketListViewController: RxSwiftViewController {
         return control
     }()
     
-    init(viewModel: MarketListViewModel) {
+    init(viewModel: PortfolioViewModel) {
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
         
         self.viewModel.displayDelegate = self
+        
+        // Enable Edit Button if some currencies are shown.
+        self.viewModel.portfolioAmount.map {
+            $0 != nil
+        }.bind(to: self.editButtonItem.rx.isEnabled).disposed(by: disposeBag)
+
+        self.viewModel.editMode.distinctUntilChanged().observeOn(MainScheduler.asyncInstance)
+            .do(onNext: { if !$0 { self.setEditing(false, animated: true) } })
+            .subscribe().disposed(by: disposeBag)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,6 +67,8 @@ class MarketListViewController: RxSwiftViewController {
         
         // Background
         self.view.backgroundColor = .white
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         self.view.sv(
             self.collectionView
@@ -107,9 +119,17 @@ class MarketListViewController: RxSwiftViewController {
         
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        super.setEditing(editing, animated: animated)
+        
+        self.viewModel.editMode.onNext(editing)
+        
+    }
+    
 }
 
-extension MarketListViewController: ListDisplayDelegate {
+extension PortfolioViewController: ListDisplayDelegate {
     
     func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController,
                      cell: UICollectionViewCell, at index: Int) {

@@ -15,7 +15,7 @@ protocol MarketSelectionControllerDelegate: class {
 
 class MarketSectionController: ListSectionController {
     
-    var market: Market?
+    var market: Cryptocurrency?
     weak var delegate: MarketSelectionControllerDelegate?
     
     init(delegate: MarketSelectionControllerDelegate) {
@@ -44,7 +44,7 @@ class MarketSectionController: ListSectionController {
     }
     
     override func didUpdate(to object: Any) {
-        self.market = object as? Market
+        self.market = object as? Cryptocurrency
     }
     
     override func didSelectItem(at index: Int) {

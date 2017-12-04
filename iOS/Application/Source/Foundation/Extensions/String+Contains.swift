@@ -16,4 +16,7 @@ extension String {
     func containsIgnoringCase(find: String) -> Bool {
         return self.range(of: find, options: .caseInsensitive) != nil
     }
+    func toDouble() -> Double? {
+        return NumberFormatter().number(from: self)?.doubleValue
+    }
 }

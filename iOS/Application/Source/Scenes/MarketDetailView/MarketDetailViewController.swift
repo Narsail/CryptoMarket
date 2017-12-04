@@ -125,8 +125,9 @@ class MarketDetailViewController: RxSwiftViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "Show Market Detail View", customAttributes: ["coin": self.viewModel.name])
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Show Market Detail View", customAttributes: ["coin": self.viewModel.name])
+        }
     }
     
     override func viewDidLayoutSubviews() {

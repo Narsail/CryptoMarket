@@ -71,7 +71,9 @@ class MarketListViewModel: RxSwiftViewModel {
         // Search Text
         self.filter.debounce(0.1, scheduler: MainScheduler.instance)
         .subscribe(onNext: { [unowned self] _ in
-            Answers.logCustomEvent(withName: "Used the Filter.", customAttributes: nil)
+            if !Environment.isDebug {
+                Answers.logCustomEvent(withName: "Used the Filter.", customAttributes: nil)
+            }
             self.filtern.onNext(())
         }).disposed(by: self.disposeBag)
         

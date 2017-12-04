@@ -87,7 +87,9 @@ class PortfolioViewController: RxSwiftViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Answers.logCustomEvent(withName: "Show Portfolio View", customAttributes: nil)
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Show Portfolio View", customAttributes: nil)
+        }
     }
     
     func setupLayout() {

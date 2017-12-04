@@ -47,7 +47,9 @@ class PortfolioAmountSectionController: ListSectionController {
     }
     
     override func didSelectItem(at index: Int) {
-        Answers.logCustomEvent(withName: "Clicked on Portfolio Amount.", customAttributes: nil)
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Clicked on Portfolio Amount.", customAttributes: nil)
+        }
     }
     
 }

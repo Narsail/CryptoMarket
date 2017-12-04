@@ -62,7 +62,7 @@ class MarketListViewController: RxSwiftViewController {
                 try !self.viewModel.showSort.value()
             }
             .do(onNext: { show in
-                if show {
+                if show && !Environment.isDebug {
                     Answers.logCustomEvent(withName: "Show Sort Options", customAttributes: nil)
                 }
             }).bind(to: self.viewModel.showSort).disposed(by: disposeBag)
@@ -100,8 +100,9 @@ class MarketListViewController: RxSwiftViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "Show Market List View", customAttributes: nil)
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Show Market List View", customAttributes: nil)
+        }
     }
     
     func setupLayout() {
@@ -116,7 +117,9 @@ class MarketListViewController: RxSwiftViewController {
     
     @objc func refresh() {
         self.viewModel.reloadData()
-        Answers.logCustomEvent(withName: "Reloaded Coins.", customAttributes: nil)
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Reloaded Coins.", customAttributes: nil)
+        }
     }
     
     lazy var adapter: ListAdapter = {

@@ -58,7 +58,7 @@ class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoC
         // Validate the Amunt
         let amountIsValid = self.amountTextField.rx.text.orEmpty.throttle(0.5, scheduler: MainScheduler.instance)
         .map { input in
-            Double(input) != nil
+            input.toDouble() != nil
         }.share(replay: 1)
         
         // Enable the Button
@@ -71,7 +71,7 @@ class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoC
         
         submitButton.rx.tap.withLatestFrom(portfolioInput).map { (symbol, amount) -> OwningCryptoCurrency in
             
-            let double = Double(amount)!
+            let double = amount.toDouble()!
             
             let index = Portfolio.shared.availableCryptos.index(where: { $0.0 == symbol || $0.1 == symbol })
             

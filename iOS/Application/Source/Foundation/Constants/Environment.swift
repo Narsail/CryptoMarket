@@ -21,4 +21,12 @@ struct Environment {
             return false
         #endif
     }()
+    
+    static let isDebug: Bool = {
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
+    }()
 }

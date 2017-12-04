@@ -10,6 +10,7 @@ import UIKit
 import Stevia
 import RxSwift
 import RxCocoa
+import Crashlytics
 
 class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoCurrency>, ModalPresentable {
     
@@ -70,6 +71,10 @@ class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoC
         let portfolioInput = Observable.combineLatest(symbolTextfield.rx.text.orEmpty, amountTextField.rx.text.orEmpty)
         
         submitButton.rx.tap.withLatestFrom(portfolioInput).map { (symbol, amount) -> OwningCryptoCurrency in
+            
+            if !Environment.isDebug {
+                Answers.logCustomEvent(withName: "Added Portfolio Item.", customAttributes: nil)
+            }
             
             let double = amount.toDouble()!
             

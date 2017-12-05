@@ -24,7 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow()
         self.window = window
         
-        Fabric.with([Crashlytics.self, Answers.self])
+        if Environment.isDebug {
+            Fabric.with([Crashlytics.self])
+        } else {
+            Fabric.with([Crashlytics.self, Answers.self])
+        }
+        
         
         // Start the AppCoordinator
         appCoordinator = AppCoordinator(window: window)

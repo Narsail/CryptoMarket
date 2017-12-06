@@ -149,7 +149,7 @@ class MarketViewCell: CellWithRoundBorders {
         
         self.marketUILabel.text = market.name
         
-        self.priceUSD.text = market.priceUSD + " USD"
+        self.priceUSD.text = market.priceUSD ?? "0" + " USD"
         self.marketCapUSD.text = "Cap: " + market.formattedMarketCap
         
         if let percentChange24 = market.percentChange24hAmount {

@@ -15,8 +15,8 @@ class Cryptocurrency: Codable {
     let name: String
     let symbol: String
     let percentChange24h: String?
-    let priceBTC: String
-    let priceUSD: String
+    let priceBTC: String?
+    let priceUSD: String?
     let marketCapUSD: String?
     
     var percentChange24hAmount: Double? {
@@ -26,12 +26,11 @@ class Cryptocurrency: Codable {
         return nil
     }
     var priceUSDAsDouble: Double {
-        return Double(priceUSD) ?? 0
+        return Double(priceUSD ?? "") ?? 0
     }
     var priceBTCAsDouble: Double {
-        return Double(priceBTC) ?? 0
+        return Double(priceBTC ?? "") ?? 0
     }
-
     
     var formattedMarketCap: String {
         

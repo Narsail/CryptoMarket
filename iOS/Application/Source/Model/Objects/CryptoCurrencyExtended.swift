@@ -15,8 +15,8 @@ class CryptoCurrencyExtended: Codable {
     let ident: String
     let name: String
     let percentChange24h: String?
-    let priceBTC: String
-    let priceUSD: String
+    let priceBTC: String?
+    let priceUSD: String?
     let marketCapUSD: String?
     
     // Extended

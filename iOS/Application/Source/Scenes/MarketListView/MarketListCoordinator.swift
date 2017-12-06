@@ -36,7 +36,7 @@ class MarketListCoordinator: BaseCoordinator<Void> {
         if self.rootViewController is UINavigationController {
             navigationViewController.viewControllers = [viewController]
         } else {
-            self.rootViewController.present(viewController, animated: true, completion: nil)
+            self.rootViewController.present(navigationViewController, animated: true, completion: nil)
         }
         
         viewController.viewModel.selectedMarket.flatMap({ (ident, name) in

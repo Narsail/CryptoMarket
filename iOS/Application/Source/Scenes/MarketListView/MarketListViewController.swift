@@ -43,10 +43,13 @@ class MarketListViewController: RxSwiftViewController {
     }()
     
     init(viewModel: MarketListViewModel) {
+        
         self.viewModel = viewModel
         
         super.init(nibName: nil, bundle: nil)
         
+        /* Non self Initialization */
+
         self.viewModel.displayDelegate = self
         
         // Sort Icon

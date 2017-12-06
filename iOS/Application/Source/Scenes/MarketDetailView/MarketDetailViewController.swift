@@ -303,8 +303,8 @@ class MarketDetailViewController: RxSwiftViewController {
         self.marketCapLabel.text = "Cap: " + market.formattedMarketCap
         
         // Price USD and BTC
-        self.priceUSD.text = "Price: " + market.priceUSD + " USD"
-        self.priceBTC.text = "Price: " + market.priceBTC + " BTC"
+        self.priceUSD.text = "Price: " + (market.priceUSD ?? "0") + " USD"
+        self.priceBTC.text = "Price: " + (market.priceBTC ?? "0") + " BTC"
         
         // Volume
         if let volume = market.volume24hUSD {
@@ -312,8 +312,6 @@ class MarketDetailViewController: RxSwiftViewController {
         } else {
             self.volume.text = "Volume (24): Unknown"
         }
-        
-        
         
     }
     

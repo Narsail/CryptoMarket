@@ -30,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Fabric.with([Crashlytics.self, Answers.self])
         }
         
-        
         // Start the AppCoordinator
         appCoordinator = AppCoordinator(window: window)
         appCoordinator?.start().subscribe().disposed(by: disposeBag)

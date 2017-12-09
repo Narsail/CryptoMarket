@@ -72,7 +72,8 @@ class MarketListViewModel: RxSwiftViewModel {
         self.filter.debounce(0.1, scheduler: MainScheduler.instance)
         .subscribe(onNext: { [unowned self] _ in
             if !Environment.isDebug {
-                Answers.logCustomEvent(withName: "Used the Filter.", customAttributes: nil)
+                Answers.logCustomEvent(withName: "Used the Filter.",
+                                       customAttributes: ["Filter": (try? self.filter.value()) ?? ""])
             }
             self.filtern.onNext(())
         }).disposed(by: self.disposeBag)
@@ -256,13 +257,16 @@ extension MarketListViewModel: MarketSelectionControllerDelegate {
 extension MarketListViewModel: SortCellDelegate {
     
     func didChange(_ sortOrder: SortOptions) {
+        if !Environment.isDebug {
+            Answers.logCustomEvent(withName: "Used Sorting", customAttributes: ["Option": sortOrder.rawValue])
+        }
         self.sortOrder = sortOrder
         self.contentUpdated.onNext(())
     }
     
 }
 
-enum SortOptions {
+enum SortOptions: String {
     case capAscending // Smallest to the Highest
     case capDescending // Highest to the Smallest
     case nameAscending // Beginning with A

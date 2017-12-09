@@ -9,6 +9,8 @@
 import Foundation
 import RxSwift
 import UIKit
+import DefaultsKit
+import StoreKit
 
 class MainTabBarCoordinator: BaseCoordinator<Void> {
     
@@ -48,7 +50,29 @@ class MainTabBarCoordinator: BaseCoordinator<Void> {
         self.coordinate(to: MarketListCoordinator(rootViewController: firstTab)).subscribe().disposed(by: disposeBag)
         self.coordinate(to: PortfolioCoordinator(rootViewController: secondTab)).subscribe().disposed(by: disposeBag)
         
+        self.checkForReview()
+        
         return .never()
+    }
+    
+    func checkForReview() {
+        
+        // Check last set Date
+        let lastReviewDateKey = Key<Date>("lastReviewDate")
+        
+        if let lastReviewDate = Defaults.shared.get(for: lastReviewDateKey) {
+            
+            if Date.days(since: lastReviewDate) > 30 {
+                SKStoreReviewController.requestReview()
+            } else {
+                return
+            }
+            
+        }
+        
+        // Set new Date
+        Defaults.shared.set(Date(), for: lastReviewDateKey)
+        
     }
     
 }

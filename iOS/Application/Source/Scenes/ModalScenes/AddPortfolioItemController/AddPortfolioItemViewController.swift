@@ -73,7 +73,7 @@ class AddPortfolioItemViewController: ModalPresentedViewController<OwningCryptoC
         submitButton.rx.tap.withLatestFrom(portfolioInput).map { (symbol, amount) -> OwningCryptoCurrency in
             
             if !Environment.isDebug {
-                Answers.logCustomEvent(withName: "Added Portfolio Item.", customAttributes: nil)
+                Answers.logCustomEvent(withName: "Added Portfolio Item.", customAttributes: ["Symbol": symbol])
             }
             
             let double = amount.toDouble()!

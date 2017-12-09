@@ -104,7 +104,8 @@ class MarketListViewController: RxSwiftViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !Environment.isDebug {
-            Answers.logCustomEvent(withName: "Show Market List View", customAttributes: nil)
+            Answers.logCustomEvent(withName: "Show Market List View",
+                                   customAttributes: ["Uses Portfolio": !Portfolio.shared.getAll().isEmpty])
         }
     }
     

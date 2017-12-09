@@ -35,7 +35,7 @@ class CoinMarketCapAPI {
             
             // To dump all requests and responses:
             // (Warning: may cause Xcode console overheating)
-            LogCategory.enabled = LogCategory.all
+            LogCategory.enabled = LogCategory.common
         #endif
         
         // –––––– Global configuration ––––––

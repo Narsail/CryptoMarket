@@ -171,27 +171,3 @@ class MarketViewCell: CellWithRoundBorders {
     }
 	
 }
-
-extension Double {
-	func string(fractionDigits: Int) -> String {
-		let formatter = NumberFormatter()
-		formatter.minimumIntegerDigits = 1
-		formatter.maximumFractionDigits = fractionDigits
-		if self > 1 {
-			formatter.maximumFractionDigits = 2
-		}
-		return formatter.string(for: self)!
-	}
-}
-
-extension Float {
-    func string(fractionDigits: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.minimumIntegerDigits = 1
-        formatter.maximumFractionDigits = fractionDigits
-        if self > 1 {
-            formatter.maximumFractionDigits = 2
-        }
-        return formatter.string(for: self)!
-    }
-}

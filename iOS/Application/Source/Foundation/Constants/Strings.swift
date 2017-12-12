@@ -28,4 +28,10 @@ enum Strings {
         static let name = NSLocalizedString("SortCell.name", value: "Coin Name", comment: "")
         static let change = NSLocalizedString("SortCell.change", value: "24 Change", comment: "")
     }
+    
+    enum TodayWidget {
+        static let unlock = NSLocalizedString("SortCell.unlock", value: "Please unlock your iPhone.", comment: "")
+        static let title = NSLocalizedString("SortCell.title", value: "Your Portfolio", comment: "")
+        static let empty = NSLocalizedString("SortCell.empty", value: "Your Portfolio is empty.", comment: "")
+    }
 }

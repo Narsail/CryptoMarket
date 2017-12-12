@@ -22,8 +22,10 @@ class MarketListViewModel: RxSwiftViewModel {
     var global = BehaviorSubject<Global?>(value: nil)
     var portfolioAmount = BehaviorSubject<PortfolioAmount?>(value: nil)
     let overlay = ResourceStatusOverlay()
+    
     let searchToken: NSNumber = 42
     let sortToken: NSNumber = 41
+    let loadingToken: NSNumber = 40
     
     var sortOrder = SortOptions.capDescending
     
@@ -58,7 +60,7 @@ class MarketListViewModel: RxSwiftViewModel {
         
         // Bind the Subjects to the Reload
         Observable.combineLatest(cryptos, global, portfolioAmount)
-            .debounce(0.5, scheduler: MainScheduler.instance)
+            // .debounce(0.5, scheduler: MainScheduler.instance)
             .map({ _ in Void() })
             .bind(to: contentUpdated)
             .disposed(by: disposeBag)
@@ -158,10 +160,6 @@ extension MarketListViewModel: ListAdapterDataSource {
             
             var list = [ListDiffable]()
             
-            if try cryptos.value().isEmpty {
-                return list
-            }
-            
             // Add the Title
             list.append("Cryptocurrencies" as NSString)
             
@@ -171,7 +169,9 @@ extension MarketListViewModel: ListAdapterDataSource {
             }
             
             // Search Token
-            list.append(searchToken)
+            if !(try cryptos.value().isEmpty) {
+                list.append(searchToken)
+            }
             
             let filter = (try? self.filter.value()) ?? ""
             
@@ -198,6 +198,11 @@ extension MarketListViewModel: ListAdapterDataSource {
                 
             }
             
+//            if try cryptos.value().isEmpty {
+//                // Add Loading View
+//                list.append(loadingToken)
+//            }
+            
             return list
             
         } catch {
@@ -220,6 +225,10 @@ extension MarketListViewModel: ListAdapterDataSource {
             return sectionController
         case let sortToken as NSNumber where sortToken == self.sortToken:
             let sectionController = SortSectionController(order: self.sortOrder, delegate: self)
+            // sectionController.delegate = self
+            return sectionController
+        case let loadingToken as NSNumber where loadingToken == self.loadingToken:
+            let sectionController = LoadingSectionController()
             // sectionController.delegate = self
             return sectionController
         case is NSString:

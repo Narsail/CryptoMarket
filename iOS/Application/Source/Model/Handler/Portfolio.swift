@@ -17,7 +17,7 @@ typealias CryptoName = String
 class Portfolio {
     
     private let listKey = "portfolioList"
-    private let store = Defaults.shared
+    private let store = Defaults(userDefaults: UserDefaults(suiteName: "group.crypto.portfolio")!)
     
     static let shared = Portfolio()
     

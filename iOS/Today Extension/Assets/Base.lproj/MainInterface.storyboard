@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="iOS Today Widget" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="110"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4W-Rl-vsS">
+                                <rect key="frame" x="0.0" y="50" width="320" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOD-2V-NKk">
+                                <rect key="frame" x="0.0" y="50" width="160" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHJ-A4-neh">
+                                <rect key="frame" x="160" y="50" width="160" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETc-ZL-gwo">
+                                <rect key="frame" x="15" y="15" width="290" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bHJ-A4-neh" firstAttribute="leading" secondItem="eOD-2V-NKk" secondAttribute="trailing" id="0Kt-Si-bmP"/>
+                            <constraint firstItem="bHJ-A4-neh" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="10" id="ByO-vG-AVg"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="k4W-Rl-vsS" secondAttribute="trailing" id="HxQ-2t-Moq"/>
+                            <constraint firstItem="ETc-ZL-gwo" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="15" id="PtJ-CF-F3N"/>
+                            <constraint firstItem="eOD-2V-NKk" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="VjX-0W-8GF"/>
+                            <constraint firstItem="k4W-Rl-vsS" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" id="X1h-0X-acF"/>
+                            <constraint firstItem="eOD-2V-NKk" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="10" id="Yhv-gJ-Zm9"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="bHJ-A4-neh" secondAttribute="trailing" id="aHm-5Q-h1B"/>
+                            <constraint firstItem="ETc-ZL-gwo" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="15" id="dEP-JI-ONK"/>
+                            <constraint firstItem="k4W-Rl-vsS" firstAttribute="centerY" secondItem="S3S-Oj-5AN" secondAttribute="centerY" constant="10" id="khb-QN-M3I"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="ETc-ZL-gwo" secondAttribute="trailing" constant="15" id="sLA-2H-6Xr"/>
+                            <constraint firstItem="bHJ-A4-neh" firstAttribute="width" secondItem="eOD-2V-NKk" secondAttribute="width" id="vp3-si-9fd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="110"/>
+                    <connections>
+                        <outlet property="bitcoinLabel" destination="bHJ-A4-neh" id="SaC-Ze-RGH"/>
+                        <outlet property="dollarLabel" destination="eOD-2V-NKk" id="6Ch-RQ-5Bv"/>
+                        <outlet property="emptyLabel" destination="k4W-Rl-vsS" id="w40-Lz-T87"/>
+                        <outlet property="titleLabel" destination="ETc-ZL-gwo" id="Hnv-8z-Ysm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.59999999999999" y="133.13343328335833"/>
+        </scene>
+    </scenes>
+</document>

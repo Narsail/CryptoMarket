@@ -15,6 +15,9 @@ class OwningCryptoCurrency: Codable {
     let symbol: String
     let amount: Double
     
+    // USD Value
+    var dollarValue: Double?
+    
     init(symbol: String, amount: Double, ident: String = UUID().uuidString) {
         self.symbol = symbol
         self.amount = amount

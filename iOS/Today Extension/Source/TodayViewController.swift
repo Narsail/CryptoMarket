@@ -37,7 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func setupData() {
         
-        Portfolio.shared.amountUpdated.subscribe(onNext: { amount in
+        Portfolio.shared.amountUpdated.debounce(1, scheduler: MainScheduler.instance).subscribe(onNext: { amount in
             self.isEmpty(amount == nil)
             if let amount = amount {
                 self.dollarLabel.text = "\(amount.usd.string(fractionDigits: 2)) $"

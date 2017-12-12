@@ -35,69 +35,97 @@ class Portfolio {
         let _calulcate = PublishSubject<[Cryptocurrency]>()
         cryptoUpdate = _calulcate.asObserver()
         
-        amountUpdated = _calulcate.asObservable().map { [weak self] cryptos in
+        amountUpdated = _calulcate.asObservable().debounce(0.5, scheduler: MainScheduler.instance)
+            .map { [weak self] cryptos in
             
-            // Update the Available Cryptos?
-            if self?.availableCryptos.isEmpty ?? true || (self?.availableCryptos.count) != cryptos.count {
-                
-                self?.availableCryptos = []
-                
-                for crypto in cryptos {
-                    self?.availableCryptos.append((crypto.name, crypto.symbol))
-                }
-                
-            }
-            
-            var amount: PortfolioAmount?
-            
-            // Get Portfolio Content
-            let content = self?.getAll() ?? []
-            
-            for ownCrypto in content {
-                
-                // Get the corresponding Crypto Market Value
-                if let index = cryptos.index(where: { $0.symbol == ownCrypto.symbol }) {
+                // Update the Available Cryptos?
+                if self?.availableCryptos.isEmpty ?? true || (self?.availableCryptos.count) != cryptos.count {
                     
-                    let crypto = cryptos[index]
+                    self?.availableCryptos = []
                     
-                    let usd = crypto.priceUSDAsDouble * ownCrypto.amount
-                    let btc = crypto.priceBTCAsDouble * ownCrypto.amount
-                    
-                    if amount != nil {
-                        amount?.add(usd: usd, btc: btc)
-                    } else {
-                        amount = PortfolioAmount(usd: usd, btc: btc)
+                    for crypto in cryptos {
+                        self?.availableCryptos.append((crypto.name, crypto.symbol))
                     }
                     
                 }
+                
+                var amount: PortfolioAmount?
+                
+                // Get Portfolio Content
+                var content: [OwningCryptoCurrency] = []
+                
+                if let store = self?.store, let all = self?.getAll(store: store) {
+                    content = all
+                }
+                
+                for ownCrypto in content {
+                    
+                    // Get the corresponding Crypto Market Value
+                    if let index = cryptos.index(where: { $0.symbol == ownCrypto.symbol }) {
+                        
+                        let crypto = cryptos[index]
+                        
+                        let usd = crypto.priceUSDAsDouble * ownCrypto.amount
+                        let btc = crypto.priceBTCAsDouble * ownCrypto.amount
+                        
+                        // Update the Portfolio Amount
+                        if amount != nil {
+                            amount?.add(usd: usd, btc: btc)
+                        } else {
+                            amount = PortfolioAmount(usd: usd, btc: btc)
+                        }
+                        
+                        // Update the Coin
+                        ownCrypto.dollarValue = usd
+                        if let store = self?.store {
+                            self?.update(ownCrypto, in: store)
+                        }
 
-            }
+                    }
+
+                }
+                
+                return amount
+        }
+        
+        // Migration Process
+        let standardStore = Defaults.shared
+        let oldList = self.getAll(store: standardStore)
+        
+        oldList.forEach { crypto in
             
-            return amount
+            self.add(crypto)
+            
+            self.remove(crypto, from: standardStore)
+            
         }
         
         self.updatePortfolio()
         
         // Simuator
         if Environment.isSimulator {
-            self.removeAll()
+            self.removeAll(from: store)
         }
         
     }
     
     func updatePortfolio() {
-        self.updatedPortfolio.onNext(self.getAll())
+        self.updatedPortfolio.onNext(self.getAll(store: store))
     }
     
     func getAll() -> [OwningCryptoCurrency] {
+        return self.getAll(store: self.store)
+    }
+    
+    private func getAll(store: Defaults) -> [OwningCryptoCurrency] {
         
         var portfolio = [OwningCryptoCurrency]()
         
-        let list = self.getList()
+        let list = self.getList(from: store)
         
         for ident in list {
             
-            if let crypto = self.store.get(for: Key<OwningCryptoCurrency>(ident)) {
+            if let crypto = store.get(for: Key<OwningCryptoCurrency>(ident)) {
                 portfolio.append(crypto)
             }
             
@@ -108,12 +136,26 @@ class Portfolio {
     }
     
     func add(_ currency: OwningCryptoCurrency) {
+        self.add(currency, to: self.store)
+    }
+    
+    private func add(_ currency: OwningCryptoCurrency, to store: Defaults) {
 
         // Add to List
-        self.addToList(currency)
+        self.addToList(currency, in: store)
         
         // Add to the Store
-        self.store.set(currency, for: Key<OwningCryptoCurrency>(currency.ident))
+        store.set(currency, for: Key<OwningCryptoCurrency>(currency.ident))
+        
+        // Update Portfolio
+        self.updatePortfolio()
+        
+    }
+    
+    func update(_ currency: OwningCryptoCurrency, in store: Defaults) {
+        
+        // Add to the Store
+        store.set(currency, for: Key<OwningCryptoCurrency>(currency.ident))
         
         // Update Portfolio
         self.updatePortfolio()
@@ -121,54 +163,58 @@ class Portfolio {
     }
     
     func remove(_ currency: OwningCryptoCurrency) {
+        self.remove(currency, from: self.store)
+    }
+    
+    private func remove(_ currency: OwningCryptoCurrency, from store: Defaults) {
         
         // Remove from Store
-        self.store.clear(Key<OwningCryptoCurrency>(currency.ident))
+        store.clear(Key<OwningCryptoCurrency>(currency.ident))
         
         // Remove from list
-        self.removeFromList(currency)
+        self.removeFromList(currency, of: store)
         
         // Update Portfolio
         self.updatePortfolio()
         
     }
     
-    func removeAll() {
+    func removeAll(from store: Defaults) {
         
-        let all = self.getAll()
+        let all = self.getAll(store: store)
         
-        all.forEach { self.remove($0) }
+        all.forEach { self.remove($0, from: store) }
         
     }
     
-    private func getList() -> [String] {
+    private func getList(from store: Defaults) -> [String] {
         let key = Key<[String]>(self.listKey)
         return store.get(for: key) ?? []
     }
     
-    private func setlist(list: [String]) {
+    private func setlist(list: [String], in store: Defaults) {
         let key = Key<[String]>(self.listKey)
         store.set(list, for: key)
     }
     
-    private func addToList(_ currency: OwningCryptoCurrency) {
+    private func addToList(_ currency: OwningCryptoCurrency, in store: Defaults) {
         
-        var list = self.getList()
+        var list = self.getList(from: store)
         
         list.append(currency.ident)
         
-        self.setlist(list: list)
+        self.setlist(list: list, in: store)
     }
     
-    private func removeFromList(_ currency: OwningCryptoCurrency) {
+    private func removeFromList(_ currency: OwningCryptoCurrency, of store: Defaults) {
         
-        var list = self.getList()
+        var list = self.getList(from: store)
         
         if let index = list.index(of: currency.ident) {
             list.remove(at: index)
         }
         
-        self.setlist(list: list)
+        self.setlist(list: list, in: store)
         
     }
     

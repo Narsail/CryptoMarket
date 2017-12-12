@@ -39,6 +39,19 @@ class PortfolioItemCell: CellWithRoundBorders {
         
         return label
     }()
+    let dollarLabel: UILabel = {
+        let label = UILabel()
+        
+        label.text = "USD"
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = UIColor.flatBlueDark
+        
+        return label
+    }()
+    
     let deleteButton = UIButton()
     
     var crypto: OwningCryptoCurrency?
@@ -64,15 +77,14 @@ class PortfolioItemCell: CellWithRoundBorders {
         
         self.backgroundColor = UIColor.flatWhite
         
-        let middleView = UIView()
-        
-        self.sv(amountLabel, middleView, symbolLabel, deleteButton)
+        self.sv(amountLabel, symbolLabel, deleteButton, dollarLabel)
         self.layout(
-            |-amountLabel-middleView.width(1).centerVertically()-symbolLabel-|
+            |-amountLabel.centerVertically()-10-symbolLabel.centerVertically()-dollarLabel.centerVertically()-40-|
         )
         self.layout(deleteButton.centerVertically().width(25)-20-|)
         
         amountLabel.Width == symbolLabel.Width
+        dollarLabel.Width == amountLabel.Width * 2
         deleteButton.Width == deleteButton.Height
     }
     
@@ -82,6 +94,7 @@ class PortfolioItemCell: CellWithRoundBorders {
 
         self.amountLabel.text = crypto.amount.string(fractionDigits: 5)
         self.symbolLabel.text = crypto.symbol
+        self.dollarLabel.text = "\((crypto.dollarValue ?? 0).string(fractionDigits: 2)) $"
         
     }
     

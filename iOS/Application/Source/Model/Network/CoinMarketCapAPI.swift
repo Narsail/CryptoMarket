@@ -65,7 +65,7 @@ class CoinMarketCapAPI {
         let loadAll = PublishSubject<Void>()
         self.loadAll = loadAll.asObserver()
         
-        loadAll.subscribe(onNext: {
+        loadAll.debounce(0.5, scheduler: MainScheduler.instance).subscribe(onNext: {
             self.global.load()
             self.markets.load()
         }).disposed(by: disposeBag)

@@ -11,6 +11,7 @@ extension Double {
     func string(fractionDigits: Int) -> String {
         let formatter = NumberFormatter()
         formatter.minimumIntegerDigits = 1
+        formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = fractionDigits
         if self > 1 {
             formatter.maximumFractionDigits = 2

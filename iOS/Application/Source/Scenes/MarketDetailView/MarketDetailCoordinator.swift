@@ -12,18 +12,16 @@ import RxSwift
 class MarketDetailCoordinator: BaseCoordinator<Void> {
     
     private let rootViewController: UIViewController
-    private let marketIdent: String
-    private let marketName: String
+    private let currency: Cryptocurrency
     
-    init(rootViewController: UIViewController, marketIdent: String, marketName: String) {
+    init(rootViewController: UIViewController, currency: Cryptocurrency) {
         self.rootViewController = rootViewController
-        self.marketIdent = marketIdent
-        self.marketName = marketName
+        self.currency = currency
     }
     
     override func start() -> Observable<Void> {
         
-        let viewModel = MarketDetailViewModel(marketID: marketIdent, name: marketName)
+        let viewModel = MarketDetailViewModel(currency: currency)
         let viewController = MarketDetailViewController(viewModel: viewModel)
         
         if let navigationController = rootViewController as? UINavigationController {

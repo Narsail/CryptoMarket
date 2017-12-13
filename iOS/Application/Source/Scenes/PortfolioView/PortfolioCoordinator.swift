@@ -40,13 +40,6 @@ class PortfolioCoordinator: BaseCoordinator<Void> {
             self.rootViewController.present(viewController, animated: true, completion: nil)
         }
         
-        viewController.viewModel.selectedMarket.flatMap({ (ident, name) in
-            self.coordinate(to:
-                MarketDetailCoordinator(rootViewController: navigationViewController,
-                                        marketIdent: ident, marketName: name)
-            )
-        }).subscribe().disposed(by: self.disposeBag)
-        
         viewModel.addPortfolioItem.flatMap {
             self.coordinate(to: ModalViewCoordinator(
                 rootViewController: viewController,

@@ -36,7 +36,7 @@ class MarketListViewModel: RxSwiftViewModel {
     // MARK: - Outputs
     let contentUpdated = PublishSubject<Void>()
     let filtern = PublishSubject<Void>()
-    let selectedMarket = PublishSubject<(String, String)>()
+    let selectedMarket = PublishSubject<Cryptocurrency>()
     
     override init() {
         
@@ -257,8 +257,8 @@ extension MarketListViewModel: SearchSectionControllerDelegate {
 
 extension MarketListViewModel: MarketSelectionControllerDelegate {
     
-    func didSelectItem(_ marketIdent: String, and marketName: String) {
-        self.selectedMarket.onNext((marketIdent, marketName))
+    func didSelectItem(_ currency: Cryptocurrency) {
+        self.selectedMarket.onNext(currency)
     }
     
 }

@@ -28,7 +28,6 @@ class PortfolioViewModel: RxSwiftViewModel {
     // MARK: - Outputs
     let contentUpdated = PublishSubject<Void>()
     let filtern = PublishSubject<Void>()
-    let selectedMarket = PublishSubject<(String, String)>()
     let addPortfolioItem = PublishSubject<Void>()
     
     override init() {
@@ -102,8 +101,6 @@ extension PortfolioViewModel: ListAdapterDataSource {
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
         switch object {
-        case is Cryptocurrency:
-            return MarketSectionController(delegate: self)
         case is Global:
             return GlobalSectionController()
         case is OwningCryptoCurrency:
@@ -135,14 +132,6 @@ extension PortfolioViewModel: SearchSectionControllerDelegate {
     
     func searchSectionController(_ sectionController: SearchSectionController, didChangeText text: String) {
         self.filter.onNext(text)
-    }
-    
-}
-
-extension PortfolioViewModel: MarketSelectionControllerDelegate {
-    
-    func didSelectItem(_ marketIdent: String, and marketName: String) {
-        self.selectedMarket.onNext((marketIdent, marketName))
     }
     
 }

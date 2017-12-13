@@ -14,17 +14,21 @@ class MarketDetailViewModel: RxSwiftViewModel {
     
     let name: String
     let marketResource: Resource
+    let historyDataResource: Resource
     
     // MARK: - Inputs
     let reload = PublishSubject<Void>()
     
     // MARK: - Outputs
     let marketUpdated = PublishSubject<CryptoCurrencyExtended>()
+    let historyDataUpdated = PublishSubject<HistoDayResponse>()
     
-    init(marketID: String, name: String) {
+    init(currency: Cryptocurrency) {
         
-        self.name = name
-        marketResource = CoinMarketCapAPI.shared.market(marketID)
+        self.name = currency.name
+        marketResource = CoinMarketCapAPI.shared.market(currency.ident)
+        historyDataResource = CryptoCompareAPI.shared.historicalData(fromSymbol: currency.symbol, toSymbol: "USD",
+                                                                     exchange: "CCCAGG")
         
         super.init()
             
@@ -38,8 +42,19 @@ class MarketDetailViewModel: RxSwiftViewModel {
             
         })
         
+        historyDataResource.addObserver(owner: self) { [weak self] resource, _ in
+            
+            if let data: HistoDayResponse = resource.typedContent() {
+                self?.historyDataUpdated.onNext(data)
+            }
+            
+        }
+        
         // If Reload is triggered - load a new Resource
-        reload.subscribe(onNext: { self.marketResource.load() }).disposed(by: self.disposeBag)
+        reload.subscribe(onNext: { _ in
+            self.marketResource.load()
+            self.historyDataResource.load()
+        }).disposed(by: self.disposeBag)
         
     }
     

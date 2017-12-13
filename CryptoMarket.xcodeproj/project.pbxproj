@@ -48,6 +48,7 @@
 		2A61FCE41D908C7900064D51 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A61FCE31D908C7900064D51 /* AppDelegate.swift */; };
 		2A61FCEB1D908C7900064D51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEA1D908C7900064D51 /* Assets.xcassets */; };
 		2A61FCEE1D908C7900064D51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A61FCEC1D908C7900064D51 /* LaunchScreen.storyboard */; };
+		2A7D50931FE0A24800A5ED6E /* CryptoCompareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7D50921FE0A24800A5ED6E /* CryptoCompareAPI.swift */; };
 		2A93BC491FD0785300E3017C /* ModalTransitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC401FD0785300E3017C /* ModalTransitionDelegate.swift */; };
 		2A93BC4A1FD0785300E3017C /* PresentModalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC411FD0785300E3017C /* PresentModalAnimator.swift */; };
 		2A93BC4B1FD0785300E3017C /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC421FD0785300E3017C /* ModalViewController.swift */; };
@@ -206,6 +207,7 @@
 		2A61FCEA1D908C7900064D51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A61FCED1D908C7900064D51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A61FCEF1D908C7900064D51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A7D50921FE0A24800A5ED6E /* CryptoCompareAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCompareAPI.swift; sourceTree = "<group>"; };
 		2A93BC401FD0785300E3017C /* ModalTransitionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransitionDelegate.swift; sourceTree = "<group>"; };
 		2A93BC411FD0785300E3017C /* PresentModalAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentModalAnimator.swift; sourceTree = "<group>"; };
 		2A93BC421FD0785300E3017C /* ModalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 			isa = PBXGroup;
 			children = (
 				2A606E121FC9BAF60053B81B /* CoinMarketCapAPI.swift */,
+				2A7D50921FE0A24800A5ED6E /* CryptoCompareAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1000,6 +1003,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CryptoMarket/Pods-CryptoMarket-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/DefaultsKit-iOS10.3/DefaultsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit-iOS10.3/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS10.3/PromiseKit.framework",
@@ -1021,6 +1025,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DefaultsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1170,6 +1175,7 @@
 				2A93BC5B1FD078E900E3017C /* UILabel.swift in Sources */,
 				2A4B4C681FDF151200D3C0E9 /* LoadingCell.swift in Sources */,
 				2ABBCB311FCCA29200FA4013 /* Global.swift in Sources */,
+				2A7D50931FE0A24800A5ED6E /* CryptoCompareAPI.swift in Sources */,
 				2A93BC4D1FD0785300E3017C /* ModalHeaderView.swift in Sources */,
 				2A5C48491FCF7C3F0062FF48 /* PortfolioItemCell.swift in Sources */,
 				2A606DFB1FC999310053B81B /* Environment.swift in Sources */,

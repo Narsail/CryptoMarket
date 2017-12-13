@@ -24,6 +24,7 @@ target 'CryptoMarket' do
   
   pod 'Siren'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
+  pod 'Charts'
   
   target 'CryptoMarketUITests' do
     inherit! :search_paths

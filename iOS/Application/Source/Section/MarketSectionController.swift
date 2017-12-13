@@ -10,7 +10,7 @@ import Foundation
 import IGListKit
 
 protocol MarketSelectionControllerDelegate: class {
-    func didSelectItem(_ marketIdent: String, and marketName: String)
+    func didSelectItem(_ currency: Cryptocurrency)
 }
 
 class MarketSectionController: ListSectionController {
@@ -49,7 +49,7 @@ class MarketSectionController: ListSectionController {
     
     override func didSelectItem(at index: Int) {
         if let market = self.market {
-            self.delegate?.didSelectItem(market.ident, and: market.name)
+            self.delegate?.didSelectItem(market)
         }
     }
     

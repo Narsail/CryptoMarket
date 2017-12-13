@@ -13,6 +13,8 @@ import RxSwift
 class CoinMarketCapAPI {
     
     // Shared Instance - Singleton
+    static let shared = CoinMarketCapAPI()
+    
     private let service = Service(baseURL: "https://api.coinmarketcap.com/v1")
     
     private let disposeBag = DisposeBag()
@@ -70,8 +72,6 @@ class CoinMarketCapAPI {
             self.markets.load()
         }).disposed(by: disposeBag)
     }
-    
-    static let shared = CoinMarketCapAPI()
     
     var global: Resource {
         return service

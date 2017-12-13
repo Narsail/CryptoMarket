@@ -39,10 +39,10 @@ class MarketListCoordinator: BaseCoordinator<Void> {
             self.rootViewController.present(navigationViewController, animated: true, completion: nil)
         }
         
-        viewController.viewModel.selectedMarket.flatMap({ (ident, name) in
+        viewController.viewModel.selectedMarket.flatMap({ currency in
             self.coordinate(to:
                 MarketDetailCoordinator(rootViewController: navigationViewController,
-                                        marketIdent: ident, marketName: name)
+                                        currency: currency)
             )
         }).subscribe().disposed(by: self.disposeBag)
         

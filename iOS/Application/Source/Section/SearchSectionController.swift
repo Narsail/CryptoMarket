@@ -12,7 +12,7 @@ protocol SearchSectionControllerDelegate: class {
     func searchSectionController(_ sectionController: SearchSectionController, didChangeText text: String)
 }
 
-final class SearchSectionController: ListSectionController, UISearchBarDelegate, ListScrollDelegate {
+final class SearchSectionController: ListSectionController, ListScrollDelegate {
     
     weak var delegate: SearchSectionControllerDelegate?
     
@@ -32,16 +32,8 @@ final class SearchSectionController: ListSectionController, UISearchBarDelegate,
             fatalError()
         }
         cell.searchBar.delegate = self
+        cell.searchBar.autocorrectionType = .yes
         return cell
-    }
-    
-    // MARK: UISearchBarDelegate
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        delegate?.searchSectionController(self, didChangeText: searchText)
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        delegate?.searchSectionController(self, didChangeText: searchBar.text!)
     }
     
     // MARK: ListScrollDelegate
@@ -55,5 +47,17 @@ final class SearchSectionController: ListSectionController, UISearchBarDelegate,
     func listAdapter(_ listAdapter: ListAdapter,
                      didEndDragging sectionController: ListSectionController,
                      willDecelerate decelerate: Bool) {}
+    
+}
+
+extension SearchSectionController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        delegate?.searchSectionController(self, didChangeText: searchText)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        delegate?.searchSectionController(self, didChangeText: searchBar.text!)
+    }
     
 }

@@ -71,8 +71,7 @@ class MarketListViewModel: RxSwiftViewModel {
             .disposed(by: disposeBag)
         
         // Search Text
-        self.filter.debounce(0.1, scheduler: MainScheduler.instance)
-        .subscribe(onNext: { [unowned self] _ in
+        self.filter.debounce(0.1, scheduler: MainScheduler.instance).subscribe(onNext: { [unowned self] _ in
             if !Environment.isDebug {
                 Answers.logCustomEvent(withName: "Used the Filter.",
                                        customAttributes: ["Filter": (try? self.filter.value()) ?? ""])
@@ -173,7 +172,7 @@ extension MarketListViewModel: ListAdapterDataSource {
                 list.append(searchToken)
             }
             
-            let filter = (try? self.filter.value()) ?? ""
+            let filter = ((try? self.filter.value()) ?? "").trimmingCharacters(in: .whitespaces)
             
             if filter != "" {
                 list += (try getSortedCryptos(order: self.sortOrder).filter {

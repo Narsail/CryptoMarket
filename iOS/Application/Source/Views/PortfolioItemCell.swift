@@ -47,7 +47,7 @@ class PortfolioItemCell: CellWithRoundBorders {
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .right
-        label.textColor = UIColor.flatBlueDark
+        label.textColor = Color.logoLightBlue.asUIColor
         
         return label
     }()

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		24164CFF7DCADDF110B6E249 /* Pods_CryptoMarketUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A97E70EDE9FD9E9BC8327C73 /* Pods_CryptoMarketUITests.framework */; };
 		246890915E7B14DE489E07E9 /* Pods_CryptoMarket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8094B94D3803795188C910E /* Pods_CryptoMarket.framework */; };
+		2A0D6F3C1FE436C50024AF1E /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D6F3B1FE436C50024AF1E /* UIColor+hex.swift */; };
+		2A0D6F3D1FE436C50024AF1E /* UIColor+hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D6F3B1FE436C50024AF1E /* UIColor+hex.swift */; };
+		2A0D6F3F1FE437400024AF1E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D6F3E1FE437400024AF1E /* Color.swift */; };
+		2A0D6F401FE437400024AF1E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0D6F3E1FE437400024AF1E /* Color.swift */; };
 		2A4B4C681FDF151200D3C0E9 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B4C671FDF151200D3C0E9 /* LoadingCell.swift */; };
 		2A4B4C6A1FDF160400D3C0E9 /* LoadingSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4B4C691FDF160400D3C0E9 /* LoadingSectionController.swift */; };
 		2A4B4C711FDF1BD000D3C0E9 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4B4C701FDF1BD000D3C0E9 /* NotificationCenter.framework */; };
@@ -130,6 +134,8 @@
 
 /* Begin PBXFileReference section */
 		0D49B08A2A463A1FCE39C4E4 /* Pods-iOS Today Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iOS Today Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-iOS Today Widget/Pods-iOS Today Widget.release.xcconfig"; sourceTree = "<group>"; };
+		2A0D6F3B1FE436C50024AF1E /* UIColor+hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hex.swift"; sourceTree = "<group>"; };
+		2A0D6F3E1FE437400024AF1E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		2A2797FA1DA3E7CC0061F1C5 /* CryptoMarketUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoMarketUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A2797FC1DA3E7CC0061F1C5 /* CryptoMarketUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoMarketUITests.swift; sourceTree = "<group>"; };
 		2A2797FE1DA3E7CC0061F1C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -299,6 +305,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A0D6F371FE4365C0024AF1E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				2A0D6F391FE4366B0024AF1E /* Source */,
+				2A0D6F381FE436660024AF1E /* Assets */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		2A0D6F381FE436660024AF1E /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		2A0D6F391FE4366B0024AF1E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				2A0D6F3A1FE436760024AF1E /* Colorization */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		2A0D6F3A1FE436760024AF1E /* Colorization */ = {
+			isa = PBXGroup;
+			children = (
+				2A0D6F3B1FE436C50024AF1E /* UIColor+hex.swift */,
+				2A0D6F3E1FE437400024AF1E /* Color.swift */,
+			);
+			path = Colorization;
+			sourceTree = "<group>";
+		};
 		2A2797FB1DA3E7CC0061F1C5 /* UISnapShot */ = {
 			isa = PBXGroup;
 			children = (
@@ -586,6 +625,7 @@
 				2A4B4C911FDF502200D3C0E9 /* CryptoMarket.entitlements */,
 				2A4B4C901FDF4FA400D3C0E9 /* iOS Today Widget.entitlements */,
 				2A606E0D1FC9A0240053B81B /* .swiftlint.yml */,
+				2A0D6F371FE4365C0024AF1E /* Shared */,
 				2A606DE91FC996B50053B81B /* iOS */,
 				2A606DD71FC9965C0053B81B /* fastlane */,
 				2AEE23811D95A6C90090A61B /* Frameworks */,
@@ -1117,11 +1157,13 @@
 				2A4B4C841FDF4A9800D3C0E9 /* Portfolio.swift in Sources */,
 				2A4B4C871FDF4AB200D3C0E9 /* Global.swift in Sources */,
 				2A4B4C831FDF358F00D3C0E9 /* Strings.swift in Sources */,
+				2A0D6F401FE437400024AF1E /* Color.swift in Sources */,
 				2A4B4C8A1FDF4AD200D3C0E9 /* Environment.swift in Sources */,
 				2A4B4C8B1FDF4AD200D3C0E9 /* Constants.swift in Sources */,
 				2A4B4C891FDF4AB500D3C0E9 /* CoinMarketCapAPI.swift in Sources */,
 				2A4B4C741FDF1BD000D3C0E9 /* TodayViewController.swift in Sources */,
 				2A4B4C881FDF4AB200D3C0E9 /* OwningCryptoCurrency.swift in Sources */,
+				2A0D6F3D1FE436C50024AF1E /* UIColor+hex.swift in Sources */,
 				2A4B4C8F1FDF4BCA00D3C0E9 /* Double.swift in Sources */,
 				2A4B4C851FDF4AB200D3C0E9 /* Cryptocurrency.swift in Sources */,
 			);
@@ -1133,6 +1175,7 @@
 			files = (
 				2AB3387E1FCD8B8C00190E5D /* Portfolio.swift in Sources */,
 				2A9F92DC1FCE2BC5007FBC8C /* PortfolioViewController.swift in Sources */,
+				2A0D6F3F1FE437400024AF1E /* Color.swift in Sources */,
 				2AACA1931FCAE01900E1F670 /* RxSwiftViewModel.swift in Sources */,
 				2A9F92D41FCDF07F007FBC8C /* PortfolioAmountSectionController.swift in Sources */,
 				2AB338801FCD8C3B00190E5D /* OwningCryptoCurrency.swift in Sources */,
@@ -1180,6 +1223,7 @@
 				2A5C48491FCF7C3F0062FF48 /* PortfolioItemCell.swift in Sources */,
 				2A606DFB1FC999310053B81B /* Environment.swift in Sources */,
 				2AACA19A1FCAE33900E1F670 /* MarketDetailCoordinator.swift in Sources */,
+				2A0D6F3C1FE436C50024AF1E /* UIColor+hex.swift in Sources */,
 				2A93BC4A1FD0785300E3017C /* PresentModalAnimator.swift in Sources */,
 				2ABBCB391FCCC34E00FA4013 /* CellWithRoundBorders.swift in Sources */,
 				2A93BC5D1FD078E900E3017C /* UIButton.swift in Sources */,

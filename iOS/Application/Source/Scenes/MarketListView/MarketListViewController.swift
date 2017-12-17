@@ -12,6 +12,7 @@ import RxSwift
 import IGListKit
 import Stevia
 import Crashlytics
+import RxCocoa
 
 class MarketListViewController: RxSwiftViewController {
 
@@ -21,7 +22,7 @@ class MarketListViewController: RxSwiftViewController {
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
-        let topInset: CGFloat = 0
+        let topInset: CGFloat = 15
         let bottomInset: CGFloat = 0
         
         view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
@@ -36,7 +37,12 @@ class MarketListViewController: RxSwiftViewController {
     let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         
-        control.tintColor = .gray
+        if Environment.isIOS11 {
+            control.tintColor = .white
+        } else {
+            control.tintColor = .gray
+        }
+        
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         return control
@@ -56,7 +62,7 @@ class MarketListViewController: RxSwiftViewController {
         let sortItem = UIBarButtonItem(
             image: #imageLiteral(resourceName: "sort"), style: UIBarButtonItemStyle.plain, target: nil, action: nil
         )
-        sortItem.tintColor = .black
+        sortItem.tintColor = Color.navigationBarItems.asUIColor
         
         self.navigationItem.leftBarButtonItem = sortItem
         
@@ -87,6 +93,27 @@ class MarketListViewController: RxSwiftViewController {
         
         // Background
         self.view.backgroundColor = .white
+        
+        // Navbar Settings
+        if Environment.isIOS11 {
+            
+            let searchController = UISearchController(searchResultsController: nil)
+            searchController.searchBar.autocorrectionType = .yes
+            searchController.searchBar.barTintColor = Color.navigationBarItems.asUIColor
+            searchController.searchBar.tintColor = Color.navigationBarItems.asUIColor
+            searchController.dimsBackgroundDuringPresentation = false
+            
+            searchController.searchBar.rx.text.orEmpty.bind(to: self.viewModel.filter).disposed(by: disposeBag)
+            searchController.rx.didDismiss.map { return "" }.bind(to: self.viewModel.filter).disposed(by: disposeBag)
+            
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.prefersLargeTitles = true
+                self.navigationItem.largeTitleDisplayMode = .always
+                self.navigationItem.title = Strings.NavigationBarItems.cryptocurrencies
+                self.navigationItem.searchController = searchController
+                self.navigationItem.hidesSearchBarWhenScrolling = false
+            }
+        }
         
         self.view.sv(
             self.collectionView
@@ -127,7 +154,7 @@ class MarketListViewController: RxSwiftViewController {
     }
     
     lazy var adapter: ListAdapter = {
-        return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
+        return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
     }()
     
     func setupCollectionView() {
@@ -163,16 +190,10 @@ extension MarketListViewController: ListDisplayDelegate {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
-        if sectionController is TitleSectionController {
-            self.navigationItem.title = nil
-        }
         return
     }
     
     func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
-        if let sectionController = sectionController as? TitleSectionController {
-            self.navigationItem.title = sectionController.title
-        }
         return
     }
     

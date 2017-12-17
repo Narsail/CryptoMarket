@@ -30,10 +30,6 @@ class PortfolioCoordinator: BaseCoordinator<Void> {
             navigationViewController = navigationController
         }
         
-        navigationViewController.navigationBar.barTintColor = .white
-        navigationViewController.navigationBar.isTranslucent = true
-        navigationViewController.navigationBar.shadowImage = UIImage()
-        
         if self.rootViewController is UINavigationController {
             navigationViewController.viewControllers = [viewController]
         } else {

@@ -29,4 +29,10 @@ struct Environment {
             return false
         #endif
     }()
+    static let isIOS11: Bool = {
+        if #available(iOS 11.0, *) {
+            return true
+        }
+        return false
+    }()
 }

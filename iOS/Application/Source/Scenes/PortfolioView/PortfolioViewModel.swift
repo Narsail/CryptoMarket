@@ -77,7 +77,9 @@ extension PortfolioViewModel: ListAdapterDataSource {
             var list = [ListDiffable]()
             
             // Add the Title
-            list.append("Portfolio" as NSString)
+            if !Environment.isIOS11 {
+                list.append(Strings.NavigationBarItems.portfolio as NSString)
+            }
             
             // Add Portfolio
             if let amount = try self.portfolioAmount.value() {

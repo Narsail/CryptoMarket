@@ -34,4 +34,9 @@ enum Strings {
         static let title = NSLocalizedString("SortCell.title", value: "Your Portfolio", comment: "")
         static let empty = NSLocalizedString("SortCell.empty", value: "Your Portfolio is empty.", comment: "")
     }
+    
+    enum NavigationBarItems {
+        static let portfolio = NSLocalizedString("NavigationBarItems.portfolio", value: "Portfolio", comment: "")
+        static let cryptocurrencies = NSLocalizedString("NavigationBarItems.cryptocurrencies", value: "Cryptocurrencies", comment: "")
+    }
 }

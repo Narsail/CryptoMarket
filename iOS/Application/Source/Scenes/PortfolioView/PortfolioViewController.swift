@@ -21,7 +21,7 @@ class PortfolioViewController: RxSwiftViewController {
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
-        let topInset: CGFloat = 0
+        let topInset: CGFloat = 15
         let bottomInset: CGFloat = 0
         
         view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
@@ -36,7 +36,12 @@ class PortfolioViewController: RxSwiftViewController {
     let refreshControl: UIRefreshControl = {
         let control = UIRefreshControl()
         
-        control.tintColor = .gray
+        if Environment.isIOS11 {
+            control.tintColor = .white
+        } else {
+            control.tintColor = .gray
+        }
+        
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         return control
@@ -69,7 +74,16 @@ class PortfolioViewController: RxSwiftViewController {
         // Background
         self.view.backgroundColor = .white
         
+        // Navbar Settings
         self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        if Environment.isIOS11 {
+            if #available(iOS 11.0, *) {
+                self.navigationController?.navigationBar.prefersLargeTitles = true
+                self.navigationItem.largeTitleDisplayMode = .always
+                self.navigationItem.title = Strings.NavigationBarItems.portfolio
+            }
+        }
         
         self.view.sv(
             self.collectionView

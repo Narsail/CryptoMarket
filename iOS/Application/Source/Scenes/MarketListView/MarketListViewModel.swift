@@ -160,7 +160,9 @@ extension MarketListViewModel: ListAdapterDataSource {
             var list = [ListDiffable]()
             
             // Add the Title
-            list.append("Cryptocurrencies" as NSString)
+            if !Environment.isIOS11 {
+                list.append(Strings.NavigationBarItems.cryptocurrencies as NSString)
+            }
             
             // Sort View
             if try self.showSort.value() {
@@ -168,7 +170,7 @@ extension MarketListViewModel: ListAdapterDataSource {
             }
             
             // Search Token
-            if !(try cryptos.value().isEmpty) {
+            if !(try cryptos.value().isEmpty) && !Environment.isIOS11 {
                 list.append(searchToken)
             }
             

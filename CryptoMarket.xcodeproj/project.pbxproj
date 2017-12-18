@@ -1052,7 +1052,7 @@
 				"${BUILT_PRODUCTS_DIR}/Siesta-iOS10.3/Siesta.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout-iOS10.3/Stevia.framework",
-				"${BUILT_PRODUCTS_DIR}/Timepiece-iOS10.3/Timepiece.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate-iOS10.3/SwiftDate.framework",
 				"${BUILT_PRODUCTS_DIR}/DefaultsKit-iOS11.2/DefaultsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit-iOS11.2/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS11.2/PromiseKit.framework",
@@ -1060,7 +1060,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift-iOS11.2/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Siesta-iOS11.2/Siesta.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout-iOS11.2/Stevia.framework",
-				"${BUILT_PRODUCTS_DIR}/Timepiece-iOS11.2/Timepiece.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftDate-iOS11.2/SwiftDate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1074,7 +1074,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Timepiece.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DefaultsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1082,7 +1082,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siesta.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Timepiece.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

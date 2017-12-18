@@ -13,6 +13,7 @@ import IGListKit
 import Stevia
 import Crashlytics
 import RxCocoa
+import SwiftDate
 
 class MarketListViewController: RxSwiftViewController {
 
@@ -168,6 +169,12 @@ class MarketListViewController: RxSwiftViewController {
             
             self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
                 self.collectionView.refreshControl?.endRefreshing()
+                if let lastUpdate = CoinMarketCapAPI.shared.lastUpdate {
+                    self.collectionView.refreshControl?.attributedTitle = NSAttributedString(
+                        string: Strings.RefreshControl.lastUpdate +
+                            lastUpdate.string(dateStyle: .none, timeStyle: DateFormatter.Style.medium, in: nil)
+                    )
+                }
                 adapter.reloadData(completion: nil)
             }).disposed(by: adapter.disposeBag)
             

@@ -42,5 +42,6 @@ enum Strings {
     
     enum RefreshControl {
         static let title = NSLocalizedString("RefreshControl.title", value: "Pull to refresh", comment: "Pull to refresh")
+        static let lastUpdate = NSLocalizedString("RefreshControl.lastUpdate", value: "Last Update: ", comment: "Last update")
     }
 }

@@ -19,6 +19,8 @@ class CoinMarketCapAPI {
     
     private let disposeBag = DisposeBag()
     
+    private(set) var lastUpdate: Date?
+    
     /// Input to reload the main resources
     /// - note: Those include the full ticker list and the global data
     internal let loadAll: AnyObserver<Void>
@@ -71,6 +73,11 @@ class CoinMarketCapAPI {
             self.global.load()
             self.markets.load()
         }).disposed(by: disposeBag)
+        
+        // Set last update
+        self.global.addObserver(owner: self) { _,_ in
+            self.lastUpdate = Date()
+        }
     }
     
     var global: Resource {

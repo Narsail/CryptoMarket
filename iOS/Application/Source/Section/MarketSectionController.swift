@@ -48,6 +48,7 @@ class MarketSectionController: ListSectionController {
     }
     
     override func didSelectItem(at index: Int) {
+        
         if let market = self.market {
             self.delegate?.didSelectItem(market)
         }

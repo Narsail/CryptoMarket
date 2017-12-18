@@ -7,12 +7,13 @@ def shared
     pod "SwiftLint"
     pod 'SteviaLayout', "~> 4.0"
     pod 'IGListKit', '~> 3.0'
-    pod "Timepiece"
     pod "PromiseKit", "~> 4.4", subspecs: ['CorePromise', 'CoreLocation']
     pod 'DefaultsKit'
     pod 'Fabric'
     pod 'Crashlytics'
     pod 'Siesta', :path => "~/Developer/Github/siesta/", subspecs: ['Core', 'UI']
+    pod 'SwiftDate'
+    
 end
 
 target 'CryptoMarket' do

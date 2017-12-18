@@ -25,8 +25,8 @@ PODS:
     - Siesta/Core
   - Siren (3.1.7)
   - SteviaLayout (4.1.0)
+  - SwiftDate (4.5.0)
   - SwiftLint (0.24.0)
-  - Timepiece (1.3.1)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`, branch `wip/swift4`)
@@ -43,8 +43,8 @@ DEPENDENCIES:
   - Siesta/UI (from `~/Developer/Github/siesta/`)
   - Siren
   - SteviaLayout (~> 4.0)
+  - SwiftDate
   - SwiftLint
-  - Timepiece
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -71,9 +71,9 @@ SPEC CHECKSUMS:
   Siesta: afb4ac3ff3f7701ccd5539c7fcd9e15a05509540
   Siren: fbb80a0d310464fb1f81ff4bc58c2926b7228ab3
   SteviaLayout: 8a3524d4280841abf9f215145304a6cb37a54521
+  SwiftDate: 17dd829c004a2d60432ef63ffcdb26ca2eb97a60
   SwiftLint: a014c92b4664e8b13f380f8640a51bb1733778ba
-  Timepiece: c0760ec0e545697d86b80424dcd2b4d5ef66cf51
 
-PODFILE CHECKSUM: 8d1f1c09e984afae8f86e9fe935182b2ad8d76ba
+PODFILE CHECKSUM: b16e90f2bf8995658de44adfb46365182c340c6f
 
 COCOAPODS: 1.3.1

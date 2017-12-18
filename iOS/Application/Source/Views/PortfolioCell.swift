@@ -50,7 +50,7 @@ class PortfolioCell: CellWithRoundBorders {
     
     func setupLayout() {
         
-        self.backgroundColor = UIColor.flatWhite
+        self.backgroundColor = Color.lightCell.asUIColor
         
         let middleView = UIView()
         

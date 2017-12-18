@@ -88,11 +88,12 @@ class MarketListViewModel: RxSwiftViewModel {
     }
     
     func getSortedCryptos(order: SortOptions) throws -> [Cryptocurrency] {
-        let cryptos = try self.cryptos.value()
+        
+        var cryptos = try self.cryptos.value()
         
         switch order {
         case .capAscending:
-            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+            cryptos = cryptos.sorted(by: { cryptoOne, cryptoTwo in
                 switch (cryptoOne.marketCapUSD, cryptoTwo.marketCapUSD) {
                 case (.none, .none):
                     return false
@@ -115,13 +116,13 @@ class MarketListViewModel: RxSwiftViewModel {
                 
             })
         case .capDescending:
-            return cryptos
+            break
         case .nameAscending:
-            return cryptos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
+            cryptos = cryptos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
         case .nameDescending:
-            return cryptos.sorted(by: { $0.name.lowercased() > $1.name.lowercased() })
+            cryptos = cryptos.sorted(by: { $0.name.lowercased() > $1.name.lowercased() })
         case .changeAscending:
-            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+            cryptos = cryptos.sorted(by: { cryptoOne, cryptoTwo in
                 switch (cryptoOne.percentChange24hAmount, cryptoTwo.percentChange24hAmount) {
                 case (.none, .none):
                     return false
@@ -134,7 +135,7 @@ class MarketListViewModel: RxSwiftViewModel {
                 }
             })
         case .changeDescending:
-            return cryptos.sorted(by: { cryptoOne, cryptoTwo in
+            cryptos = cryptos.sorted(by: { cryptoOne, cryptoTwo in
                 switch (cryptoOne.percentChange24hAmount, cryptoTwo.percentChange24hAmount) {
                 case (.none, .none):
                     return false
@@ -147,6 +148,9 @@ class MarketListViewModel: RxSwiftViewModel {
                 }
             })
         }
+        
+        return cryptos
+        
     }
     
 }

@@ -39,4 +39,8 @@ enum Strings {
         static let portfolio = NSLocalizedString("NavigationBarItems.portfolio", value: "Portfolio", comment: "")
         static let cryptocurrencies = NSLocalizedString("NavigationBarItems.cryptocurrencies", value: "Cryptocurrencies", comment: "")
     }
+    
+    enum RefreshControl {
+        static let title = NSLocalizedString("RefreshControl.title", value: "Pull to refresh", comment: "Pull to refresh")
+    }
 }

@@ -33,8 +33,10 @@ class PortfolioViewController: RxSwiftViewController {
         return view
     }()
     
-    let refreshControl: UIRefreshControl = {
+    func prepareRefreshControl() -> UIRefreshControl {
         let control = UIRefreshControl()
+        
+        control.attributedTitle = NSAttributedString(string: Strings.RefreshControl.title)
         
         if Environment.isIOS11 {
             control.tintColor = .white
@@ -45,7 +47,7 @@ class PortfolioViewController: RxSwiftViewController {
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         return control
-    }()
+    }
     
     init(viewModel: PortfolioViewModel) {
         self.viewModel = viewModel
@@ -126,13 +128,13 @@ class PortfolioViewController: RxSwiftViewController {
     
     func setupCollectionView() {
         
-        collectionView.refreshControl = self.refreshControl
+        collectionView.refreshControl = prepareRefreshControl()
         
         adapter.collectionView = collectionView
         adapter.dataSource = viewModel
         
         self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
-            self.refreshControl.endRefreshing()
+            self.collectionView.refreshControl?.endRefreshing()
             self.adapter.reloadData(completion: nil)
         }).disposed(by: self.disposeBag)
         

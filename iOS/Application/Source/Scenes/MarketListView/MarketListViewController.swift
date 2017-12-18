@@ -29,13 +29,15 @@ class MarketListViewController: RxSwiftViewController {
         view.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
         view.alwaysBounceVertical = true
         
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         
         return view
     }()
     
-    let refreshControl: UIRefreshControl = {
+    func prepareRefreshControl() -> UIRefreshControl {
         let control = UIRefreshControl()
+        
+        control.attributedTitle = NSAttributedString(string: Strings.RefreshControl.title)
         
         if Environment.isIOS11 {
             control.tintColor = .white
@@ -46,7 +48,7 @@ class MarketListViewController: RxSwiftViewController {
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         return control
-    }()
+    }
     
     init(viewModel: MarketListViewModel) {
         
@@ -92,9 +94,11 @@ class MarketListViewController: RxSwiftViewController {
     override func viewDidLoad() {
         
         // Background
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Color.backgroundColor.asUIColor
         
         // Navbar Settings
+        self.navigationController?.navigationBar.shouldRemoveShadow(true)
+        
         if Environment.isIOS11 {
             
             let searchController = UISearchController(searchResultsController: nil)
@@ -113,6 +117,7 @@ class MarketListViewController: RxSwiftViewController {
                 self.navigationItem.searchController = searchController
                 self.navigationItem.hidesSearchBarWhenScrolling = false
             }
+            
         }
         
         self.view.sv(
@@ -153,25 +158,30 @@ class MarketListViewController: RxSwiftViewController {
         }
     }
     
-    lazy var adapter: ListAdapter = {
-        return ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
-    }()
+    var adapter: RxListAdapter? {
+        didSet {
+            
+            guard let adapter = self.adapter else { return }
+            
+            adapter.collectionView = collectionView
+            adapter.dataSource = viewModel
+            
+            self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+                self.collectionView.refreshControl?.endRefreshing()
+                adapter.reloadData(completion: nil)
+            }).disposed(by: adapter.disposeBag)
+            
+            self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+                adapter.performUpdates(animated: true, completion: nil)
+            }).disposed(by: adapter.disposeBag)
+        }
+    }
     
     func setupCollectionView() {
         
-        collectionView.refreshControl = self.refreshControl
+        collectionView.refreshControl = prepareRefreshControl()
         
-        adapter.collectionView = collectionView
-        adapter.dataSource = viewModel
-        
-        self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
-            self.refreshControl.endRefreshing()
-            self.adapter.reloadData(completion: nil)
-        }).disposed(by: self.disposeBag)
-        
-        self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
-            self.adapter.performUpdates(animated: true, completion: nil)
-        }).disposed(by: self.disposeBag)
+        adapter = RxListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
         
     }
     
@@ -196,5 +206,44 @@ extension MarketListViewController: ListDisplayDelegate {
     func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
         return
     }
+    
+}
+
+class RxListAdapter: ListAdapter {
+    
+    let disposeBag = DisposeBag()
+    
+//    override func performUpdates(animated: Bool, completion: ListUpdaterCompletion? = nil) {
+//        super.performUpdates(animated: animated, completion: completion)
+//
+//        print(1)
+//    }
+//
+//    override func reloadData(completion: ListUpdaterCompletion? = nil) {
+//        super.reloadData(completion: completion)
+//        print(2)
+//    }
+//
+//    override func reloadObjects(_ objects: [Any]) {
+//        super.reloadObjects(objects)
+//        print(3)
+//    }
+//
+//    override func sectionController(forSection section: Int) -> ListSectionController? {
+//        print(4)
+//        return super.sectionController(forSection: section)
+//    }
+//    override func section(for sectionController: ListSectionController) -> Int {
+//        print(5)
+//        return super.section(for: sectionController)
+//    }
+//    override func sectionController(for object: Any) -> ListSectionController? {
+//        print(6)
+//        return super.sectionController(for: object)
+//    }
+//    override func object(for sectionController: ListSectionController) -> Any? {
+//        print(7)
+//        return super.object(for: sectionController)
+//    }
     
 }

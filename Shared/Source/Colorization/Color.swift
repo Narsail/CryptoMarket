@@ -18,6 +18,8 @@ enum Color {
     case navigationBar
     case navigationBarItems
     
+    case backgroundColor
+    
     case lightCell
     
     case custom(hexString: String, alpha: Double)
@@ -47,6 +49,8 @@ extension Color {
             return UIColor(hexString: "#C2E2F0")
         case .lightCell:
             return Color.logoLightBeige.asUIColor
+        case .backgroundColor:
+            return Color.logoLightBlue.asUIColor
         case .custom(let hexValue, let opacity):
             return UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
 //        default:
@@ -61,11 +65,14 @@ struct ColorManager {
     static func applyColorToNavBar(color: Color) {
         
         let appearance = UINavigationBar.appearance()
-        
-        appearance.barTintColor = Color.navigationBar.asUIColor
-        appearance.isTranslucent = true
+
         appearance.shadowImage = UIImage()
+//        appearance.setBackgroundImage(UIImage(), for: .default)
+//        appearance.setBackgroundImage(UIImage(), for: .any, barMetrics: .default)
+//        appearance.clipsToBounds = false
+        appearance.barTintColor = Color.navigationBar.asUIColor
         appearance.tintColor = Color.navigationBarItems.asUIColor
+        appearance.isTranslucent = false
         appearance.titleTextAttributes = [NSAttributedStringKey.foregroundColor : Color.navigationBarItems.asUIColor]
         
         if Environment.isIOS11 {
@@ -76,4 +83,15 @@ struct ColorManager {
         
     }
     
+}
+
+extension UINavigationBar {
+    
+    func shouldRemoveShadow(_ value: Bool) -> Void {
+        if value {
+            self.setValue(true, forKey: "hidesShadow")
+        } else {
+            self.setValue(false, forKey: "hidesShadow")
+        }
+    }
 }

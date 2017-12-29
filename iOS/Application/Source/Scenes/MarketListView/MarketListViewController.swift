@@ -207,10 +207,16 @@ extension MarketListViewController: ListDisplayDelegate {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
+        if sectionController is TitleSectionController {
+            self.navigationItem.title = nil
+        }
         return
     }
     
     func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
+        if let sectionController = sectionController as? TitleSectionController {
+            self.navigationItem.title = sectionController.title
+        }
         return
     }
     

@@ -44,11 +44,11 @@ class Global: Codable {
 }
 
 extension Global: ListDiffable {
-    
+
     func diffIdentifier() -> NSObjectProtocol {
         return "\(totalMarketCapUSD)" as NSString
     }
-    
+
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         if let object = object as? Global {
             return (self.totalMarketCapUSD, self.totalVolume24h, self.bitcoinPercentageOfMarketCap) ==
@@ -56,13 +56,13 @@ extension Global: ListDiffable {
         }
         return false
     }
-    
+
 }
 
 func formatted(_ number: Double) -> String {
-    
+
     var formatted = "\(number)"
-    
+
     switch number {
     case let number where number >= 1000000000000:
         formatted = String(format: "%.2f", number/1000000000000) + "trillion"
@@ -77,3 +77,4 @@ func formatted(_ number: Double) -> String {
     }
     return formatted
 }
+

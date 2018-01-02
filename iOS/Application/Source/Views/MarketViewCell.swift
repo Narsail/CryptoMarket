@@ -11,7 +11,7 @@ import UIKit
 import Stevia
 import ChameleonFramework
 
-class MarketViewCell: CellWithRoundBorders {
+class MarketViewCell: CellWithRoundBorders { // CellWithRoundBorders {
 	
 	// MARK: - Top View
 	var topView: UIView = {

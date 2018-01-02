@@ -11,7 +11,10 @@ import IGListKit
 import RxSwift
 import RxCocoa
 import Siesta
+import CollectionKit
 import Crashlytics
+
+let bodyInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
 
 class MarketListViewModel: RxSwiftViewModel {
     
@@ -35,10 +38,21 @@ class MarketListViewModel: RxSwiftViewModel {
     
     // MARK: - Outputs
     let contentUpdated = PublishSubject<Void>()
-    let filtern = PublishSubject<Void>()
     let selectedMarket = PublishSubject<Cryptocurrency>()
+    let providerComposer: CollectionComposer
+    
+    // MARK: - Provider
+    
+    let sortProvider = SortingProvider()
+    let coinProvider = CoinProvider()
     
     override init() {
+        
+        providerComposer = CollectionComposer(
+//            layout: FlowLayout(spacing: 10).inset(by: bodyInset),
+//            sortProvider,
+            coinProvider
+        )
         
         super.init()
         
@@ -59,13 +73,23 @@ class MarketListViewModel: RxSwiftViewModel {
         }
         
         // Bind the Subjects to the Reload
-        Observable.combineLatest(cryptos, global, portfolioAmount)
+        Observable.combineLatest(cryptos, global, portfolioAmount, filter.debounce(0.1, scheduler: MainScheduler.instance))
+            .do(onNext: { coins, global, amount, filter in
+                self.updateWith(coins: coins, global: global, portfolio: amount, filter: filter)
+            })
             // .debounce(0.5, scheduler: MainScheduler.instance)
             .map({ _ in Void() })
             .bind(to: contentUpdated)
             .disposed(by: disposeBag)
         
         showSort
+            .do(onNext: { show in
+                if show {
+                    self.sortProvider.display(with: self, and: self.sortOrder)
+                } else {
+                    self.sortProvider.hide()
+                }
+            })
             .map({ _ in Void() })
             .bind(to: contentUpdated)
             .disposed(by: disposeBag)
@@ -76,7 +100,6 @@ class MarketListViewModel: RxSwiftViewModel {
                 Answers.logCustomEvent(withName: "Used the Filter.",
                                        customAttributes: ["Filter": (try? self.filter.value()) ?? ""])
             }
-            self.filtern.onNext(())
         }).disposed(by: self.disposeBag)
         
         self.reloadData()
@@ -87,9 +110,10 @@ class MarketListViewModel: RxSwiftViewModel {
         CoinMarketCapAPI.shared.loadAll.onNext(())
     }
     
-    func getSortedCryptos(order: SortOptions) throws -> [Cryptocurrency] {
+    /// Return the sorted Cryptocurrencies according to the given order.
+    func sortCryptos(_ cryptos: [Cryptocurrency], with order: SortOptions) -> [Cryptocurrency] {
         
-        var cryptos = try self.cryptos.value()
+        var cryptos = cryptos
         
         switch order {
         case .capAscending:
@@ -153,73 +177,117 @@ class MarketListViewModel: RxSwiftViewModel {
         
     }
     
+    func updateWith(coins: [Cryptocurrency], global: Global?, portfolio: PortfolioAmount?, filter: String) {
+        
+        let filter = filter.trimmingCharacters(in: .whitespaces)
+        
+        if filter != "" {
+            
+            let data = sortCryptos(coins, with: self.sortOrder).filter {
+                $0.name.lowercased().contains(find: filter.lowercased()) ||
+                    $0.symbol.lowercased().contains(find: filter.lowercased())
+            }
+            
+            self.coinProvider.set(data)
+            
+        } else {
+            
+            self.coinProvider.set(coins)
+            
+        }
+        
+        
+//        if try self.showSort.value() {
+//
+//
+//        } else {
+//
+//            // Add Portfolio
+//            if let amount = try self.portfolioAmount.value() {
+//                list.append(amount)
+//            }
+//
+//            // Add Global Data
+//            if let global = try self.global.value() {
+//                list.append(global)
+//            }
+//
+//            list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
+//
+//        }
+
+        
+    }
+    
 }
 
 extension MarketListViewModel: ListAdapterDataSource {
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
         
-        do {
-            
-            var list = [ListDiffable]()
-            
-            // Add the Title
-            if !Environment.isIOS11 {
-                list.append(Strings.NavigationBarItems.cryptocurrencies as NSString)
-            }
-            
-            // Sort View
-            if try self.showSort.value() {
-                list.append(sortToken)
-            }
-            
-            // Search Token
-            if !(try cryptos.value().isEmpty) && !Environment.isIOS11 {
-                list.append(searchToken)
-            }
-            
-            let filter = ((try? self.filter.value()) ?? "").trimmingCharacters(in: .whitespaces)
-            
-            if filter != "" {
-                list += (try getSortedCryptos(order: self.sortOrder).filter {
-                    $0.name.lowercased().contains(find: filter.lowercased()) ||
-                        $0.symbol.lowercased().contains(find: filter.lowercased())
-                    } as [ListDiffable])
-            } else if try self.showSort.value() {
-                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
-            } else {
-                
-                // Add Portfolio
-                if let amount = try self.portfolioAmount.value() {
-                    list.append(amount)
-                }
-                
-                // Add Global Data
-                if let global = try self.global.value() {
-                    list.append(global)
-                }
-                
-                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
-                
-            }
-            
-//            if try cryptos.value().isEmpty {
-//                // Add Loading View
-//                list.append(loadingToken)
+        return []
+        
+//        do {
+//
+//            var list = [ListDiffable]()
+//
+//            // Add the Title
+//            if !Environment.isIOS11 {
+//                list.append(Strings.NavigationBarItems.cryptocurrencies as NSString)
 //            }
-            
-            return list
-            
-        } catch {
-            return []
-        }
+//
+////            // Sort View
+////            if try self.showSort.value() {
+////                list.append(sortToken)
+////            }
+//
+//            // Search Token
+//            if !(try cryptos.value().isEmpty) && !Environment.isIOS11 {
+//                list.append(searchToken)
+//            }
+//
+//            let filter = ((try? self.filter.value()) ?? "").trimmingCharacters(in: .whitespaces)
+//
+//            if filter != "" {
+//                list += (try getSortedCryptos(order: self.sortOrder).filter {
+//                    $0.name.lowercased().contains(find: filter.lowercased()) ||
+//                        $0.symbol.lowercased().contains(find: filter.lowercased())
+//                    } as [ListDiffable])
+//            } else if try self.showSort.value() {
+//                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
+//            } else {
+//
+//                // Add Portfolio
+//                if let amount = try self.portfolioAmount.value() {
+//                    list.append(amount)
+//                }
+//
+//                // Add Global Data
+//                if let global = try self.global.value() {
+//                    list.append(global)
+//                }
+//
+//                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
+//
+//            }
+//
+////            if try cryptos.value().isEmpty {
+////                // Add Loading View
+////                list.append(loadingToken)
+////            }
+//
+//            return list
+//
+//        } catch {
+//            return []
+//        }
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
         
         switch object {
-        case is Cryptocurrency:
-            return MarketSectionController(delegate: self)
+//        case is Cryptocurrency:
+//            return MarketSectionController(delegate: self)
         case is Global:
             return GlobalSectionController()
         case is PortfolioAmount:
@@ -260,13 +328,13 @@ extension MarketListViewModel: SearchSectionControllerDelegate {
     
 }
 
-extension MarketListViewModel: MarketSelectionControllerDelegate {
-    
-    func didSelectItem(_ currency: Cryptocurrency) {
-        self.selectedMarket.onNext(currency)
-    }
-    
-}
+//extension MarketListViewModel: MarketSelectionControllerDelegate {
+//
+//    func didSelectItem(_ currency: Cryptocurrency) {
+//        self.selectedMarket.onNext(currency)
+//    }
+//
+//}
 
 extension MarketListViewModel: SortCellDelegate {
     

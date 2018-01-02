@@ -95,30 +95,35 @@ class SortCell: CellWithRoundBorders {
         self.capButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .capAscending:
-                self.delegate?.didChange(.capDescending)
+                self.didChangeOrder(.capDescending)
             default:
-                self.delegate?.didChange(.capAscending)
+                self.didChangeOrder(.capAscending)
             }
         }).disposed(by: disposeBag)
         
         self.nameButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .nameAscending:
-                self.delegate?.didChange(.nameDescending)
+                self.didChangeOrder(.nameDescending)
             default:
-                self.delegate?.didChange(.nameAscending)
+                self.didChangeOrder(.nameAscending)
             }
         }).disposed(by: disposeBag)
         
         self.changeButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .changeAscending:
-                self.delegate?.didChange(.changeDescending)
+                self.didChangeOrder(.changeDescending)
             default:
-                self.delegate?.didChange(.changeAscending)
+                self.didChangeOrder(.changeAscending)
             }
         }).disposed(by: disposeBag)
         
+    }
+    
+    func didChangeOrder(_ order: SortOptions) {
+        self.setOrder(order: order)
+        self.delegate?.didChange(order)
     }
     
     func setOrder(order: SortOptions) {

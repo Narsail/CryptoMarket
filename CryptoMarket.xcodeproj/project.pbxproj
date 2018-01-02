@@ -71,6 +71,7 @@
 		2A93BC621FD078E900E3017C /* UIView+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC591FD078E900E3017C /* UIView+Animations.swift */; };
 		2A93BC641FD0791500E3017C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC631FD0791500E3017C /* Constants.swift */; };
 		2A93BC661FD079C900E3017C /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A93BC651FD079C900E3017C /* Strings.swift */; };
+		2A9C38DA1FFAF49400134BF7 /* CoinProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C38D91FFAF49400134BF7 /* CoinProvider.swift */; };
 		2A9F92D21FCDEE6E007FBC8C /* PortfolioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9F92D11FCDEE6E007FBC8C /* PortfolioCell.swift */; };
 		2A9F92D41FCDF07F007FBC8C /* PortfolioAmountSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9F92D31FCDF07F007FBC8C /* PortfolioAmountSectionController.swift */; };
 		2A9F92D71FCE1C41007FBC8C /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9F92D61FCE1C41007FBC8C /* MainTabBarCoordinator.swift */; };
@@ -92,6 +93,7 @@
 		2AB9ED9A1FD4362E0097BFB2 /* SortSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9ED991FD4362E0097BFB2 /* SortSectionController.swift */; };
 		2ABA180D1FD2E44000E78234 /* ModalViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA180C1FD2E44000E78234 /* ModalViewCoordinator.swift */; };
 		2ABA180F1FD2E99A00E78234 /* ModelPresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA180E1FD2E99A00E78234 /* ModelPresentedViewController.swift */; };
+		2ABA7F901FF8E65D00C8BBAE /* SortingProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABA7F8F1FF8E65D00C8BBAE /* SortingProvider.swift */; };
 		2ABBCB311FCCA29200FA4013 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB301FCCA29200FA4013 /* Global.swift */; };
 		2ABBCB331FCCA3C300FA4013 /* UIView+RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */; };
 		2ABBCB351FCCA46700FA4013 /* GlobalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */; };
@@ -232,6 +234,7 @@
 		2A93BC591FD078E900E3017C /* UIView+Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Animations.swift"; sourceTree = "<group>"; };
 		2A93BC631FD0791500E3017C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2A93BC651FD079C900E3017C /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		2A9C38D91FFAF49400134BF7 /* CoinProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinProvider.swift; sourceTree = "<group>"; };
 		2A9F92D11FCDEE6E007FBC8C /* PortfolioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioCell.swift; sourceTree = "<group>"; };
 		2A9F92D31FCDF07F007FBC8C /* PortfolioAmountSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioAmountSectionController.swift; sourceTree = "<group>"; };
 		2A9F92D61FCE1C41007FBC8C /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
@@ -253,6 +256,7 @@
 		2AB9ED991FD4362E0097BFB2 /* SortSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortSectionController.swift; sourceTree = "<group>"; };
 		2ABA180C1FD2E44000E78234 /* ModalViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewCoordinator.swift; sourceTree = "<group>"; };
 		2ABA180E1FD2E99A00E78234 /* ModelPresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPresentedViewController.swift; sourceTree = "<group>"; };
+		2ABA7F8F1FF8E65D00C8BBAE /* SortingProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingProvider.swift; sourceTree = "<group>"; };
 		2ABBCB301FCCA29200FA4013 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		2ABBCB321FCCA3C300FA4013 /* UIView+RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+RoundCorners.swift"; sourceTree = "<group>"; };
 		2ABBCB341FCCA46700FA4013 /* GlobalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalCell.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 		2A0D6F391FE4366B0024AF1E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				2ABA7F8E1FF8E64C00C8BBAE /* Provider */,
 				2A0D6F3A1FE436760024AF1E /* Colorization */,
 			);
 			path = Source;
@@ -758,6 +763,15 @@
 			path = Handler;
 			sourceTree = "<group>";
 		};
+		2ABA7F8E1FF8E64C00C8BBAE /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				2ABA7F8F1FF8E65D00C8BBAE /* SortingProvider.swift */,
+				2A9C38D91FFAF49400134BF7 /* CoinProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
 		2AEE23811D95A6C90090A61B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1044,6 +1058,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CryptoMarket/Pods-CryptoMarket-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/CollectionKit-iOS10.3/CollectionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/DefaultsKit-iOS10.3/DefaultsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit-iOS10.3/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS10.3/PromiseKit.framework",
@@ -1053,6 +1068,7 @@
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SteviaLayout-iOS10.3/Stevia.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate-iOS10.3/SwiftDate.framework",
+				"${BUILT_PRODUCTS_DIR}/CollectionKit-iOS11.2/CollectionKit.framework",
 				"${BUILT_PRODUCTS_DIR}/DefaultsKit-iOS11.2/DefaultsKit.framework",
 				"${BUILT_PRODUCTS_DIR}/IGListKit-iOS11.2/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit-iOS11.2/PromiseKit.framework",
@@ -1066,6 +1082,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DefaultsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1075,6 +1092,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stevia.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CollectionKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DefaultsKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
@@ -1180,6 +1198,7 @@
 				2A9F92D41FCDF07F007FBC8C /* PortfolioAmountSectionController.swift in Sources */,
 				2AB338801FCD8C3B00190E5D /* OwningCryptoCurrency.swift in Sources */,
 				2A606E031FC9996C0053B81B /* MarketListViewModel.swift in Sources */,
+				2ABA7F901FF8E65D00C8BBAE /* SortingProvider.swift in Sources */,
 				2AB9ED9A1FD4362E0097BFB2 /* SortSectionController.swift in Sources */,
 				2ABBCB371FCCA6F500FA4013 /* GlobalSectionController.swift in Sources */,
 				2A606E111FC9B4CF0053B81B /* Cryptocurrency.swift in Sources */,
@@ -1187,6 +1206,7 @@
 				2A93BC4F1FD0785300E3017C /* AddPortfolioItemViewController.swift in Sources */,
 				2AACA1951FCAE0FA00E1F670 /* MarketDetailViewController.swift in Sources */,
 				2A93BC5C1FD078E900E3017C /* Date.swift in Sources */,
+				2A9C38DA1FFAF49400134BF7 /* CoinProvider.swift in Sources */,
 				2ABA180D1FD2E44000E78234 /* ModalViewCoordinator.swift in Sources */,
 				2A93BC4E1FD0785300E3017C /* ModalViewViewModel.swift in Sources */,
 				2A93BC5F1FD078E900E3017C /* UIView+Constrain.swift in Sources */,

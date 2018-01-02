@@ -13,7 +13,7 @@ def shared
     pod 'Crashlytics'
     pod 'Siesta', :path => "~/Developer/Github/siesta/", subspecs: ['Core', 'UI']
     pod 'SwiftDate'
-    
+    pod "CollectionKit", :path => "~/Developer/Github/collectionkit"
 end
 
 target 'CryptoMarket' do

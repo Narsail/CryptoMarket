@@ -14,26 +14,34 @@ import Stevia
 import Crashlytics
 import RxCocoa
 import SwiftDate
+import CollectionKit
 
 class MarketListViewController: RxSwiftViewController {
 
     let viewModel: MarketListViewModel
     
-    let collectionView: UICollectionView = {
+    let collectionView: CollectionView = {
         
-        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
-        
-        let topInset: CGFloat = 15
-        let bottomInset: CGFloat = 0
-        
-        view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
-        view.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
-        view.alwaysBounceVertical = true
-        
-        view.backgroundColor = .clear
+        let view = CollectionView()
         
         return view
     }()
+    
+//    let collectionView: UICollectionView = {
+//
+//        let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
+//
+//        let topInset: CGFloat = 15
+//        let bottomInset: CGFloat = 0
+//
+//        view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
+//        view.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
+//        view.alwaysBounceVertical = true
+//
+//        view.backgroundColor = .clear
+//
+//        return view
+//    }()
     
     func prepareRefreshControl() -> UIRefreshControl {
         let control = UIRefreshControl()
@@ -58,8 +66,6 @@ class MarketListViewController: RxSwiftViewController {
         super.init(nibName: nil, bundle: nil)
         
         /* Non self Initialization */
-
-        self.viewModel.displayDelegate = self
         
         // Sort Icon
         let sortItem = UIBarButtonItem(
@@ -80,11 +86,11 @@ class MarketListViewController: RxSwiftViewController {
             }).bind(to: self.viewModel.showSort).disposed(by: disposeBag)
         
         self.viewModel.showSort.subscribe(onNext: { show in
-            if show && self.collectionView.numberOfSections > 0 {
-                self.collectionView.scrollToItem(
-                    at: IndexPath(item: 0, section: 1), at: .centeredVertically, animated: true
-                )
-            }
+//            if show && self.collectionView.numberOfSections > 0 {
+//                self.collectionView.scrollToItem(
+//                    at: IndexPath(item: 0, section: 1), at: .centeredVertically, animated: true
+//                )
+//            }
         }).disposed(by: disposeBag)
     }
     
@@ -159,104 +165,41 @@ class MarketListViewController: RxSwiftViewController {
         }
     }
     
-    var adapter: RxListAdapter? {
-        didSet {
-            
-            guard let adapter = self.adapter else { return }
-            
-            adapter.collectionView = collectionView
-            adapter.dataSource = viewModel
-            
-            self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
-                self.collectionView.refreshControl?.endRefreshing()
-                if let lastUpdate = CoinMarketCapAPI.shared.lastUpdate {
-                    self.collectionView.refreshControl?.attributedTitle = NSAttributedString(
-                        string: Strings.RefreshControl.lastUpdate +
-                            lastUpdate.string(dateStyle: .none, timeStyle: DateFormatter.Style.medium, in: nil)
-                    )
-                }
-                adapter.reloadData(completion: nil)
-            }).disposed(by: adapter.disposeBag)
-            
-            self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
-                adapter.performUpdates(animated: true, completion: nil)
-            }).disposed(by: adapter.disposeBag)
-        }
-    }
+//    var adapter: RxListAdapter? {
+//        didSet {
+//
+//            guard let adapter = self.adapter else { return }
+//
+//            adapter.collectionView = collectionView
+//            adapter.dataSource = viewModel
+//
+//
+//            self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+//                adapter.performUpdates(animated: true, completion: nil)
+//            }).disposed(by: adapter.disposeBag)
+//        }
+//    }
     
     func setupCollectionView() {
         
         collectionView.refreshControl = prepareRefreshControl()
         
-        adapter = RxListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
+        // Test Setup
+        collectionView.provider = self.viewModel.providerComposer
+        
+        // Define end of refreshing
+        self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
+            self.collectionView.refreshControl?.endRefreshing()
+            if let lastUpdate = CoinMarketCapAPI.shared.lastUpdate {
+                self.collectionView.refreshControl?.attributedTitle = NSAttributedString(
+                    string: Strings.RefreshControl.lastUpdate +
+                        lastUpdate.string(dateStyle: .none, timeStyle: DateFormatter.Style.medium, in: nil)
+                )
+            }
+        }).disposed(by: self.disposeBag)
+
+//        adapter = RxListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
         
     }
-    
-}
-
-extension MarketListViewController: ListDisplayDelegate {
-    
-    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController,
-                     cell: UICollectionViewCell, at index: Int) {
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController,
-                     cell: UICollectionViewCell, at index: Int) {
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
-        if sectionController is TitleSectionController {
-            self.navigationItem.title = nil
-        }
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
-        if let sectionController = sectionController as? TitleSectionController {
-            self.navigationItem.title = sectionController.title
-        }
-        return
-    }
-    
-}
-
-class RxListAdapter: ListAdapter {
-    
-    let disposeBag = DisposeBag()
-    
-//    override func performUpdates(animated: Bool, completion: ListUpdaterCompletion? = nil) {
-//        super.performUpdates(animated: animated, completion: completion)
-//
-//        print(1)
-//    }
-//
-//    override func reloadData(completion: ListUpdaterCompletion? = nil) {
-//        super.reloadData(completion: completion)
-//        print(2)
-//    }
-//
-//    override func reloadObjects(_ objects: [Any]) {
-//        super.reloadObjects(objects)
-//        print(3)
-//    }
-//
-//    override func sectionController(forSection section: Int) -> ListSectionController? {
-//        print(4)
-//        return super.sectionController(forSection: section)
-//    }
-//    override func section(for sectionController: ListSectionController) -> Int {
-//        print(5)
-//        return super.section(for: sectionController)
-//    }
-//    override func sectionController(for object: Any) -> ListSectionController? {
-//        print(6)
-//        return super.sectionController(for: object)
-//    }
-//    override func object(for sectionController: ListSectionController) -> Any? {
-//        print(7)
-//        return super.object(for: sectionController)
-//    }
     
 }

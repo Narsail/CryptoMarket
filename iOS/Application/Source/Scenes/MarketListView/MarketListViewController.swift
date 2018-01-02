@@ -78,7 +78,7 @@ class MarketListViewController: RxSwiftViewController {
             }).bind(to: self.viewModel.showSort).disposed(by: disposeBag)
         
         self.viewModel.showSort.subscribe(onNext: { show in
-            if show && self.collectionView.numberOfSections > 0 {
+            if show && self.collectionView.numberOfSections > 1 {
                 self.collectionView.scrollToItem(
                     at: IndexPath(item: 0, section: 1), at: .centeredVertically, animated: true
                 )

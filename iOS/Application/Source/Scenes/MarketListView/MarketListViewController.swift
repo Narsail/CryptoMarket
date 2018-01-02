@@ -58,8 +58,6 @@ class MarketListViewController: RxSwiftViewController {
         super.init(nibName: nil, bundle: nil)
         
         /* Non self Initialization */
-
-        self.viewModel.displayDelegate = self
         
         // Sort Icon
         let sortItem = UIBarButtonItem(
@@ -159,7 +157,7 @@ class MarketListViewController: RxSwiftViewController {
         }
     }
     
-    var adapter: RxListAdapter? {
+    var adapter: ListAdapter? {
         didSet {
             
             guard let adapter = self.adapter else { return }
@@ -176,11 +174,11 @@ class MarketListViewController: RxSwiftViewController {
                     )
                 }
                 adapter.reloadData(completion: nil)
-            }).disposed(by: adapter.disposeBag)
+            }).disposed(by: self.disposeBag)
             
             self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
                 adapter.performUpdates(animated: true, completion: nil)
-            }).disposed(by: adapter.disposeBag)
+            }).disposed(by: self.disposeBag)
         }
     }
     
@@ -188,75 +186,8 @@ class MarketListViewController: RxSwiftViewController {
         
         collectionView.refreshControl = prepareRefreshControl()
         
-        adapter = RxListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
+        adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
         
     }
-    
-}
-
-extension MarketListViewController: ListDisplayDelegate {
-    
-    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController,
-                     cell: UICollectionViewCell, at index: Int) {
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController,
-                     cell: UICollectionViewCell, at index: Int) {
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
-        if sectionController is TitleSectionController {
-            self.navigationItem.title = nil
-        }
-        return
-    }
-    
-    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {
-        if let sectionController = sectionController as? TitleSectionController {
-            self.navigationItem.title = sectionController.title
-        }
-        return
-    }
-    
-}
-
-class RxListAdapter: ListAdapter {
-    
-    let disposeBag = DisposeBag()
-    
-//    override func performUpdates(animated: Bool, completion: ListUpdaterCompletion? = nil) {
-//        super.performUpdates(animated: animated, completion: completion)
-//
-//        print(1)
-//    }
-//
-//    override func reloadData(completion: ListUpdaterCompletion? = nil) {
-//        super.reloadData(completion: completion)
-//        print(2)
-//    }
-//
-//    override func reloadObjects(_ objects: [Any]) {
-//        super.reloadObjects(objects)
-//        print(3)
-//    }
-//
-//    override func sectionController(forSection section: Int) -> ListSectionController? {
-//        print(4)
-//        return super.sectionController(forSection: section)
-//    }
-//    override func section(for sectionController: ListSectionController) -> Int {
-//        print(5)
-//        return super.section(for: sectionController)
-//    }
-//    override func sectionController(for object: Any) -> ListSectionController? {
-//        print(6)
-//        return super.sectionController(for: object)
-//    }
-//    override func object(for sectionController: ListSectionController) -> Any? {
-//        print(7)
-//        return super.object(for: sectionController)
-//    }
     
 }

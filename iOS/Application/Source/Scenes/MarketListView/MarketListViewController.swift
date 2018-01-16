@@ -24,7 +24,7 @@ class MarketListViewController: RxSwiftViewController {
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         let topInset: CGFloat = 15
-        let bottomInset: CGFloat = 0
+        let bottomInset: CGFloat = 15
         
         view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
         view.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
@@ -94,6 +94,7 @@ class MarketListViewController: RxSwiftViewController {
         
         // Background
         self.view.backgroundColor = Color.backgroundColor.asUIColor
+        self.navigationController?.view.backgroundColor = Color.backgroundColor.asUIColor
         
         // Navbar Settings
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
@@ -103,7 +104,8 @@ class MarketListViewController: RxSwiftViewController {
         searchController.searchBar.barTintColor = Color.navigationBarItems.asUIColor
         searchController.searchBar.tintColor = Color.navigationBarItems.asUIColor
         searchController.searchBar.backgroundColor = Color.backgroundColor.asUIColor
-        searchController.view.backgroundColor = Color.backgroundColor.asUIColor
+    
+        searchController.view.backgroundColor = UIColor.clear
         searchController.dimsBackgroundDuringPresentation = false
         
         searchController.searchBar.rx.text.orEmpty.bind(to: self.viewModel.filter).disposed(by: disposeBag)
@@ -145,17 +147,11 @@ class MarketListViewController: RxSwiftViewController {
         )
         
         self.view.layout(
-            0,
-            |-self.collectionView-|,
-            0
+            |-self.collectionView-|
         )
         
-        self.extendedLayoutIncludesOpaqueBars = true
-        self.navigationController?.extendedLayoutIncludesOpaqueBars = true
-//        self.edgesForExtendedLayout = [.bottom, .top]
-        
-//        self.collectionView.Top == topLayoutGuide.Bottom
-//        self.collectionView.Bottom == bottomLayoutGuide.Top
+        self.collectionView.Top == topLayoutGuide.Bottom
+        self.collectionView.Bottom == bottomLayoutGuide.Top
     }
     
     @objc func refresh() {

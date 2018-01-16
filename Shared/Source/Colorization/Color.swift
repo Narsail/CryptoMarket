@@ -15,12 +15,15 @@ enum Color {
     case logoLightBlue
     case logoLightBeige
     
+    case flatWhite
+    
     case navigationBar
     case navigationBarItems
     
     case backgroundColor
     
     case lightCell
+    case whiteCell
     
     case custom(hexString: String, alpha: Double)
     
@@ -43,14 +46,22 @@ extension Color {
             return UIColor(hexString: "#60a1bc")
         case .logoLightBeige:
             return UIColor(hexString: "#dce3cb")
+        case .flatWhite:
+            return UIColor(hexString: "#EDF1F2")
         case .navigationBar:
-            return Color.logoLightBlue.asUIColor
+//            return Color.logoLightBlue.asUIColor
+            return UIColor.white
         case .navigationBarItems:
-            return UIColor(hexString: "#C2E2F0")
+//            return UIColor(hexString: "#C2E2F0")
+            return UIColor.black
         case .lightCell:
-            return Color.logoLightBeige.asUIColor
+//            return Color.logoLightBeige.asUIColor
+            return Color.flatWhite.asUIColor
+        case .whiteCell:
+            return Color.flatWhite.asUIColor
         case .backgroundColor:
-            return Color.logoLightBlue.asUIColor
+//            return Color.logoLightBlue.asUIColor
+            return UIColor.white
         case .custom(let hexValue, let opacity):
             return UIColor(hexString: hexValue).withAlphaComponent(CGFloat(opacity))
 //        default:

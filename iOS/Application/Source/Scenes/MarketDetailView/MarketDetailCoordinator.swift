@@ -25,7 +25,6 @@ class MarketDetailCoordinator: BaseCoordinator<Void> {
         let viewController = MarketDetailViewController(viewModel: viewModel)
         
         if let navigationController = rootViewController as? UINavigationController {
-            // viewController.isEmbeddedInNavigationViewController = true
             navigationController.pushViewController(viewController, animated: true)
         } else {
             self.rootViewController.present(viewController, animated: true, completion: nil)

@@ -567,11 +567,11 @@
 		2A606DFF1FC9996C0053B81B /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				2A93BC3E1FD0785300E3017C /* ModalScenes */,
-				2A9F92D81FCE2B98007FBC8C /* PortfolioView */,
 				2A9F92D51FCE1C25007FBC8C /* MainTabBarView */,
-				2AACA18E1FCADFCA00E1F670 /* MarketDetailView */,
 				2AACA18D1FCADFBE00E1F670 /* MarketListView */,
+				2A9F92D81FCE2B98007FBC8C /* PortfolioView */,
+				2A93BC3E1FD0785300E3017C /* ModalScenes */,
+				2AACA18E1FCADFCA00E1F670 /* MarketDetailView */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -1284,6 +1284,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ACDD64015CF3253A1ACC0756 /* Pods-CryptoMarketUITests.debug.xcconfig */;
 			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				INFOPLIST_FILE = iOS/Tests/UISnapShot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1325,6 +1326,7 @@
 				CODE_SIGN_ENTITLEMENTS = "iOS Today Widget.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Today Extension/Assets/Info.plist";
@@ -1474,6 +1476,7 @@
 				CODE_SIGN_ENTITLEMENTS = CryptoMarket/CryptoMarket.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Application/Assets/Info.plist";

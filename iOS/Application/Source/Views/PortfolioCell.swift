@@ -13,28 +13,52 @@ import ChameleonFramework
 
 class PortfolioCell: CellWithRoundBorders {
     
-    let usdLabel: UILabel = {
+    let portfolioLabel: UILabel = {
         let label = UILabel()
         
+        label.text = "Portfolio: "
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.minimumScaleFactor = 0.5
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        
+        return label
+    }()
+    
+    let moneyLabel: UILabel = {
+        let label = UILabel()
+
         label.text = "10000 USD"
-        label.font = UIFont.systemFont(ofSize: 25)
+        label.font = UIFont.systemFont(ofSize: 20)
         label.minimumScaleFactor = 0.5
         label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .center
-        
+        label.textAlignment = .right
+
         return label
     }()
-    let btcLabel: UILabel = {
-        let label = UILabel()
-        
-        label.text = "1 BTC"
-        label.font = UIFont.systemFont(ofSize: 25)
-        label.minimumScaleFactor = 0.5
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .center
-        
-        return label
-    }()
+    
+//    let usdLabel: UILabel = {
+//        let label = UILabel()
+//
+//        label.text = "10000 USD"
+//        label.font = UIFont.systemFont(ofSize: 25)
+//        label.minimumScaleFactor = 0.5
+//        label.adjustsFontSizeToFitWidth = true
+//        label.textAlignment = .center
+//
+//        return label
+//    }()
+//    let btcLabel: UILabel = {
+//        let label = UILabel()
+//
+//        label.text = "1 BTC"
+//        label.font = UIFont.systemFont(ofSize: 25)
+//        label.minimumScaleFactor = 0.5
+//        label.adjustsFontSizeToFitWidth = true
+//        label.textAlignment = .centert
+//
+//        return label
+//    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,17 +78,17 @@ class PortfolioCell: CellWithRoundBorders {
         
         let middleView = UIView()
         
-        self.sv(usdLabel, middleView, btcLabel)
+        self.sv(portfolioLabel, middleView, moneyLabel)
         self.layout(
-            |-usdLabel-middleView.width(1).centerVertically()-btcLabel-|
+            |-20-portfolioLabel.centerVertically()-moneyLabel.centerVertically()-20-|
         )
-        usdLabel.Width == btcLabel.Width
+//        usdLabel.Width == btcLabel.Width
     }
     
     func set(portfolioAmount: PortfolioAmount) {
         
-        self.usdLabel.text = "\(portfolioAmount.usd.string(fractionDigits: 2)) $"
-        self.btcLabel.text = "\(portfolioAmount.btc.string(fractionDigits: 2)) \u{20BF}"
+        self.moneyLabel.text = "\(portfolioAmount.usd.string(fractionDigits: 2)) $ " + "(" +
+            "\(portfolioAmount.btc.string(fractionDigits: 2)) \u{20BF}" + ")"
         
     }
 }

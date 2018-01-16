@@ -22,7 +22,7 @@ class PortfolioViewController: RxSwiftViewController {
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
         let topInset: CGFloat = 15
-        let bottomInset: CGFloat = 0
+        let bottomInset: CGFloat = 15
         
         view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
         view.scrollIndicatorInsets = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
@@ -111,11 +111,15 @@ class PortfolioViewController: RxSwiftViewController {
     func setupLayout() {
         
         self.view.layout(
-            |-self.collectionView-|
+            0,
+            |-self.collectionView-|,
+            0
         )
         
-        self.collectionView.Top == topLayoutGuide.Bottom
-        self.collectionView.Bottom == bottomLayoutGuide.Top
+        self.extendedLayoutIncludesOpaqueBars = true
+//        
+//        self.collectionView.Top == topLayoutGuide.Bottom
+//        self.collectionView.Bottom == bottomLayoutGuide.Top
     }
     
     @objc func refresh() {

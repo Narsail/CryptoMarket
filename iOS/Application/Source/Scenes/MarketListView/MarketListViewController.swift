@@ -98,16 +98,18 @@ class MarketListViewController: RxSwiftViewController {
         // Navbar Settings
         self.navigationController?.navigationBar.shouldRemoveShadow(true)
         
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.autocorrectionType = .yes
+        searchController.searchBar.barTintColor = Color.navigationBarItems.asUIColor
+        searchController.searchBar.tintColor = Color.navigationBarItems.asUIColor
+        searchController.searchBar.backgroundColor = Color.backgroundColor.asUIColor
+        searchController.view.backgroundColor = Color.backgroundColor.asUIColor
+        searchController.dimsBackgroundDuringPresentation = false
+        
+        searchController.searchBar.rx.text.orEmpty.bind(to: self.viewModel.filter).disposed(by: disposeBag)
+        searchController.rx.didDismiss.map { return "" }.bind(to: self.viewModel.filter).disposed(by: disposeBag)
+        
         if Environment.isIOS11 {
-            
-            let searchController = UISearchController(searchResultsController: nil)
-            searchController.searchBar.autocorrectionType = .yes
-            searchController.searchBar.barTintColor = Color.navigationBarItems.asUIColor
-            searchController.searchBar.tintColor = Color.navigationBarItems.asUIColor
-            searchController.dimsBackgroundDuringPresentation = false
-            
-            searchController.searchBar.rx.text.orEmpty.bind(to: self.viewModel.filter).disposed(by: disposeBag)
-            searchController.rx.didDismiss.map { return "" }.bind(to: self.viewModel.filter).disposed(by: disposeBag)
             
             if #available(iOS 11.0, *) {
                 self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -118,10 +120,6 @@ class MarketListViewController: RxSwiftViewController {
             }
             
         }
-        
-        self.view.sv(
-            self.collectionView
-        )
         
         setupLayout()
         setupCollectionView()
@@ -142,12 +140,22 @@ class MarketListViewController: RxSwiftViewController {
     
     func setupLayout() {
         
-        self.view.layout(
-            |-self.collectionView-|
+        self.view.sv(
+            self.collectionView
         )
         
-        self.collectionView.Top == topLayoutGuide.Bottom
-        self.collectionView.Bottom == bottomLayoutGuide.Top
+        self.view.layout(
+            0,
+            |-self.collectionView-|,
+            0
+        )
+        
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.extendedLayoutIncludesOpaqueBars = true
+//        self.edgesForExtendedLayout = [.bottom, .top]
+        
+//        self.collectionView.Top == topLayoutGuide.Bottom
+//        self.collectionView.Bottom == bottomLayoutGuide.Top
     }
     
     @objc func refresh() {

@@ -38,11 +38,7 @@ class PortfolioViewController: RxSwiftViewController {
         
         control.attributedTitle = NSAttributedString(string: Strings.RefreshControl.title)
         
-        if Environment.isIOS11 {
-            control.tintColor = .white
-        } else {
-            control.tintColor = .gray
-        }
+        control.tintColor = .gray
         
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
@@ -79,13 +75,9 @@ class PortfolioViewController: RxSwiftViewController {
         // Navbar Settings
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        if Environment.isIOS11 {
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.prefersLargeTitles = true
-                self.navigationItem.largeTitleDisplayMode = .always
-                self.navigationItem.title = Strings.NavigationBarItems.portfolio
-            }
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.title = Strings.NavigationBarItems.portfolio
         
         self.view.sv(
             self.collectionView
@@ -139,6 +131,12 @@ class PortfolioViewController: RxSwiftViewController {
         
         self.viewModel.contentUpdated.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
             self.collectionView.refreshControl?.endRefreshing()
+            if let lastUpdate = CoinMarketCapAPI.shared.lastUpdate {
+                self.collectionView.refreshControl?.attributedTitle = NSAttributedString(
+                    string: Strings.RefreshControl.lastUpdate +
+                        lastUpdate.string(dateStyle: .none, timeStyle: DateFormatter.Style.medium, in: nil)
+                )
+            }
             self.adapter.reloadData(completion: nil)
         }).disposed(by: self.disposeBag)
         

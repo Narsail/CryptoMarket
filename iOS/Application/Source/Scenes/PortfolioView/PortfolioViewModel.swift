@@ -151,7 +151,7 @@ extension PortfolioViewModel: PortfolioItemDelegate {
     func deleteItem(crypto: OwningCryptoCurrency) {
         Portfolio.shared.remove(crypto)
         // To calculate the new Amount
-        self.reloadData()
+        self.contentUpdated.onNext(())
     }
     
 }

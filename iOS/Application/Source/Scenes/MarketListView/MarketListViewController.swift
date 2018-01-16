@@ -23,7 +23,7 @@ class MarketListViewController: RxSwiftViewController {
         
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: UICollectionViewFlowLayout())
         
-        let topInset: CGFloat = 15
+        let topInset: CGFloat = 0
         let bottomInset: CGFloat = 15
         
         view.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: bottomInset, right: 0)
@@ -40,11 +40,7 @@ class MarketListViewController: RxSwiftViewController {
         
         control.attributedTitle = NSAttributedString(string: Strings.RefreshControl.title)
         
-        if Environment.isIOS11 {
-            control.tintColor = .white
-        } else {
-            control.tintColor = .gray
-        }
+        control.tintColor = .gray
         
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
@@ -107,21 +103,16 @@ class MarketListViewController: RxSwiftViewController {
     
         searchController.view.backgroundColor = UIColor.clear
         searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
         
         searchController.searchBar.rx.text.orEmpty.bind(to: self.viewModel.filter).disposed(by: disposeBag)
         searchController.rx.didDismiss.map { return "" }.bind(to: self.viewModel.filter).disposed(by: disposeBag)
         
-        if Environment.isIOS11 {
-            
-            if #available(iOS 11.0, *) {
-                self.navigationController?.navigationBar.prefersLargeTitles = true
-                self.navigationItem.largeTitleDisplayMode = .always
-                self.navigationItem.title = Strings.NavigationBarItems.cryptocurrencies
-                self.navigationItem.searchController = searchController
-                self.navigationItem.hidesSearchBarWhenScrolling = false
-            }
-            
-        }
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.title = Strings.NavigationBarItems.cryptocurrencies
+        self.navigationItem.searchController = searchController
+//        self.navigationItem.hidesSearchBarWhenScrolling = false
         
         setupLayout()
         setupCollectionView()

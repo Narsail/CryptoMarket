@@ -91,6 +91,10 @@ class MarketListViewModel: RxSwiftViewModel {
         
         var cryptos = try self.cryptos.value()
         
+//        if !cryptos.isEmpty {
+//            cryptos = Array(cryptos[0..<10])
+//        }
+        
         switch order {
         case .capAscending:
             cryptos = cryptos.sorted(by: { cryptoOne, cryptoTwo in

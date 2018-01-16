@@ -1330,7 +1330,7 @@
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Today Extension/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket.todayextension;
 				PRODUCT_MODULE_NAME = iOS_Today_Widget;
@@ -1361,7 +1361,7 @@
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Today Extension/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket.todayextension;
 				PRODUCT_MODULE_NAME = iOS_Today_Widget;
@@ -1480,7 +1480,7 @@
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Application/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1500,7 +1500,7 @@
 				DEVELOPMENT_TEAM = 2T87V487YG;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/iOS/Application/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = crypto.CryptoMarket;
 				PRODUCT_NAME = "$(TARGET_NAME)";

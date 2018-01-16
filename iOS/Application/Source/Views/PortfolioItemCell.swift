@@ -70,18 +70,24 @@ class PortfolioItemCell: CellWithRoundBorders {
     }
     
     func setupLayout() {
+
+        self.sv(amountLabel, symbolLabel, deleteButton, dollarLabel)
         
         self.deleteButton.setBackgroundImage(#imageLiteral(resourceName: "rounded-remove-button"), for: .normal)
         self.deleteButton.addTarget(self, action: #selector(tappedDelete), for: .touchUpInside)
-        self.showDelete(show: false)
         
         self.backgroundColor = UIColor.flatWhite
         
-        self.sv(amountLabel, symbolLabel, deleteButton, dollarLabel)
+        self.showDelete(show: false)
+        
         self.layout(
-            |-amountLabel.centerVertically()-10-symbolLabel.centerVertically()-dollarLabel.centerVertically()-40-|
+            |-amountLabel-10-symbolLabel-dollarLabel-deleteButton.width(25)-20-|
         )
-        self.layout(deleteButton.centerVertically().width(25)-20-|)
+
+        deleteButton.centerVertically()
+        amountLabel.centerVertically()
+        symbolLabel.centerVertically()
+        dollarLabel.centerVertically()
         
         amountLabel.Width == symbolLabel.Width
         dollarLabel.Width == amountLabel.Width * 2

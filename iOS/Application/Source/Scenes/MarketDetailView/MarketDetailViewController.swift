@@ -135,6 +135,10 @@ class MarketDetailViewController: RxSwiftViewController {
         // Create Reload Bar Button Item
         let barButtonitem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
         self.navigationItem.rightBarButtonItem = barButtonitem
+        
+        self.navigationController?.view.backgroundColor = Color.backgroundColor.asUIColor
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .always
 
     }
     

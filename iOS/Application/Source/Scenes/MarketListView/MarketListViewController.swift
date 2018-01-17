@@ -54,6 +54,7 @@ class MarketListViewController: RxSwiftViewController {
         super.init(nibName: nil, bundle: nil)
         
         /* Non self Initialization */
+        self.viewModel.displayDelegate = self
         
         // Sort Icon
         let sortItem = UIBarButtonItem(
@@ -184,5 +185,28 @@ class MarketListViewController: RxSwiftViewController {
         adapter = ListAdapter(updater: ListAdapterUpdater(), viewController: self, workingRangeSize: 1)
         
     }
+    
+}
+
+extension MarketListViewController: ListDisplayDelegate {
+    
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController,
+                     cell: UICollectionViewCell, at index: Int) {}
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController,
+                     cell: UICollectionViewCell, at index: Int) {}
+    
+    func listAdapter(_ listAdapter: ListAdapter, willDisplay sectionController: ListSectionController) {
+        if sectionController.isLastSection {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.viewModel.allCryptos.onNext(true)
+            }
+        }
+        if sectionController.section == 50 {
+            self.viewModel.allCryptos.onNext(false)
+        }
+    }
+    
+    func listAdapter(_ listAdapter: ListAdapter, didEndDisplaying sectionController: ListSectionController) {}
     
 }

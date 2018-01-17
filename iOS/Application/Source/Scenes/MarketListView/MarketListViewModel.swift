@@ -18,14 +18,16 @@ class MarketListViewModel: RxSwiftViewModel {
     let coinMarketCapAPI = CoinMarketCapAPI.shared
     weak var displayDelegate: ListDisplayDelegate?
     
-    var cryptos = BehaviorSubject<[Cryptocurrency]>(value: [])
+    var allCryptos = BehaviorSubject<Bool>(value: false)
+    
+    let cryptosUpdated = PublishSubject<[Cryptocurrency]>()
+    var cryptos = [Cryptocurrency]()
+    
     var global = BehaviorSubject<Global?>(value: nil)
     var portfolioAmount = BehaviorSubject<PortfolioAmount?>(value: nil)
     let overlay = ResourceStatusOverlay()
     
-    let searchToken: NSNumber = 42
     let sortToken: NSNumber = 41
-    let loadingToken: NSNumber = 40
     
     var sortOrder = SortOptions.capDescending
     
@@ -48,7 +50,7 @@ class MarketListViewModel: RxSwiftViewModel {
         // Load the Markets (actually they are Cryptocurrencies!)
         coinMarketCapAPI.markets.addObserver(owner: self, closure: { [weak self] resource, _ in
             if let markets: [Cryptocurrency] = resource.typedContent() {
-                self?.cryptos.onNext(markets)
+                self?.cryptosUpdated.onNext(markets)
                 Portfolio.shared.cryptoUpdate.onNext(markets)
             }
         }).addObserver(overlay)
@@ -59,8 +61,16 @@ class MarketListViewModel: RxSwiftViewModel {
         }
         
         // Bind the Subjects to the Reload
-        Observable.combineLatest(cryptos, global, portfolioAmount)
+        Observable.combineLatest(global, portfolioAmount, allCryptos)
             // .debounce(0.5, scheduler: MainScheduler.instance)
+            .map({ _ in Void() })
+            .bind(to: contentUpdated)
+            .disposed(by: disposeBag)
+        
+        cryptosUpdated
+            .do(onNext: { cryptos in
+                self.cryptos = self.getSortedCryptos(cryptos: cryptos, with: self.sortOrder)
+            })
             .map({ _ in Void() })
             .bind(to: contentUpdated)
             .disposed(by: disposeBag)
@@ -87,13 +97,24 @@ class MarketListViewModel: RxSwiftViewModel {
         CoinMarketCapAPI.shared.loadAll.onNext(())
     }
     
-    func getSortedCryptos(order: SortOptions) throws -> [Cryptocurrency] {
+    func filterCryptos(cryptos: [Cryptocurrency], with filter: String) -> [Cryptocurrency] {
         
-        var cryptos = try self.cryptos.value()
+        var cryptos = cryptos
         
-//        if !cryptos.isEmpty {
-//            cryptos = Array(cryptos[0..<10])
-//        }
+        if filter != "" {
+            cryptos = cryptos.filter {
+                $0.name.lowercased().contains(find: filter.lowercased()) ||
+                    $0.symbol.lowercased().contains(find: filter.lowercased())
+            }
+        }
+        
+        return cryptos
+        
+    }
+    
+    func getSortedCryptos(cryptos: [Cryptocurrency], with order: SortOptions) -> [Cryptocurrency] {
+        
+        var cryptos = cryptos
         
         switch order {
         case .capAscending:
@@ -120,7 +141,28 @@ class MarketListViewModel: RxSwiftViewModel {
                 
             })
         case .capDescending:
-            break
+            cryptos = cryptos.sorted(by: { cryptoOne, cryptoTwo in
+                switch (cryptoOne.marketCapUSD, cryptoTwo.marketCapUSD) {
+                case (.none, .none):
+                    return true
+                case (.none, _):
+                    return false
+                case (.some(let capOneString), .some(let capTwoString)):
+                    switch (Double(capOneString), Double(capTwoString)) {
+                    case (.none, .none):
+                        return true
+                    case (.none, _):
+                        return false
+                    case (.some(let capOne), .some(let capTwo)):
+                        return capOne > capTwo
+                    default:
+                        return true
+                    }
+                default:
+                    return true
+                }
+                
+            })
         case .nameAscending:
             cryptos = cryptos.sorted(by: { $0.name.lowercased() < $1.name.lowercased() })
         case .nameDescending:
@@ -167,32 +209,14 @@ extension MarketListViewModel: ListAdapterDataSource {
             
             var list = [ListDiffable]()
             
-            // Add the Title
-            if !Environment.isIOS11 {
-                list.append(Strings.NavigationBarItems.cryptocurrencies as NSString)
-            }
+            let filter = ((try? self.filter.value()) ?? "").trimmingCharacters(in: .whitespaces)
             
             // Sort View
-            if try self.showSort.value() {
+            if filter == "", try self.showSort.value() {
                 list.append(sortToken)
             }
             
-            // Search Token
-            if !(try cryptos.value().isEmpty) && !Environment.isIOS11 {
-                list.append(searchToken)
-            }
-            
-            let filter = ((try? self.filter.value()) ?? "").trimmingCharacters(in: .whitespaces)
-            
-            if filter != "" {
-                list += (try getSortedCryptos(order: self.sortOrder).filter {
-                    $0.name.lowercased().contains(find: filter.lowercased()) ||
-                        $0.symbol.lowercased().contains(find: filter.lowercased())
-                    } as [ListDiffable])
-            } else if try self.showSort.value() {
-                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
-            } else {
-                
+            if filter == "", !(try self.showSort.value()) {
                 // Add Portfolio
                 if let amount = try self.portfolioAmount.value() {
                     list.append(amount)
@@ -202,15 +226,17 @@ extension MarketListViewModel: ListAdapterDataSource {
                 if let global = try self.global.value() {
                     list.append(global)
                 }
-                
-                list += (try getSortedCryptos(order: self.sortOrder) as [ListDiffable])
-                
             }
             
-//            if try cryptos.value().isEmpty {
-//                // Add Loading View
-//                list.append(loadingToken)
-//            }
+            let allCryptos = try self.allCryptos.value()
+            
+            var filteredCryptos = self.filterCryptos(cryptos: self.cryptos, with: filter)
+            
+            if !allCryptos, filteredCryptos.count > 100 {
+                filteredCryptos = Array(filteredCryptos[0..<100])
+            }
+
+            list += filteredCryptos as [ListDiffable]
             
             return list
             
@@ -223,21 +249,15 @@ extension MarketListViewModel: ListAdapterDataSource {
         
         switch object {
         case is Cryptocurrency:
-            return MarketSectionController(delegate: self)
+            let sectionController = MarketSectionController(delegate: self)
+            sectionController.displayDelegate = self.displayDelegate
+            return sectionController
         case is Global:
             return GlobalSectionController()
         case is PortfolioAmount:
             return PortfolioAmountSectionController()
-        case let searchToken as NSNumber where searchToken == self.searchToken:
-            let sectionController = SearchSectionController()
-            sectionController.delegate = self
-            return sectionController
         case let sortToken as NSNumber where sortToken == self.sortToken:
             let sectionController = SortSectionController(order: self.sortOrder, delegate: self)
-            // sectionController.delegate = self
-            return sectionController
-        case let loadingToken as NSNumber where loadingToken == self.loadingToken:
-            let sectionController = LoadingSectionController()
             // sectionController.delegate = self
             return sectionController
         case is NSString:
@@ -252,14 +272,6 @@ extension MarketListViewModel: ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? {
         return overlay
-    }
-    
-}
-
-extension MarketListViewModel: SearchSectionControllerDelegate {
-    
-    func searchSectionController(_ sectionController: SearchSectionController, didChangeText text: String) {
-        self.filter.onNext(text)
     }
     
 }
@@ -279,7 +291,7 @@ extension MarketListViewModel: SortCellDelegate {
             Answers.logCustomEvent(withName: "Used Sorting", customAttributes: ["Option": sortOrder.rawValue])
         }
         self.sortOrder = sortOrder
-        self.contentUpdated.onNext(())
+        self.cryptosUpdated.onNext(self.cryptos)
     }
     
 }

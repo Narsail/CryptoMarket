@@ -81,13 +81,13 @@ class MarketListViewModel: RxSwiftViewModel {
             .disposed(by: disposeBag)
         
         // Search Text
-        self.filter.debounce(0.1, scheduler: MainScheduler.instance).subscribe(onNext: { [unowned self] _ in
+        self.filter.debounce(0.1, scheduler: MainScheduler.instance).do(onNext: { [unowned self] _ in
             if !Environment.isDebug {
                 Answers.logCustomEvent(withName: "Used the Filter.",
                                        customAttributes: ["Filter": (try? self.filter.value()) ?? ""])
             }
-            self.filtern.onNext(())
-        }).disposed(by: self.disposeBag)
+            
+        }).map { _ in return () }.bind(to: contentUpdated).disposed(by: disposeBag)
         
         self.reloadData()
         

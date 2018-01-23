@@ -13,7 +13,6 @@ def shared
     pod 'Crashlytics'
     pod 'Siesta', :path => "~/Developer/Github/siesta/", subspecs: ['Core', 'UI']
     pod 'SwiftDate'
-    
 end
 
 target 'CryptoMarket' do
@@ -26,6 +25,7 @@ target 'CryptoMarket' do
   pod 'Siren'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git', :branch => 'wip/swift4'
   pod 'Charts'
+  pod 'ReachabilitySwift'
   
   target 'CryptoMarketUITests' do
     inherit! :search_paths

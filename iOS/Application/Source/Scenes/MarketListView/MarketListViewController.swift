@@ -113,7 +113,7 @@ class MarketListViewController: RxSwiftViewController {
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.title = Strings.NavigationBarItems.cryptocurrencies
         self.navigationItem.searchController = searchController
-//        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.hidesSearchBarWhenScrolling = false
         
         setupLayout()
         setupCollectionView()
@@ -139,11 +139,15 @@ class MarketListViewController: RxSwiftViewController {
         )
         
         self.view.layout(
-            |-self.collectionView-|
+            0,
+            |-self.collectionView-|,
+            0
         )
         
-        self.collectionView.Top == topLayoutGuide.Bottom
-        self.collectionView.Bottom == bottomLayoutGuide.Top
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+//        self.collectionView.Top == topLayoutGuide.Bottom
+//        self.collectionView.Bottom == bottomLayoutGuide.Top
     }
     
     @objc func refresh() {
@@ -169,12 +173,9 @@ class MarketListViewController: RxSwiftViewController {
                             lastUpdate.string(dateStyle: .none, timeStyle: DateFormatter.Style.medium, in: nil)
                     )
                 }
-                adapter.reloadData(completion: nil)
-            }).disposed(by: self.disposeBag)
-            
-            self.viewModel.filtern.observeOn(MainScheduler.instance).subscribe(onNext: { _ in
                 adapter.performUpdates(animated: true, completion: nil)
             }).disposed(by: self.disposeBag)
+            
         }
     }
     

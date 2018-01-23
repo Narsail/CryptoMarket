@@ -38,7 +38,8 @@ class CryptoMarketUITests: XCTestCase {
         
         let tabBarsQuery = app.tabBars
         tabBarsQuery.children(matching: .button).element(boundBy: 1).tap()
-        collectionViewsQuery.children(matching: .cell).element(boundBy: 1).otherElements.children(matching: .button).element.tap()
+        collectionViewsQuery.children(matching: .cell).element(boundBy: 1).otherElements.children(matching: .button)
+            .element.tap()
         
         snapshot("Add Item", timeWaitingForIdle: 2)
         

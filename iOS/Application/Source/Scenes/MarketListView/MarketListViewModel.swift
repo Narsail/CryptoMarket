@@ -89,12 +89,15 @@ class MarketListViewModel: RxSwiftViewModel {
             
         }).map { _ in return () }.bind(to: contentUpdated).disposed(by: disposeBag)
         
-        self.reloadData()
+        // Load directly without debounce. This is necessary due to a bug in the Siesta Overlay View.
+        CoinMarketCapAPI.shared.loadAll.onNext(())
         
     }
     
     func reloadData() {
-        CoinMarketCapAPI.shared.loadAll.onNext(())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            CoinMarketCapAPI.shared.loadAll.onNext(())
+        }
     }
     
     func filterCryptos(cryptos: [Cryptocurrency], with filter: String) -> [Cryptocurrency] {

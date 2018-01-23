@@ -57,7 +57,9 @@ class PortfolioViewModel: RxSwiftViewModel {
     }
     
     func reloadData() {
-        CoinMarketCapAPI.shared.loadAll.onNext(())
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            CoinMarketCapAPI.shared.loadAll.onNext(())
+        }
     }
     
     func addToPortfolio(crypto: OwningCryptoCurrency) {

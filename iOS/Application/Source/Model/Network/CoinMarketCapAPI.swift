@@ -69,13 +69,13 @@ class CoinMarketCapAPI {
         let loadAll = PublishSubject<Void>()
         self.loadAll = loadAll.asObserver()
         
-        loadAll.debounce(0.5, scheduler: MainScheduler.instance).subscribe(onNext: {
+        loadAll.subscribe(onNext: {
             self.global.load()
             self.markets.load()
         }).disposed(by: disposeBag)
         
         // Set last update
-        self.global.addObserver(owner: self) { _,_ in
+        self.global.addObserver(owner: self) { _, _ in
             self.lastUpdate = Date()
         }
     }

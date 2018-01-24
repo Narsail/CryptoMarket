@@ -27,12 +27,12 @@ class CryptoMarketUITests: XCTestCase {
     
 	func testTakeScreenshots() {
         
-        snapshot("List View", timeWaitingForIdle: 5)
+        snapshot("0_List-View", timeWaitingForIdle: 5)
         
         let collectionViewsQuery = app.collectionViews
         collectionViewsQuery/*@START_MENU_TOKEN@*/.staticTexts["Bitcoin"]/*[[".cells.staticTexts[\"Bitcoin\"]",".staticTexts[\"Bitcoin\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         
-        snapshot("Detail View", timeWaitingForIdle: 5)
+        snapshot("1_Detail-View", timeWaitingForIdle: 5)
         
         app.navigationBars["Bitcoin"].buttons["Cryptocurrencies"].tap()
         
@@ -41,7 +41,7 @@ class CryptoMarketUITests: XCTestCase {
         collectionViewsQuery.children(matching: .cell).element(boundBy: 0).otherElements.children(matching: .button)
             .element.tap()
         
-        snapshot("Add Item", timeWaitingForIdle: 2)
+        snapshot("2_Add-Item", timeWaitingForIdle: 2)
         
         let elementsQuery = app.scrollViews.otherElements
         let symbolTextField = elementsQuery.textFields["Symbol"]
@@ -53,7 +53,7 @@ class CryptoMarketUITests: XCTestCase {
         amountTextField.typeText("1.0")
         elementsQuery.buttons["Add"].tap()
         
-        snapshot("Portfolio", timeWaitingForIdle: 2)
+        snapshot("3_Portfolio", timeWaitingForIdle: 2)
 		
 	}
 		

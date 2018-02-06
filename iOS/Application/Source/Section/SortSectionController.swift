@@ -16,7 +16,7 @@ import IGListKit
 class SortSectionController: ListSectionController {
     
     weak var delegate: SortCellDelegate?
-    let order: SortOptions
+    var order: SortOptions
     
 //    init(delegate: AddToPortfolioSelectionControllerDelegate) {
     init(order: SortOptions, delegate: SortCellDelegate) {
@@ -46,6 +46,10 @@ class SortSectionController: ListSectionController {
         return cell
     }
     
-    override func didUpdate(to object: Any) {}
+    override func didUpdate(to object: Any) {
+        if let object = object as? SortOptionsWrapper {
+            self.order = object.option
+        }
+    }
     
 }

@@ -381,7 +381,6 @@ class MarketDetailViewController: RxSwiftViewController {
     }
     
     func populateHistoryData(_ historyData: HistoDayResponse) {
-//        print(historyData.data)
         // Line Chart Data
         var lineChartEntry = [ChartDataEntry]()
         

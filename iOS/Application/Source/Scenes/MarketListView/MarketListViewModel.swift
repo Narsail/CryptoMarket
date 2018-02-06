@@ -27,8 +27,6 @@ class MarketListViewModel: RxSwiftViewModel {
     var portfolioAmount = BehaviorSubject<PortfolioAmount?>(value: nil)
     let overlay = ResourceStatusOverlay()
     
-    let sortToken: NSNumber = 41
-    
     var sortOrder = SortOptions.capDescending
     
     // MARK: - Inputs
@@ -216,7 +214,7 @@ extension MarketListViewModel: ListAdapterDataSource {
             
             // Sort View
             if filter == "", try self.showSort.value() {
-                list.append(sortToken)
+                list.append(SortOptionsWrapper(option: sortOrder))
             }
             
             if filter == "", !(try self.showSort.value()) {
@@ -259,9 +257,8 @@ extension MarketListViewModel: ListAdapterDataSource {
             return GlobalSectionController()
         case is PortfolioAmount:
             return PortfolioAmountSectionController()
-        case let sortToken as NSNumber where sortToken == self.sortToken:
-            let sectionController = SortSectionController(order: self.sortOrder, delegate: self)
-            // sectionController.delegate = self
+        case let sortOrderWrapper as SortOptionsWrapper:
+            let sectionController = SortSectionController(order: sortOrderWrapper.option, delegate: self)
             return sectionController
         case is NSString:
             let sectionController = TitleSectionController()
@@ -306,4 +303,29 @@ enum SortOptions: String {
     case nameDescending // Beginning with Z
     case changeAscending
     case changeDescending
+}
+
+class SortOptionsWrapper {
+    
+    let option: SortOptions
+    
+    init(option: SortOptions) {
+        self.option = option
+    }
+    
+}
+
+extension SortOptionsWrapper: ListDiffable {
+    
+    func diffIdentifier() -> NSObjectProtocol {
+        return self.option.hashValue as NSNumber
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        if let object = object as? SortOptionsWrapper {
+            return self.option == object.option
+        }
+        return false
+    }
+    
 }

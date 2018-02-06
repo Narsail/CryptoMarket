@@ -109,9 +109,7 @@ class PortfolioViewController: RxSwiftViewController {
         )
         
         self.extendedLayoutIncludesOpaqueBars = true
-//        
-//        self.collectionView.Top == topLayoutGuide.Bottom
-//        self.collectionView.Bottom == bottomLayoutGuide.Top
+        
     }
     
     @objc func refresh() {

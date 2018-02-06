@@ -78,7 +78,7 @@ extension Cryptocurrency: ListDiffable {
     
     func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
         if let object = object as? Cryptocurrency {
-            return self.ident == object.ident
+            return (self.ident, self.priceUSDAsDouble) == (object.ident, object.priceUSDAsDouble)
         }
         return false
     }

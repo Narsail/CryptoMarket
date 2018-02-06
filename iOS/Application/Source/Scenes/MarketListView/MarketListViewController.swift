@@ -39,9 +39,7 @@ class MarketListViewController: RxSwiftViewController {
         let control = UIRefreshControl()
         
         control.attributedTitle = NSAttributedString(string: Strings.RefreshControl.title)
-        
         control.tintColor = .gray
-        
         control.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
         
         return control
@@ -145,9 +143,7 @@ class MarketListViewController: RxSwiftViewController {
         )
         
         self.extendedLayoutIncludesOpaqueBars = true
-        
-//        self.collectionView.Top == topLayoutGuide.Bottom
-//        self.collectionView.Bottom == bottomLayoutGuide.Top
+
     }
     
     @objc func refresh() {

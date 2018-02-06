@@ -95,27 +95,27 @@ class SortCell: CellWithRoundBorders {
         self.capButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .capAscending:
-                self.delegate?.didChange(.capDescending)
+                self.setOrder(order: .capDescending)
             default:
-                self.delegate?.didChange(.capAscending)
+                self.setOrder(order: .capAscending)
             }
         }).disposed(by: disposeBag)
         
         self.nameButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .nameAscending:
-                self.delegate?.didChange(.nameDescending)
+                self.setOrder(order: .nameDescending)
             default:
-                self.delegate?.didChange(.nameAscending)
+                self.setOrder(order: .nameAscending)
             }
         }).disposed(by: disposeBag)
         
         self.changeButton.rx.tap.subscribe(onNext: { _ in
             switch self.sortOrder {
             case .changeAscending:
-                self.delegate?.didChange(.changeDescending)
+                self.setOrder(order: .changeDescending)
             default:
-                self.delegate?.didChange(.changeAscending)
+                self.setOrder(order: .changeAscending)
             }
         }).disposed(by: disposeBag)
         
@@ -149,6 +149,8 @@ class SortCell: CellWithRoundBorders {
             self.changeArrow.isHidden = false
             self.changeArrow.image = #imageLiteral(resourceName: "long-arrow-pointing-up")
         }
+        
+        self.delegate?.didChange(order)
         
     }
 }
